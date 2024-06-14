@@ -2,7 +2,7 @@
 
 import React from 'react';
 import RecipeCard from '../components/RecipeCard';
-import { bras, rab } from '../recipes/smoothies';
+import { bras, rab } from '../recipes/Smoothies';
 
 const Smoothies: React.FC = () => {
   const recipes = [bras, rab];

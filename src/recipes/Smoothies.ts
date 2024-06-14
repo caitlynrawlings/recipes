@@ -1,5 +1,5 @@
-import Ingredient, { createIngredient } from '../types/ingredient';
-import Recipe from '../types/recipe';
+import Ingredient, { createIngredient } from '../types/Ingredient';
+import Recipe from '../types/Recipe';
 
 export const bras: Recipe = {
     name: "Bras",
