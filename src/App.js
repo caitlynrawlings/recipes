@@ -3,7 +3,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Smoothies from './pages/Smoothies.tsx'
+import Smoothies from './pages/Smoothie.tsx'
 
 function App() {
   return (

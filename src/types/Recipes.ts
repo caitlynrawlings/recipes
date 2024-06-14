@@ -1,4 +1,4 @@
-import  Ingredient from './Ingredient';
+import  Ingredient from './Ingredients';
 
 type Recipe = {
     name: string;
