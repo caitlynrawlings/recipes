@@ -1,7 +1,7 @@
 // src/components/RecipeCard.tsx
 
 import React from 'react';
-import Recipe from '../types/Recipes';
+import Recipe from '../types/Recipe';
 import '../index.css'; // Ensure Tailwind CSS is imported
 
 interface RecipeCardProps {

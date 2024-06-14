@@ -1,8 +1,8 @@
 // src/components/Smoothies.tsx
 
 import React from 'react';
-import RecipeCard from '../components/RecipeCards';
-import { bras, rab } from '../recipes/Smoothie';
+import RecipeCard from '../components/RecipeCard'
+import { bras, rab } from '../recipes/SmoothieRecipe';
 
 const Smoothies: React.FC = () => {
   const recipes = [bras, rab];
