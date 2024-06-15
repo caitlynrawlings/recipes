@@ -1,30 +1,20 @@
 // src/App.js
 
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Smoothies from './pages/Smoothies.tsx'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RecipeDetails from './pages/RecipeDetails.tsx';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <main>
-        <Smoothies />
-      </main>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Smoothies />} />
+          <Route path="/recipe/:name" element={<RecipeDetails />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

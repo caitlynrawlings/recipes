@@ -1,16 +1,14 @@
-// src/components/Smoothies.tsx
+// src/pages/Smoothies.tsx
 
 import React from 'react';
-import RecipeCard from '../components/RecipeCard'
-import { bras, rab } from '../recipes/SmoothieRecipe';
+import RecipeCard from '../components/RecipeCard.tsx';
+import recipes from '../recipes/SmoothieRecipes.ts';
 
 const Smoothies: React.FC = () => {
-  const recipes = [bras, rab];
-
   return (
-    <div className="container mx-auto p-4">
-      {recipes.map((recipe, index) => (
-        <RecipeCard key={index} recipe={recipe} />
+    <div className="container mx-auto p-10">
+      {recipes.map((recipe) => (
+        <RecipeCard key={recipe.name} recipe={recipe} />
       ))}
     </div>
   );
