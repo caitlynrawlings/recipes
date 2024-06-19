@@ -1,3 +1,15 @@
+Project TODOS:
+- add sorting recipes by 
+    - rating
+    - alphabetical
+    - some sort of type tag
+    - ingredient search???
+    - 
+- make the design not so awfully hideous and ugly
+- crop images and then display set aspect ratio
+- make unit type translate teaspoons to tablespoons
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

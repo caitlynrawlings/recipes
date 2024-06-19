@@ -47,7 +47,7 @@ const RecipeDetails: React.FC = () => {
         <ul className="list-disc list-inside mb-4">
           {recipe.ingredients.map((ingredient, index) => (
             <li key={index} className="text-gray-800">
-              {ingredient.name}: {(ingredient.amount * servingSize).toFixed(2)} {ingredient.unit}
+              {ingredient.name}: {ingredient.unit.getLabel(parseFloat((ingredient.amount * servingSize).toFixed(2)))}
             </li>
           ))}
         </ul>

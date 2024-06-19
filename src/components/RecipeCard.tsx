@@ -28,7 +28,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
           <p className="mt-2 text-gray-900">Rating: {recipe.rating} / 10</p>
           <ul className="mt-4 space-y-2">
             {recipe.ingredients.map((ingredient, index) => (
-              <li key={index} className="text-gray-700">{ingredient.name}: {ingredient.amount} {ingredient.unit}</li>
+              <li key={index} className="text-gray-700">{ingredient.name}: {ingredient.unit.getLabel(parseFloat(ingredient.amount.toFixed(2)))}</li>
             ))}
           </ul>
         </div>
