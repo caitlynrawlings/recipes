@@ -18,7 +18,7 @@ const RecipeDetails: React.FC = () => {
   };
 
   return (
-    <div className="container flex flex-col bg-cyan-200 mx-auto p-10">
+    <div className="container flex flex-col bg-teal-100/50 mx-auto p-10">
       <h1 className="text-3xl font-bold text-indigo-500 mb-4">{recipe.name}</h1>
       <div className="max-w-4xl mx-auto flex flex-row mb-8">
         {recipe.picture && (

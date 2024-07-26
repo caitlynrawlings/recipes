@@ -9,6 +9,16 @@ Project TODOS:
 - crop images and then display set aspect ratio
 - make unit type translate teaspoons to tablespoons
 
+Dev Journal:
+- Make sure to install PostCSS Language Support, extension found in the VSCODE. That will remove the error that is displaying: @tailwindcss(unknownAtRules) for @tailwind base; 
+- when setting up theme with tailwind also need to set up postcss.config.js
+- using theme in tailwind you still have to define the style through the classname, does not get applied to a div of that name
+- 
+
+## Credits
+[Create React App](https://github.com/facebook/create-react-app)  
+[Tailwind background colors HEX codes](https://gist.github.com/guvener/d8952570d5a8be430580b93800519439)
+Tailwind css  
 
 # Getting Started with Create React App
 

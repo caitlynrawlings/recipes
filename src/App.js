@@ -1,7 +1,7 @@
 // src/App.js
 
 import React from 'react';
-import './App.css';
+import './index.css';
 import Smoothies from './pages/Smoothies.tsx'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RecipeDetails from './pages/RecipeDetails.tsx';
