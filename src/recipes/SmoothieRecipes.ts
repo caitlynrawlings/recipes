@@ -13,7 +13,7 @@ const recipes: Recipe[] = [
       createIngredient("Raspberries", 16, new Unit("raspberry")),
       createIngredient("Strawberry", 2, new Unit("strawberry")),
     ],
-    directions: "Blend all ingredients until smooth."
+    directions: ["Blend all ingredients until smooth."]
   },
   {
     name: "Rab",
@@ -24,7 +24,7 @@ const recipes: Recipe[] = [
       createIngredient("Blueberries", 28, new Unit("blueberry")),
       createIngredient("Raspberries", 32, new Unit("raspberry")),
     ],
-    directions: "Blend all ingredients until smooth."
+    directions: ["Blend all ingredients until smooth."]
   },
   {
     name: "Nutty",
@@ -36,7 +36,7 @@ const recipes: Recipe[] = [
       createIngredient("Peanutbutter", 1 / 3, new Unit("cup")),
       createIngredient("Almonds", 1 / 3, new Unit("cup")),
     ],
-    directions: "Blend all ingredients until smooth."
+    directions: ["Blend all ingredients until smooth."]
   },
   {
     name: "Bernana",
@@ -47,7 +47,7 @@ const recipes: Recipe[] = [
       createIngredient("Banana", 1, new Unit("banana")),
       createIngredient("Red Grapes (seedless)", 15, new Unit("grape")),
     ],
-    directions: "Blend all ingredients until smooth."
+    directions: ["Blend all ingredients until smooth."]
   },
 ];
 

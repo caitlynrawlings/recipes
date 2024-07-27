@@ -29,12 +29,7 @@ module.exports = {
         'h6': '200' // thin
       },
       colors: {
-        'h1': '#aa0000',
-        'h2': '#4a5568',
-        'h3': '#718096',
-        'h4': '#a0aec0',
-        'h5': '#cbd5e0',
-        'h6': '#e2e8f0'
+        DEFAULT: 'rgb(74, 85, 104)',
       },
       gridAutoColumns: {
         auto: 'auto',
