@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import recipes from '../recipes/SmoothieRecipes.ts';
+import { useNavigate } from 'react-router-dom';
 
 const RecipeDetails: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const recipe = recipes.find(r => r.name === name);
+  const navigate = useNavigate();
 
   const [servingSize, setServingSize] = useState(1);
 
@@ -17,9 +19,14 @@ const RecipeDetails: React.FC = () => {
     setServingSize(newServingSize > 0 ? newServingSize : 1); // Ensure serving size is at least 1
   };
 
+  const handleClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-rose-100 mx-auto">
-      <div className="flex-grow bg-cyan-100 rounded-xl shadow-md p-8 m-8 space-y-4">
+      <div className="p-4 cursor-pointer" onClick={handleClick}>{"< Back to Browse"}</div>
+      <div className="bg-cyan-100 rounded-xl shadow-md p-8 mb-8 mr-56 ml-56 space-y-4">
         <h1 className="text-3xl font-bold text-cyan-800 mb-4">{recipe.name.toUpperCase()}</h1>
         {recipe.picture && (
           <div className="md:shrink-0">
