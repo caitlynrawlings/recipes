@@ -6,16 +6,25 @@ import recipes from '../recipes/SmoothieRecipes.ts';
 import DropDown from '../components/DropDown.tsx';
 import DropdownCheckboxes from '../components/CheckboxDropdown.tsx';
 import getIngredients from '../functions/getIngredients.ts';
+import Recipe from '../types/Recipe.ts';
 
 const Smoothies: React.FC = () => {
   const [sortBy, setSortBy] = useState<string>("name");
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
-  const handleSortChange = (value: string) => {
-    setSortBy(value);
+
+  const handleSortChange = (sortType: string) => {
+    setSortBy(sortType);
   };
 
+  const filteredRecipes = recipes.filter(recipe => 
+    !selectedOptions.some(selectedIngredient => recipe.ingredients.some(ingredient => 
+      selectedIngredient === ingredient.name
+    ))
+  );
+
   // Function to sort recipes based on selected sort criteria
-  const sortedRecipes = [...recipes].sort((a, b) => {
+  const sortedRecipes = [...filteredRecipes].sort((a, b) => {
     if (sortBy === 'name') {
       return a.name.localeCompare(b.name);
     } else if (sortBy === 'rating') {
@@ -34,7 +43,7 @@ const Smoothies: React.FC = () => {
       <div className="mt-16 h-full w-full overflow-y-auto">
         <div className='flex flex-row'>
           <DropDown onChange={handleSortChange} />
-          <DropdownCheckboxes options={getIngredients(recipes)} />
+          <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
         </div>
         {sortedRecipes.map((recipe) => (
           <div key={recipe.name}>

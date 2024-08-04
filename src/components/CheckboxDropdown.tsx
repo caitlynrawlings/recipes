@@ -3,18 +3,19 @@ import React, { useState, useEffect } from 'react';
 
 interface DropdownCheckboxesProps {
     options: Set<string>;
+    selectedOptions: string[];
+    setSelectedOptions: (options: string[]) => void;
 }
 
-const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options }) => {
+const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, selectedOptions, setSelectedOptions }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, checked } = event.target;
-        setSelectedOptions((prev) =>
-            checked ? [...prev, value] : prev.filter(option => option !== value)
+        setSelectedOptions(
+            checked ? [...selectedOptions, value] : selectedOptions.filter(option => option !== value)
         );
     };
 
