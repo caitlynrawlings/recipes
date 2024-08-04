@@ -19,7 +19,7 @@ const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
       <select 
         id="sort-options" 
         defaultValue="name" 
-        className="bg-gray-50 border border-gray-300 text-zinc-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1.5"
+        className="bg-gray-50 border border-gray-300 text-zinc-600 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-1.5"
         onChange={handleSelectChange}
       >
         <option value="name">Recipe Name (A-Z)</option>

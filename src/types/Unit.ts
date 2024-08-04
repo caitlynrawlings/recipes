@@ -1,5 +1,5 @@
 export type UnitType = 'cup' | 'teaspoon' | 'tablespoon' | 'strawberry' | 'raspberry' | 'banana' | 
-    'orange' | 'blueberry' | 'grape';
+    'orange' | 'blueberry' | 'grape' | 'blackberry';
 
 export class Unit {
     type: UnitType;
@@ -38,6 +38,9 @@ export class Unit {
             case 'grape':
                 label = amount <= 1 ? 'grape' : 'grapes';
                 break;
+            case 'blackberry':
+                label = amount <= 1 ? 'blackberry' : 'blackberries';
+                break;
             default:
                 throw new Error('Invalid unit type');
         }
@@ -45,15 +48,3 @@ export class Unit {
     }
 }
 
-// // Example usage:
-// const cupUnit = new Unit('cup');
-// console.log(cupUnit.getLabel(1)); // Output: "1 cup"
-// console.log(cupUnit.getLabel(3)); // Output: "3 cups"
-
-// const teaspoonUnit = new Unit('teaspoon');
-// console.log(teaspoonUnit.getLabel(1)); // Output: "1 teaspoon"
-// console.log(teaspoonUnit.getLabel(2)); // Output: "2 teaspoons"
-
-// const tablespoonUnit = new Unit('tablespoon');
-// console.log(tablespoonUnit.getLabel(1)); // Output: "1 tablespoon"
-// console.log(tablespoonUnit.getLabel(4)); // Output: "4 tablespoons"

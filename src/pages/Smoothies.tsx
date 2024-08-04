@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import RecipeCard from '../components/RecipeCard.tsx';
 import recipes from '../recipes/SmoothieRecipes.ts';
 import DropDown from '../components/DropDown.tsx';
+import DropdownCheckboxes from '../components/CheckboxDropdown.tsx';
+import getIngredients from '../functions/getIngredients.ts';
 
 const Smoothies: React.FC = () => {
   const [sortBy, setSortBy] = useState<string>("name");
@@ -30,12 +32,13 @@ const Smoothies: React.FC = () => {
         <h1 className="text-pink-700 h1 ml-3">Smoothies</h1>
       </div>
       <div className="mt-16 h-full w-full overflow-y-auto">
-        <div>
+        <div className='flex flex-row'>
           <DropDown onChange={handleSortChange} />
+          <DropdownCheckboxes options={getIngredients(recipes)} />
         </div>
         {sortedRecipes.map((recipe) => (
           <div key={recipe.name}>
-            <RecipeCard recipe={recipe} />
+            <RecipeCard recipe={recipe}/>
           </div>
         ))}
       </div>
