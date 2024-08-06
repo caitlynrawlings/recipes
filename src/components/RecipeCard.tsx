@@ -16,7 +16,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   };
 
   return (
-    <div className="bg-cyan-100 rounded-xl shadow-md overflow-hidden cursor-pointer mb-6 mx-96" onClick={handleClick}>
+    <div className="bg-cyan-100 rounded-xl shadow-md overflow-hidden cursor-pointer mb-6 mx-auto w-full" onClick={handleClick}>
       <div className="flex flex-row">
         {recipe.picture && (
           <div className="md:shrink-0">
