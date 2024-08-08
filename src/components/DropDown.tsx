@@ -12,7 +12,7 @@ const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
   };
 
   return (
-    <form className="max-w-sm items-center flex flex-row mb-4">
+    <>
       <label htmlFor="sort-options" className="mb-2 mr-2 text-sm text-zinc-600 whitespace-nowrap">
         Sort by: 
       </label>
@@ -26,7 +26,7 @@ const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
         <option value="name (z-a)">Recipe Name (Z-A)</option>
         <option value="rating">Rating</option>
       </select>
-    </form>
+    </>
   );
 };
 

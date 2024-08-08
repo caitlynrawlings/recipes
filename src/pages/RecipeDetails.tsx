@@ -88,20 +88,22 @@ const RecipeDetails: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-rose-100 items-center">
+    <div className="min-h-screen flex flex-col bg-rose-100 items-center ">
       <BackButton/>
-      <div className="bg-cyan-100 rounded-xl shadow-md p-8 mb-8 mr-56 ml-56 space-y-4 flex flex-col container">
-        <h1 className="text-3xl font-bold text-cyan-800 mb-4">{recipe.name.toUpperCase()}</h1>
-        {recipe.picture && 
-          <RecipePicure/>
-        }
-        <p className="text-zinc-600">Rating: {recipe.rating} / 10</p>
-        {recipe.description && <p className="text-zinc-600 mb-4">{recipe.description}</p>}
-        <ScaleRecipe/>
-        <RecipeIngredients/>
-        {recipe.directions && 
-          <RecipeDirections/>
-        }
+      <div className='px-10 w-full'>
+        <div className="bg-cyan-100 rounded-xl shadow-md p-8 mb-8 space-y-4 flex flex-col container">
+          <h1 className="text-3xl font-bold text-cyan-800 mb-4">{recipe.name.toUpperCase()}</h1>
+          {recipe.picture && 
+            <RecipePicure/>
+          }
+          <p className="text-zinc-600">Rating: {recipe.rating} / 10</p>
+          {recipe.description && <p className="text-zinc-600 mb-4">{recipe.description}</p>}
+          <ScaleRecipe/>
+          <RecipeIngredients/>
+          {recipe.directions && 
+            <RecipeDirections/>
+          }
+        </div>
       </div>
     </div>
   );

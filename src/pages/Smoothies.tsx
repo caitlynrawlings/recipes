@@ -1,6 +1,6 @@
 // src/pages/Smoothies.tsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeCard from '../components/RecipeCard.tsx';
 import recipes from '../recipes/SmoothieRecipes.ts';
 import DropDown from '../components/DropDown.tsx';
@@ -52,6 +52,7 @@ const Smoothies: React.FC = () => {
   }
 
   const RecipePreviews: React.FC = () => {
+
     return (
       <div className='flex flex-col justify-center items-center container'>
         {sortedRecipes.map((recipe) => (
@@ -64,10 +65,10 @@ const Smoothies: React.FC = () => {
   return (
     <div className="flex flex-col justify-center p-10 h-full">
       <HeaderBar/>
-      <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
+      <form className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
         <OrganizationOptions/>
         <RecipePreviews/>
-      </div>
+      </form>
     </div>
   );
 };

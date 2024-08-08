@@ -13,7 +13,7 @@ const recipes: Recipe[] = [
       createIngredient("Raspberries", 16, new Unit("raspberry")),
       createIngredient("Strawberry", 2, new Unit("strawberry")),
     ],
-    directions: ["Blend all ingredients until smooth."]
+    directions: ["Run strawberries under water and slice into a few peices.", "Add all ingredients to blender and blend until smooth."]
   },
   {
     name: "Rab",
@@ -36,7 +36,7 @@ const recipes: Recipe[] = [
       createIngredient("Peanutbutter", 1 / 3, new Unit("cup")),
       createIngredient("Almonds", 1 / 3, new Unit("cup")),
     ],
-    directions: ["Blend all ingredients until smooth."]
+    directions: ["Chop almonds into peices.", "Add all ingredients to blender and blend until smooth."]
   },
   {
     name: "Bernana",

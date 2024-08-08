@@ -18,6 +18,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
     }
 
     const clearOptions = (event: React.MouseEvent) => {
+        event.preventDefault();
         setTempSelectedOptions([])
     }
 
@@ -78,19 +79,23 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
             <div className='dropdown'>
                 {isOpen && (
                     <div className="bg-white border fixed border-gray-300 rounded-xl shadow-lg p-2 dropdown flex flex-col">
-                        {Array.from(options).map(option => (
-                            <label key={option} className='relative flex'>
-                                <input
-                                    type="checkbox"
-                                    value={option}
-                                    checked={tempSelectedOptions.includes(option)}
-                                    onChange={handleCheckboxChange}
-                                    className="mr-2"
-                                />
-                                {option}
-                            </label>
-                        ))}
-                        {/* <p className='z-30 p-2' onClick={(event) => clearOptions(event)}>X Clear All</p> */}
+                        <div className='z-20'>
+                            {Array.from(options).map(option => (
+                                    <label htmlFor={option} key={option} className='flex flex-row w-full'>
+                                        <input
+                                            id={option}
+                                            type="checkbox"
+                                            value={option}
+                                            checked={tempSelectedOptions.includes(option)}
+                                            onChange={handleCheckboxChange}
+                                            className="mr-2"
+                                        />
+                                    
+                                        {option}
+                                    </label>
+                            ))}
+                        </div>
+                        <button className='w-full text-left' onClick={(event) => clearOptions(event)}>X Clear All</button>
                     </div>
                 )}
             </div>
