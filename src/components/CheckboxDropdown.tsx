@@ -65,8 +65,11 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                 ? 
                 <p className='text-zinc-400'>Select ingredients to filter out</p>
                 :
-                tempSelectedOptions.map(option => (
-                    <p key={option}>{option},&nbsp;</p>
+                tempSelectedOptions.map((option, index) => (
+                    <p key={option}>
+                        {option}
+                        {index < tempSelectedOptions.length - 1 && ','}&nbsp;
+                    </p>
                 ))
                 }
                 &#9662;
