@@ -65,10 +65,10 @@ const Smoothies: React.FC = () => {
   return (
     <div className="flex flex-col justify-center p-10 h-full">
       <HeaderBar/>
-      <form className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
+      <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
         <OrganizationOptions/>
         <RecipePreviews/>
-      </form>
+      </div>
     </div>
   );
 };

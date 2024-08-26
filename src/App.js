@@ -3,7 +3,7 @@
 import React, {} from 'react';
 import './index.css';
 import Smoothies from './pages/Smoothies.tsx'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import RecipeDetails from './pages/RecipeDetails.tsx';
 
 function App() {

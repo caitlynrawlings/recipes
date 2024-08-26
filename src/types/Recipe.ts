@@ -6,7 +6,7 @@ type Recipe = {
     description?: string;
     rating: number;  // number out of 10
     ingredients: Ingredient[]
-    directions?: string[];
+    directions: string[];
   };
 
   export default Recipe

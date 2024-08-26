@@ -100,9 +100,7 @@ const RecipeDetails: React.FC = () => {
           {recipe.description && <p className="text-zinc-600 mb-4">{recipe.description}</p>}
           <ScaleRecipe/>
           <RecipeIngredients/>
-          {recipe.directions && 
-            <RecipeDirections/>
-          }
+          <RecipeDirections/>
         </div>
       </div>
     </div>

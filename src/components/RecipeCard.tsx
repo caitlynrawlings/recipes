@@ -16,22 +16,20 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   };
 
   return (
-    <div className="bg-cyan-100 rounded-xl shadow-md overflow-hidden cursor-pointer mb-6 mx-auto w-full" onClick={handleClick}>
-      <div className="flex flex-row">
-        {recipe.picture && (
-          <div className="md:shrink-0">
-            <img className="h-48 w-full object-cover md:h-full md:w-48 min-w-48" src={recipe.picture} alt={recipe.name}/>
-          </div>
-        )}
-        <div className="p-8 flex flex-col">
-          <h2 className="uppercase tracking-wide text-xl text-cyan-700 font-semibold">{recipe.name}</h2>
-          <p className="mt-2 text-zinc-600">Rating: {recipe.rating} / 10</p>
-          <ul className="mt-4 space-y-2">
-            {recipe.ingredients.map((ingredient, index) => (
-              <li key={index} className="text-gray-700">{ingredient.name}: {ingredient.unit.getLabel(parseFloat(ingredient.amount.toFixed(2)))}</li>
-            ))}
-          </ul>
+    <div className="bg-cyan-100 shadow-md overflow-hidden min-h-48 cursor-pointer mb-6 mx-auto w-full flex flex-row items-stretch" onClick={handleClick}>
+      {recipe.picture && (
+        <div className='flex items-center justify-center mr-6'>
+          <img className=" w-44 h-full object-cover" src={recipe.picture} alt={recipe.name}/>
         </div>
+      )}
+      <div className="py-8 flex flex-col justify-center">
+        <h2 className="uppercase tracking-wide text-xl text-cyan-700 font-semibold">{recipe.name}</h2>
+        <p className="mt-2 text-zinc-600">Rating: {recipe.rating} / 10</p>
+        <ul className="mt-4 space-y-2">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index} className="text-gray-700">{ingredient.name}: {ingredient.unit.getLabel(parseFloat(ingredient.amount.toFixed(2)))}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
