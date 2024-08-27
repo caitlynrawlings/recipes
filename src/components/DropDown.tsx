@@ -13,18 +13,18 @@ const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
 
   return (
     <>
-      <label htmlFor="sort-options" className="mb-2 mr-2 text-sm text-zinc-600 whitespace-nowrap">
+      <label htmlFor="sort-options" className="mb-2 mr-2 text-sm text-slate-200 whitespace-nowrap">
         Sort by: 
       </label>
       <select 
         id="sort-options" 
         defaultValue="name" 
-        className="bg-gray-50 border border-gray-300 text-zinc-600 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-1.5"
+        className="bg-zinc-100 text-zinc-600 appearance-none text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block p-1.5"
         onChange={handleSelectChange}
       >
-        <option value="name">Recipe Name (A-Z)</option>
-        <option value="name (z-a)">Recipe Name (Z-A)</option>
-        <option value="rating">Rating</option>
+        <option className="rounded-none" value="name">Recipe Name (A-Z)</option>
+        <option className="rounded-none" value="name (z-a)">Recipe Name (Z-A)</option>
+        <option className="rounded-none" value="rating">Rating</option>
       </select>
     </>
   );

@@ -59,7 +59,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div 
                 onClick={(event) => openDropdown(event)}
-                className="dropdown-preview flex flex-row cursor-pointer bg-gray-50 border border-gray-300 text-zinc-600 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 p-1.5"
+                className="dropdown-preview flex flex-row cursor-pointer bg-zinc-100 border border-gray-300 text-zinc-600 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 p-1.5"
             >   
                 {tempSelectedOptions.length === 0
                 ? 
@@ -81,10 +81,10 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div className='dropdown'>
                 {isOpen && (
-                    <div className="bg-white border fixed border-gray-300 rounded-xl shadow-lg p-2 dropdown flex flex-col">
+                    <div className="bg-zinc-100 border fixed border-gray-300 rounded-md shadow-lg p-2 dropdown flex flex-col">
                         <div className='z-20'>
                             {Array.from(options).map(option => (
-                                    <label htmlFor={option} key={option} className='flex flex-row w-full'>
+                                    <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
                                         <input
                                             id={option}
                                             type="checkbox"
@@ -98,7 +98,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                                     </label>
                             ))}
                         </div>
-                        <button className='w-full text-left' onClick={(event) => clearOptions(event)}>X Clear All</button>
+                        <button className='w-full text-left text-zinc-600' onClick={(event) => clearOptions(event)}>X Clear All</button>
                     </div>
                 )}
             </div>
@@ -106,7 +106,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
     }
 
     return (
-        <label className='text-zinc-600 px-2 text-sm flex flex-row'>
+        <label className='text-slate-200 px-2 text-sm flex flex-row'>
         Filter: 
             <div className='flex flex-col gap-2 mx-2'>
                 <DropdownPreview/>

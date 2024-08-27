@@ -36,15 +36,15 @@ const Smoothies: React.FC = () => {
 
   const HeaderBar: React.FC = () => {
     return (
-      <div className="fixed top-0 left-0 w-full bg-rose-300 p-3 text-left z-50 shadow-lg">
-        <h1 className="text-pink-700 h1 ml-3">Smoothies</h1>
+      <div className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 shadow-lg">
+        <h1 className="text-slate-200 h1 ml-3">Smoothies</h1>
       </div>
     )
   }
 
   const OrganizationOptions: React.FC = () => {
     return (
-      <div className='items-start flex flex-row w-full '>
+      <div className='items-start flex flex-row w-full pb-6 '>
         <DropDown onChange={handleSortChange} />
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
       </div>

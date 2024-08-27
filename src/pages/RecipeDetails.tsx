@@ -25,8 +25,8 @@ const RecipeDetails: React.FC = () => {
 
   const BackButton: React.FC = () => {
     return (
-      <div className='items-start flex flex-row w-full '>
-        <p className="p-4 cursor-pointer text-zinc-600" onClick={handleClick}>{"< Back to Browse"}</p>
+      <div className='items-start flex flex-row w-full mb-4'>
+        <p className="p-4 cursor-pointer text-zinc-100" onClick={handleClick}>{"< Back to Browse"}</p>
       </div>
     )
   }
@@ -34,7 +34,7 @@ const RecipeDetails: React.FC = () => {
   const RecipePicure: React.FC = () => {
     return (
       <div className="md:shrink-0">
-        <img className="h-80 w-full object-cover md:h-full md:w-80" src={recipe.picture} alt={recipe.name} />
+        <img className="max-h-72 border-cyan-800 border-2 " src={recipe.picture} alt={recipe.name} />
       </div>
     )
   }
@@ -88,10 +88,10 @@ const RecipeDetails: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-rose-100 items-center ">
+    <div className="min-h-screen flex flex-col items-center ">
       <BackButton/>
-      <div className='px-10 w-full'>
-        <div className="bg-cyan-100 rounded-xl shadow-md p-8 mb-8 space-y-4 flex flex-col container">
+      <div className='px-10 w-full flex justify-center'>
+        <div className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container">
           <h1 className="text-3xl font-bold text-cyan-800 mb-4">{recipe.name.toUpperCase()}</h1>
           {recipe.picture && 
             <RecipePicure/>
