@@ -44,13 +44,23 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                 setSelectedOptions(tempSelectedOptions); // Update selected options on dropdown close
             }
         };
+
+        const handleScroll = () => {
+            // Close the dropdown if it is open and the click happened outside
+            if (isOpen) {
+                setIsOpen(false);
+                setSelectedOptions(tempSelectedOptions); // Update selected options on dropdown close
+            }
+        };
     
         // Attach the event listener on component mount
         document.addEventListener('click', handleClickOutside);
+        document.addEventListener('scroll', handleScroll);
     
         // Cleanup the event listener on component unmount
         return () => {
             document.removeEventListener('click', handleClickOutside);
+            document.removeEventListener('scroll', handleScroll);
         };
     }, [isOpen, tempSelectedOptions, setSelectedOptions]); // Include all necessary dependencies
     
