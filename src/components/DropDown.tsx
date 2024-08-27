@@ -22,7 +22,7 @@ const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
 
         <select 
           defaultValue="name" 
-          className="bg-zinc-100 text-zinc-600 appearance-none cursor-pointer text-md rounded-md focus:ring-blue-500 focus:border-blue-500 block p-1.5"
+          className="bg-zinc-100 text-zinc-600 appearance-none cursor-pointer text-md rounded-md block p-1.5"
           onChange={handleSelectChange}
         >
           <option value="name">Recipe Name (A-Z)</option>

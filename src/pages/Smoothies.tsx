@@ -1,6 +1,6 @@
 // src/pages/Smoothies.tsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RecipeCard from '../components/RecipeCard.tsx';
 import recipes from '../recipes/SmoothieRecipes.ts';
 import DropDown from '../components/DropDown.tsx';
