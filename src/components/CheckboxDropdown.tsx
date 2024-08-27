@@ -59,7 +59,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div 
                 onClick={(event) => openDropdown(event)}
-                className="dropdown-preview flex flex-row cursor-pointer bg-zinc-100 border border-gray-300 text-zinc-600 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 p-1.5"
+                className="dropdown-preview flex flex-row cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-md rounded-md focus:ring-blue-500 focus:border-blue-500 p-1.5"
             >   
                 {tempSelectedOptions.length === 0
                 ? 
@@ -72,7 +72,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                     </p>
                 ))
                 }
-                &#9662;
+                &#9662; {/* dropdown arrow */}
             </div>
         )
     }
@@ -81,7 +81,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div className='dropdown'>
                 {isOpen && (
-                    <div className="bg-zinc-100 border fixed border-gray-300 rounded-md shadow-lg p-2 dropdown flex flex-col">
+                    <div className="bg-zinc-100 fixed text-md rounded-md shadow-lg p-2 dropdown flex flex-col">
                         <div className='z-20'>
                             {Array.from(options).map(option => (
                                     <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
@@ -106,13 +106,18 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
     }
 
     return (
-        <label className='text-slate-200 px-2 text-sm flex flex-row'>
-        Filter: 
-            <div className='flex flex-col gap-2 mx-2'>
+        <div className='flex flex-row items-center'>
+            <label htmlFor="filter-options"  className='text-slate-100 text-md'>
+                Filter: 
+            </label>
+            <div 
+                className='flex flex-col gap-2 mx-2'
+                id="sort-options" 
+            >
                 <DropdownPreview/>
                 <SelectOptionsBox/>
             </div>
-        </label>
+        </div>
     );
 };
 
