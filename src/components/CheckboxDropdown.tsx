@@ -69,19 +69,22 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div 
                 onClick={(event) => openDropdown(event)}
-                className="dropdown-preview flex flex-row cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-md rounded-md focus:ring-blue-500 focus:border-blue-500 p-1.5"
+                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-md p-1.5 items-center"
             >   
                 {tempSelectedOptions.length === 0
                 ? 
-                <p className='text-zinc-400'>Select ingredients to filter out</p>
+                <p className='text-zinc-400 w-56'>Select ingredients to filter out</p>
                 :
-                tempSelectedOptions.map((option, index) => (
-                    <p key={option}>
-                        {option}
-                        {index < tempSelectedOptions.length - 1 && ','}&nbsp;
-                    </p>
-                ))
+                <div className='overflow-hidden text-ellipsis whitespace-nowrap w-56'>
+                    {tempSelectedOptions.map((option, index) => (
+                        <span key={option}>
+                            {option}
+                            {index < tempSelectedOptions.length - 1 && ','}&nbsp;
+                        </span>
+                    ))}
+                </div>
                 }
+                
                 &#9662; {/* dropdown arrow */}
             </div>
         )
@@ -91,7 +94,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div className='dropdown'>
                 {isOpen && (
-                    <div className="bg-zinc-100 fixed text-md rounded-md shadow-lg p-2 dropdown flex flex-col">
+                    <div className="bg-zinc-100 fixed text-md rounded-md shadow-lg p-2 dropdown flex flex-col w-56">
                         <div className='z-20'>
                             {Array.from(options).map(option => (
                                     <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>

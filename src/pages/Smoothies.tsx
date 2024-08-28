@@ -38,14 +38,23 @@ const Smoothies: React.FC = () => {
     return (
       <div className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 shadow-lg flex flex-row items-end">
         <h1 className="text-slate-200 h1 ml-3">Smoothies</h1>
-        <OrganizationOptions/>
+        <HeaderOrganizationOptions />
       </div>
     )
   }
 
-  const OrganizationOptions: React.FC = () => {
+  const HeaderOrganizationOptions: React.FC = () => {
     return (
-      <div className='items-center flex flex-row justify-end w-full h-full'>
+      <div className='items-center md:flex flex-row justify-end w-full h-full hidden'>
+        <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
+        <DropDown onChange={handleSortChange} />
+      </div>
+    )
+  }
+
+  const MobileOrganizationOptions: React.FC = () => {
+    return (
+      <div className='items-start flex flex-col justify-start w-full h-full md:hidden mb-8'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
         <DropDown onChange={handleSortChange} />
       </div>
@@ -67,6 +76,7 @@ const Smoothies: React.FC = () => {
     <div className="flex flex-col justify-center p-10 h-full">
       <HeaderBar/>
       <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
+        <MobileOrganizationOptions />
         <RecipePreviews/>
       </div>
     </div>

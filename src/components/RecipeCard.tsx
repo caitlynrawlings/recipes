@@ -17,14 +17,15 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   };
 
   return (
-    <div className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer mb-6 mx-auto w-full flex flex-row items-stretch" onClick={handleClick}>
-      {recipe.picture && (
-        <div className='flex items-center justify-center mr-6'>
-          <img className=" w-56 h-full object-cover" src={recipe.picture} alt={recipe.name}/>
+    <div className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer mb-6  w-full flex flex-row items-stretch" onClick={handleClick}>
+      <div className='md:flex hidden items-center justify-center'>
+        <img className=" w-56 h-full object-cover" src={recipe.picture} alt={recipe.name}/>
+      </div>
+      <div className="mx-6 py-8 flex flex-col justify-center">
+        <div className='flex flex-row items-center gap-2 mb-4'>
+          <img className="md:hidden w-20 h-20 rounded-full object-cover" src={recipe.picture} alt={recipe.name}/>
+          <h2 className="uppercase tracking-wide text-xl text-cyan-800 font-bold">{recipe.name}</h2>
         </div>
-      )}
-      <div className="py-8 flex flex-col justify-center">
-        <h2 className="uppercase tracking-wide text-xl text-cyan-800 font-bold">{recipe.name}</h2>
         {ratingStars(recipe.rating)}
         <ul className="mt-4 space-y-2">
           {recipe.ingredients.map((ingredient, index) => (

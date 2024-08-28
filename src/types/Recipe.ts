@@ -3,7 +3,7 @@ import Rating from './Rating';
 
 type Recipe = {
     name: string;
-    picture?: string;
+    picture: string;
     description?: string;
     rating: Rating;
     ingredients: Ingredient[]
