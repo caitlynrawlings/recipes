@@ -21,12 +21,15 @@ module.exports = {
         'h6': '0.875rem' // 14px
       },
       fontWeight: {
-        'h1': '700', // bold
+        'h1': '600', // semibold
         'h2': '600', // semibold
         'h3': '500', // medium
         'h4': '400', // normal
         'h5': '300', // light
         'h6': '200' // thin
+      },
+      fontFamily: {
+        sans: ["Noto Sans", "sans-serif"],
       },
       colors: {
         DEFAULT: 'rgb(74, 85, 104)',
