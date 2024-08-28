@@ -6,7 +6,7 @@ const recipes: Recipe[] = [
   {
     name: "Berry Right",
     picture: "/smoothie.png",
-    rating: 7,
+    rating: 3.5,
     ingredients: [ 
       createIngredient("Yogurt", 1, new Unit("cup")), 
       createIngredient("Blueberries", 28, new Unit("blueberry")),
@@ -18,7 +18,7 @@ const recipes: Recipe[] = [
   {
     name: "Rab",
     picture: "/smoothie.png",
-    rating: 9,
+    rating: 4.5,
     ingredients: [ 
       createIngredient("Yogurt", 1, new Unit("cup")), 
       createIngredient("Blueberries", 28, new Unit("blueberry")),
@@ -29,7 +29,7 @@ const recipes: Recipe[] = [
   {
     name: "Nutty",
     picture: "/smoothie.png",
-    rating: 5,
+    rating: 2.5,
     ingredients: [ 
       createIngredient("Oatmeal", 1 / 3, new Unit("cup")), 
       createIngredient("Milk", 2 / 3, new Unit("cup")),
@@ -41,7 +41,7 @@ const recipes: Recipe[] = [
   {
     name: "Bernana",
     picture: "/smoothie.png",
-    rating: 8,
+    rating: 4,
     ingredients: [ 
       createIngredient("Yogurt", 1 / 3, new Unit("cup")), 
       createIngredient("Banana", 1, new Unit("banana")),

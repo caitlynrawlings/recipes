@@ -21,7 +21,21 @@
 
 body {
   @apply bg-cyan-900;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 
 @tailwind base;
 @tailwind components;

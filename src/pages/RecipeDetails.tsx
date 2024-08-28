@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import recipes from '../recipes/SmoothieRecipes.ts';
 import { useNavigate } from 'react-router-dom';
+import ratingStars from '../functions/ratingStars.tsx';
 
 const RecipeDetails: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -92,11 +93,13 @@ const RecipeDetails: React.FC = () => {
       <BackButton/>
       <div className='px-10 w-full flex justify-center'>
         <div className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container">
-          <h1 className="text-3xl font-bold text-cyan-800 mb-4">{recipe.name.toUpperCase()}</h1>
+
+          <h1 className="text-h1 font-bold text-cyan-800">{recipe.name.toUpperCase()}</h1>
+          {ratingStars(recipe.rating)}
+
           {recipe.picture && 
             <RecipePicure/>
           }
-          <p className="text-zinc-600">Rating: {recipe.rating} / 10</p>
           {recipe.description && <p className="text-zinc-600 mb-4">{recipe.description}</p>}
           <ScaleRecipe/>
           <RecipeIngredients/>

@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Recipe from '../types/Recipe';
 import '../index.css'; // Ensure Tailwind CSS is imported
+import ratingStars from '../functions/ratingStars.tsx';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -24,7 +25,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
       )}
       <div className="py-8 flex flex-col justify-center">
         <h2 className="uppercase tracking-wide text-xl text-cyan-800 font-bold">{recipe.name}</h2>
-        <p className="mt-2 text-zinc-600">Rating: {recipe.rating} / 10</p>
+        {ratingStars(recipe.rating)}
         <ul className="mt-4 space-y-2">
           {recipe.ingredients.map((ingredient, index) => (
             <li key={index} className="text-gray-700">{ingredient.name}: {ingredient.unit.getLabel(parseFloat(ingredient.amount.toFixed(2)))}</li>

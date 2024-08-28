@@ -1,12 +1,13 @@
 import  Ingredient from './Ingredient';
+import Rating from './Rating';
 
 type Recipe = {
     name: string;
     picture?: string;
     description?: string;
-    rating: number;  // number out of 10
+    rating: Rating;
     ingredients: Ingredient[]
     directions: string[];
   };
 
-  export default Recipe
+export default Recipe
