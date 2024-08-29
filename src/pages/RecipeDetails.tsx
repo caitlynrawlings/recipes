@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import recipes from '../recipes/SmoothieRecipes.ts';
-import { useNavigate } from 'react-router-dom';
+import recipes from '../recipes/smoothiesRecipes.ts';
 import ratingStars from '../functions/ratingStars.tsx';
+import BackButton from '../components/BackButton.tsx';
 
 const RecipeDetails: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const recipe = recipes.find(r => r.name === name);
-  const navigate = useNavigate();
 
   const [servingSize, setServingSize] = useState(1);
 
@@ -19,18 +18,6 @@ const RecipeDetails: React.FC = () => {
     const newServingSize = parseInt(event.target.value);
     setServingSize(newServingSize > 0 ? newServingSize : 1); // Ensure serving size is at least 1
   };
-
-  const handleClick = () => {
-    navigate(-1);
-  };
-
-  const BackButton: React.FC = () => {
-    return (
-      <div className='items-start flex flex-row w-full mb-4'>
-        <p className="p-4 cursor-pointer text-zinc-100" onClick={handleClick}>{"< Back to Browse"}</p>
-      </div>
-    )
-  }
 
   const RecipePicure: React.FC = () => {
     return (
@@ -90,7 +77,10 @@ const RecipeDetails: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center ">
-      <BackButton/>
+      <div className='flex w-full items-start p-4'>
+        <BackButton/>
+      </div>
+
       <div className='px-10 w-full flex justify-center'>
         <div className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container">
 
