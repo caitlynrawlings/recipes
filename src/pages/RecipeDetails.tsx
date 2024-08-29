@@ -22,7 +22,7 @@ const RecipeDetails: React.FC = () => {
   const RecipePicure: React.FC = () => {
     return (
       <div className="md:shrink-0">
-        <img className="max-h-72 border-cyan-800 border-2 " src={recipe.picture} alt={recipe.name} />
+        <img className="max-h-72 border-cyan-800 border-2 " src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name} />
       </div>
     )
   }
