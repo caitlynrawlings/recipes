@@ -1,5 +1,6 @@
 import Category from "../types/Category";
 import smoothieRecipes from "./recipes/smoothiesRecipes.ts";
+import fromScratchRecipes from "./recipes/fromScratchRecipes.ts";
 
 const categories: Category[] = [
   {
@@ -39,10 +40,10 @@ const categories: Category[] = [
   },
   {
     name: "Fun from Scratch",
-    link: "fromSratch",
+    link: "fromScratch",
     picture: "/cat-fromScratch.jpg",
     description: "Spend hours making something you could get from the store.",
-    recipes: smoothieRecipes,
+    recipes: fromScratchRecipes,
   },
   {
     name: "In a Mug",

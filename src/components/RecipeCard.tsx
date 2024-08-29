@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import Recipe from '../types/Recipe';
 import '../index.css'; // Ensure Tailwind CSS is imported
 import ratingStars from '../functions/ratingStars.tsx';
+import categories from '../constants/recipeCategories.ts';
 
 interface RecipeCardProps {
+  category: string;
   recipe: Recipe;
 }
 
-const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/recipe/${recipe.name}`);
+    navigate(`/${category}/${recipe.name}`);
   };
 
   return (

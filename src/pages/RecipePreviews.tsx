@@ -8,35 +8,17 @@ import getIngredients from '../functions/getIngredients.ts';
 import { useNavigate, useParams } from 'react-router-dom';
 import Recipe from '../types/Recipe.ts';
 import BackButton from '../components/BackButton.tsx';
+import categories from '../constants/recipeCategories.ts';
 
 const RecipePreviews: React.FC = () => {
-  const { category } = useParams<{ category: string }>();
+  const { category: categoryLink } = useParams<{ category: string }>();
+  const category = categories.find(c => c.link === categoryLink);
+  const recipes = category?.recipes;
 
-  const navigate = useNavigate();
-
-  const [recipes, setRecipes] = useState<Recipe[]>([]); // Add appropriate type for recipes
   const [sortBy, setSortBy] = useState<string>("name");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
-  useEffect(() => {
-    // Dynamically import the recipe file based on the category
-    const loadRecipes = async () => {
-      try {
-        if (category) {
-          const recipesModule = await import(`../constants/recipes/${category}Recipes.ts`);
-          setRecipes(recipesModule.default);
-        }
-      } catch (error) {
-        console.error("Failed to load recipes:", error);
-        // Handle error (e.g., navigate to a 404 page or show an error message)
-        navigate('/not-found'); // or set an error state
-      }
-    };
-
-    loadRecipes();
-  }, [category, navigate]);
-
-  if (!category) return null;
+  if (!categoryLink || !recipes) return null;
 
   const handleSortChange = (sortType: string) => {
     setSortBy(sortType);
@@ -63,7 +45,7 @@ const RecipePreviews: React.FC = () => {
   const HeaderBar: React.FC = () => {
     return (
       <div className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 flex flex-row items-end">
-        <h1 className="text-slate-200 h1 ml-3">{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
+        <h1 className="text-slate-200 h1 whitespace-nowrap ml-3">{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</h1>
         <HeaderOrganizationOptions />
       </div>
     )
@@ -71,7 +53,7 @@ const RecipePreviews: React.FC = () => {
 
   const HeaderOrganizationOptions: React.FC = () => {
     return (
-      <div className='items-center md:flex flex-row justify-end w-full h-full hidden'>
+      <div className='items-center lg:flex flex-row justify-end w-full h-full hidden'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
         <DropDown onChange={handleSortChange} />
       </div>
@@ -80,7 +62,7 @@ const RecipePreviews: React.FC = () => {
 
   const MobileOrganizationOptions: React.FC = () => {
     return (
-      <div className='items-start flex flex-col justify-start w-full h-full md:hidden mb-8'>
+      <div className='items-start flex flex-col justify-start w-full h-full lg:hidden mb-8'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
         <DropDown onChange={handleSortChange} />
       </div>
@@ -92,7 +74,7 @@ const RecipePreviews: React.FC = () => {
     return (
       <div className='flex flex-col justify-center items-center container'>
         {sortedRecipes.map((recipe, index) => (
-          <RecipeCard key={index} recipe={recipe}/>
+          <RecipeCard key={index} category={categoryLink} recipe={recipe}/>
         ))}
       </div>
     )

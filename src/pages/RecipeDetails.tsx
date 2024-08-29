@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import smoothieRecipes from '../constants/recipes/smoothiesRecipes.ts';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import ratingStars from '../functions/ratingStars.tsx';
 import BackButton from '../components/BackButton.tsx';
+import Recipe from '../types/Recipe.ts';
 
 const RecipeDetails: React.FC = () => {
+  const navigate = useNavigate();
+
   const { name } = useParams<{ name: string }>();
-  const recipe = smoothieRecipes.find(r => r.name === name);
+  const { category } = useParams<{ category: string }>();
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   const [servingSize, setServingSize] = useState(1);
+
+  useEffect(() => {
+    // Dynamically import the recipe file based on the category
+    const loadRecipes = async () => {
+      try {
+        if (category) {
+          const recipesModule = await import(`../constants/recipes/${category}Recipes.ts`);
+          setRecipes(recipesModule.default);
+        }
+      } catch (error) {
+        console.error("Failed to load recipes:", error);
+        // Handle error (e.g., navigate to a 404 page or show an error message)
+        navigate('/not-found'); // or set an error state
+      }
+    };
+
+    loadRecipes();
+  }, [category, navigate]);
+
+  const recipe = recipes.find(r => r.name === name);
 
   if (!recipe) {
     return <div className="text-center text-2xl text-red-600">Recipe not found</div>;

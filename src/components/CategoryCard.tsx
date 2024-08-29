@@ -8,12 +8,8 @@ import Category from '../types/Category.ts';
 const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
   const navigate = useNavigate();
 
-//   const handleClick = () => {
-//     navigate(`/${category.link}`);
-//   };
-
-const handleClick = () => {
-    navigate(`/smoothies`);
+  const handleClick = () => {
+    navigate(`/${category.link}`);
   };
 
   return (
