@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import recipes from '../recipes/smoothiesRecipes.ts';
+import smoothieRecipes from '../constants/recipes/smoothiesRecipes.ts';
 import ratingStars from '../functions/ratingStars.tsx';
 import BackButton from '../components/BackButton.tsx';
 
 const RecipeDetails: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const recipe = recipes.find(r => r.name === name);
+  const recipe = smoothieRecipes.find(r => r.name === name);
 
   const [servingSize, setServingSize] = useState(1);
 

@@ -1,8 +1,8 @@
-import { createIngredient } from '../types/Ingredient.ts';
-import Recipe from '../types/Recipe.ts';
-import { Unit } from '../types/Unit.ts';
+import { createIngredient } from '../../types/Ingredient.ts';
+import Recipe from '../../types/Recipe.ts';
+import { Unit } from '../../types/Unit.ts';
 
-const recipes: Recipe[] = [
+const smoothieRecipes: Recipe[] = [
   {
     name: "Berry Right",
     picture: "/smoothie.png",
@@ -51,4 +51,4 @@ const recipes: Recipe[] = [
   },
 ];
 
-export default recipes;
+export default smoothieRecipes;

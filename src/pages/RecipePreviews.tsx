@@ -23,7 +23,7 @@ const RecipePreviews: React.FC = () => {
     const loadRecipes = async () => {
       try {
         if (category) {
-          const recipesModule = await import(`../recipes/${category}Recipes.ts`);
+          const recipesModule = await import(`../constants/recipes/${category}Recipes.ts`);
           setRecipes(recipesModule.default);
         }
       } catch (error) {
@@ -62,7 +62,7 @@ const RecipePreviews: React.FC = () => {
 
   const HeaderBar: React.FC = () => {
     return (
-      <div className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 shadow-lg flex flex-row items-end">
+      <div className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 flex flex-row items-end">
         <h1 className="text-slate-200 h1 ml-3">{category.charAt(0).toUpperCase() + category.slice(1)}</h1>
         <HeaderOrganizationOptions />
       </div>
