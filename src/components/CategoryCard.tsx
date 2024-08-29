@@ -19,7 +19,7 @@ const handleClick = () => {
   return (
     <div className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer w-full flex flex-col" onClick={handleClick}>
       <div className='h-48 w-full'>
-        <img className="h-full w-full object-cover" src={category.picture} alt={category.name}/>
+        <img className="h-full w-full object-cover" src={process.env.PUBLIC_URL + category.picture} alt={category.name}/>
       </div>
 
       <div className='m-4'>
