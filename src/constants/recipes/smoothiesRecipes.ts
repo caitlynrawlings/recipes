@@ -8,7 +8,7 @@ const smoothieRecipes: Recipe[] = [
     picture: "/3-berry-smoothie.jpg",
     rating: 3.5,
     ingredients: [ 
-      createIngredient("Yogurt", 1, new Unit("cup")), 
+      createIngredient("Yogurt", 1 / 2, new Unit("cup")), 
       createIngredient("Blueberries", 28, new Unit("blueberry")),
       createIngredient("Raspberries", 16, new Unit("raspberry")),
       createIngredient("Strawberry", 2, new Unit("strawberry")),
@@ -20,7 +20,7 @@ const smoothieRecipes: Recipe[] = [
     picture: "/berry-smoothie.jpg",
     rating: 4.5,
     ingredients: [ 
-      createIngredient("Yogurt", 1, new Unit("cup")), 
+      createIngredient("Yogurt", 1/2, new Unit("cup")), 
       createIngredient("Blueberries", 28, new Unit("blueberry")),
       createIngredient("Raspberries", 32, new Unit("raspberry")),
     ],
@@ -43,7 +43,7 @@ const smoothieRecipes: Recipe[] = [
     picture: "/ban-grape-smoothie.jpg",
     rating: 4,
     ingredients: [ 
-      createIngredient("Yogurt", 1 / 3, new Unit("cup")), 
+      createIngredient("Yogurt", 1 / 2, new Unit("cup")), 
       createIngredient("Banana", 1, new Unit("banana")),
       createIngredient("Red Grapes (seedless)", 15, new Unit("grape")),
     ],

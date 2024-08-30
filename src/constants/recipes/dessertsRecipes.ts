@@ -19,7 +19,7 @@ const dessertsRecipes: Recipe[] = [
     directions: [
         "Line 8x8 baking pan with parchment paper", "Melt butter",
         "Whisk sugar and cocoa into the butter", "Whisk in eggs and vanilla", "Chop chocolate if using a bar",
-        "Add chocolate and flour and stir until just combined", "Spread batter into pan and bake for 40-45 minutes"
+        "Add chocolate and flour and stir until just combined", "Spread batter into pan and bake for 40-45 minutes at 350°F"
     ]
   },
   {
@@ -52,7 +52,7 @@ const dessertsRecipes: Recipe[] = [
         "Tightly roll dough starting on short side",
         "Cut roll into 9 sections",
         "Place rolls into a 9x9 parchment paper lined baking dish",
-        "Bake for 25-30 minutes at 350F",
+        "Bake for 25-30 minutes at 350°F",
         "Beat frosting ingredients together on frost rolls after letting them cool for 5-10 minutes"
     ]
   },
