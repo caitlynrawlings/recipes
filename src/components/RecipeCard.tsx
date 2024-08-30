@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Recipe from '../types/Recipe';
 import '../index.css'; // Ensure Tailwind CSS is imported
 import ratingStars from '../functions/ratingStars.tsx';
-import categories from '../constants/recipeCategories.ts';
 
 interface RecipeCardProps {
-  category: string;
+  category: string
   recipe: Recipe;
 }
 
@@ -19,7 +18,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
   };
 
   return (
-    <div className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer mb-6  w-full flex flex-row items-stretch" onClick={handleClick}>
+    <div className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer mb-6 w-full flex flex-row items-stretch" onClick={handleClick}>
       <div className='md:flex hidden items-center justify-center'>
         <img className=" w-56 h-full object-cover" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name}/>
       </div>

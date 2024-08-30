@@ -1,12 +1,11 @@
 // src/pages/RecipePreviews.tsx
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import RecipeCard from '../components/RecipeCard.tsx';
 import DropDown from '../components/DropDown.tsx';
 import DropdownCheckboxes from '../components/CheckboxDropdown.tsx';
 import getIngredients from '../functions/getIngredients.ts';
-import { useNavigate, useParams } from 'react-router-dom';
-import Recipe from '../types/Recipe.ts';
+import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton.tsx';
 import categories from '../constants/recipeCategories.ts';
 

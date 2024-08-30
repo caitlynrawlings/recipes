@@ -5,7 +5,7 @@ import { Unit } from '../../types/Unit.ts';
 const smoothieRecipes: Recipe[] = [
   {
     name: "Berry Right",
-    picture: "/smoothie.png",
+    picture: "/3-berry-smoothie.jpg",
     rating: 3.5,
     ingredients: [ 
       createIngredient("Yogurt", 1, new Unit("cup")), 
@@ -17,7 +17,7 @@ const smoothieRecipes: Recipe[] = [
   },
   {
     name: "Rab",
-    picture: "/smoothie.png",
+    picture: "/berry-smoothie.jpg",
     rating: 4.5,
     ingredients: [ 
       createIngredient("Yogurt", 1, new Unit("cup")), 
@@ -28,7 +28,7 @@ const smoothieRecipes: Recipe[] = [
   },
   {
     name: "Nutty",
-    picture: "/smoothie.png",
+    picture: "/nutty-smoothie.jpg",
     rating: 2.5,
     ingredients: [ 
       createIngredient("Oatmeal", 1 / 3, new Unit("cup")), 
@@ -40,7 +40,7 @@ const smoothieRecipes: Recipe[] = [
   },
   {
     name: "Bernana",
-    picture: "/smoothie.png",
+    picture: "/ban-grape-smoothie.jpg",
     rating: 4,
     ingredients: [ 
       createIngredient("Yogurt", 1 / 3, new Unit("cup")), 

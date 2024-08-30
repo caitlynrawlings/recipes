@@ -8,7 +8,7 @@ type Ingredient = {
 
   export default Ingredient
 
-  export const createIngredient = (name: string, amount: number, unit: Unit): Ingredient => {
+  export const createIngredient = (name: string, amount: number, unit: Unit, note?: string,): Ingredient => {
     return {
       name,
       amount,

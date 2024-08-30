@@ -22,6 +22,40 @@ const dessertsRecipes: Recipe[] = [
         "Add chocolate and flour and stir until just combined", "Spread batter into pan and bake for 40-45 minutes"
     ]
   },
+  {
+    name: "Cinnamon rolls",
+    picture: "/cinnamon-roll.jpg",
+    rating: 4,
+    ingredients: [ 
+        createIngredient("Bread flour", 3, new Unit("cup")),
+        createIngredient("Milk", 0.75, new Unit("cup"), "Warmed to 110F"),
+        createIngredient("Yeast", 2.25, new Unit("teaspoon")),
+        createIngredient("Sugar", 0.25, new Unit("cup")),
+        createIngredient("Egg", 2, new Unit("egg")),
+        createIngredient("Butter", 1/4, new Unit("cup")),
+        createIngredient("Brown sugar", 2/3, new Unit("cup"), "For filling"),
+        createIngredient("Cinnamon", 1.5, new Unit("tablespoon"), "For filling"),
+        createIngredient("Butter", .25, new Unit("cup"), "For filling (softened)"),
+        createIngredient("Cream cheese", 4, new Unit("ounce"), "For frosting (softened)"),
+        createIngredient("Butter", 3, new Unit("tablespoon"), "For frosting (softened)"),
+        createIngredient("Powdered sugar", 3/4, new Unit("cup"), "For frosting"),
+        createIngredient("Vanilla extract", 1/2, new Unit("teaspoon"), "For frosting"),
+    ],
+    directions: [
+        "Add yeast to warm milk",
+        "Add sugar, eggs, and melted butter and combine well",
+        "Stir in flour then knead dough for 8 minutes",
+        "Let dough rest covered in oiled bowl for 1 hour until doubled in size",
+        "Roll dough into 14x9 inch rectangle",
+        "Spread softened filling butter over dough leaving a quarter inch on one of the short sides",
+        "Mix fill brown sugar and cinnamon and sprinkle over dough",
+        "Tightly roll dough starting on short side",
+        "Cut roll into 9 sections",
+        "Place rolls into a 9x9 parchment paper lined baking dish",
+        "Bake for 25-30 minutes at 350F",
+        "Beat frosting ingredients together on frost rolls after letting them cool for 5-10 minutes"
+    ]
+  },
 ];
 
 export default dessertsRecipes;

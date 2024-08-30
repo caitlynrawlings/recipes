@@ -1,5 +1,5 @@
 export type UnitType = 'cup' | 'teaspoon' | 'tablespoon' | 'strawberry' | 'raspberry' | 'banana' | 
-    'orange' | 'blueberry' | 'grape' | 'blackberry' | 'pound' | 'egg';
+    'orange' | 'blueberry' | 'grape' | 'blackberry' | 'pound' | 'egg' | 'ounce';
 
 export class Unit {
     type: UnitType;
@@ -46,6 +46,9 @@ export class Unit {
                 break;
             case 'egg':
                 label = amount <= 1 ? 'egg' : 'eggs';
+                break;
+            case 'ounce':
+                label = amount <= 1 ? 'ounce' : 'ounces';
                 break;
             default:
                 throw new Error('Invalid unit type');
