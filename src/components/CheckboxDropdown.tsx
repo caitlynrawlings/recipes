@@ -92,26 +92,24 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
 
     const SelectOptionsBox: React.FC = () => {
         return (
-            <div className='dropdown'>
+            <div className='dropdown z-20'>
                 {isOpen && (
-                    <div className="bg-zinc-100 fixed text-md rounded-md shadow-lg p-2 dropdown flex flex-col w-56">
-                        <div className='z-20'>
-                            {Array.from(options).map(option => (
-                                    <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
-                                        <input
-                                            id={option}
-                                            type="checkbox"
-                                            value={option}
-                                            checked={tempSelectedOptions.includes(option)}
-                                            onChange={handleCheckboxChange}
-                                            className="mr-2"
-                                        />
-                                    
-                                        {option}
-                                    </label>
-                            ))}
-                        </div>
-                        <button className='w-full text-left text-zinc-600' onClick={(event) => clearOptions(event)}>X Clear All</button>
+                    <div className="bg-zinc-100 fixed text-md rounded-md shadow-lg p-2 dropdown flex flex-col w-56 gap-1">
+                        {Array.from(options).map(option => (
+                            <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
+                                <input
+                                    id={option}
+                                    type="checkbox"
+                                    value={option}
+                                    checked={tempSelectedOptions.includes(option)}
+                                    onChange={handleCheckboxChange}
+                                    className="mr-2"
+                                />
+                            
+                                {option}
+                            </label>
+                        ))}
+                        <button className='text-left text-zinc-600 bg-slate-300 rounded-md px-2 py-1 mt-1' onClick={(event) => clearOptions(event)}>X Clear All</button>
                     </div>
                 )}
             </div>
