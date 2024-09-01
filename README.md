@@ -8,4 +8,4 @@ Other goals behind this project were to gain experience using Tailwind CSS, make
 Tailwind css  
 GitHub-pages
 Figma
-
+https://www.reddit.com/r/csshelp/comments/ly4vxd/how_can_i_prevent_a_child_from_expanding_its/ 
