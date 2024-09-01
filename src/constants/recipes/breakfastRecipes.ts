@@ -19,7 +19,8 @@ const breakfastRecipes: Recipe[] = [
         "Add milk and incorperate without overworking dough", "Fully mix dough using hands on a floured surface, folding it over itself",
         "Flatten dough to a height of around 1 inch", "Cut circles from dough and place a baking sheet with parchment paper",
         "Bake for 12-15 minutes at 425°F"
-    ]
+    ],
+    source: "https://sugarspunrun.com/easy-homemade-biscuits/#recipe",
   },
   {
     name: "Croissants",
@@ -27,7 +28,7 @@ const breakfastRecipes: Recipe[] = [
     rating: 4.5,
     ingredients: [ 
       createIngredient("All-purpose flour", 4, new Unit("cup")),
-      createIngredient("All-purpose flour", 2, new Unit("cup"), "For butter layer"),
+      createIngredient("All-purpose flour", 2, new Unit("tablespoon"), "For butter layer"),
       createIngredient("Butter", 0.25, new Unit("cup")),
       createIngredient("Butter", 1.5, new Unit("cup"), "For butter layer"),
       createIngredient("Sugar", 0.25, new Unit("cup")),
@@ -53,7 +54,8 @@ const breakfastRecipes: Recipe[] = [
       "Scretch or roll each rectangle to be 8 inches long, then roll into crossaint shapes",
       "Cover crossaints and let rest at room temperature for 1 hour, then in the fridge for 1 hour",
       "Whisk egg wash ingredients together, then brush on crossaints before baking for 20 minutes at 375°F"
-    ]
+    ],
+    source: "https://sallysbakingaddiction.com/homemade-croissants/#tasty-recipes-66930",
   },
 ];
 

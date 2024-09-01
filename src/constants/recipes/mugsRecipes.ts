@@ -14,7 +14,8 @@ const mugsRecipes: Recipe[] = [
     ],
     directions: [
         "Mix ingredients in microwave-safe mug", "Microwave for 1.5 minutes"
-    ]
+    ],
+    source: "https://www.kimscravings.com/cake-mix-mug-cake/",
   },
 ];
 

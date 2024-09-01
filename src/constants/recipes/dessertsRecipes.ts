@@ -7,7 +7,6 @@ const dessertsRecipes: Recipe[] = [
     name: "Brownies",
     picture: "/brownie.jpg",
     description: "Very fugdy, moist, chocolatey brownies!",
-    source: "https://preppykitchen.com/brownie-recipe/",
     rating: 4.5,
     ingredients: [ 
         createIngredient("All-purpose flour", 1, new Unit("cup")),
@@ -23,8 +22,8 @@ const dessertsRecipes: Recipe[] = [
         "Whisk sugar and cocoa into the butter", "Whisk in eggs and vanilla", "Chop chocolate if using a bar",
         "Add chocolate and flour and stir until just combined", "Spread batter into pan and bake for 40-45 minutes at 350°F"
     ],
-    note: "I reduced the sugar from the original recipe. I used a caramel-filled chocolate bar for 2/3 of the chocolate and semi-sweet chocolate chips for the rest. Cooked for 5 minutes longer than the max on the original recipe."
-
+    note: "I reduced the sugar from the original recipe. I used a caramel-filled chocolate bar for 2/3 of the chocolate and semi-sweet chocolate chips for the rest. Cooked for 5 minutes longer than the max on the original recipe.",
+    source: "https://preppykitchen.com/brownie-recipe/",
   },
   {
     name: "Cinnamon rolls",
@@ -59,6 +58,7 @@ const dessertsRecipes: Recipe[] = [
         "Bake for 25-30 minutes at 350°F",
         "Beat frosting ingredients together on frost rolls after letting them cool for 5-10 minutes"
     ],
+    source: "https://www.ambitiouskitchen.com/best-cinnamon-rolls/",
   },
 ];
 

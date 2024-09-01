@@ -17,7 +17,8 @@ const fromScratchRecipes: Recipe[] = [
         "Add the rest of the flour and the salt", "Knead the dough on a floured surface", "Cover or wrap dough and let rise for 2-3 hours",
         "Cut the dough in half and place loaves onto a lightly floured baking sheet", "Cover and let rise for 45 minutes",
         "Score the loaves and bake at 475°F for 45 minutes"
-    ]
+    ],
+    source: "https://sallysbakingaddiction.com/homemade-artisan-bread/#tasty-recipes-80079",
   },
   {
     name: "Noodles",
@@ -37,7 +38,8 @@ const fromScratchRecipes: Recipe[] = [
       "Roll dough out until is less than 1/4 inch thick",
       "Use sharp knife or pizza wheel for cutting the noodles into long strips or form them into a different pasta shape",
       "Cook them in boiling water for 2-3 minutes"
-    ]
+    ],
+    source: "https://tastesbetterfromscratch.com/homemade-egg-noodles/",
   },
   {
     name: "Croissants",
@@ -71,7 +73,8 @@ const fromScratchRecipes: Recipe[] = [
       "Scretch or roll each rectangle to be 8 inches long, then roll into crossaint shapes",
       "Cover crossaints and let rest at room temperature for 1 hour, then in the fridge for 1 hour",
       "Whisk egg wash ingredients together, then brush on crossaints before baking for 20 minutes at 375°F"
-    ]
+    ],
+    source: "https://sallysbakingaddiction.com/homemade-croissants/#tasty-recipes-66930",
   },
 ];
 

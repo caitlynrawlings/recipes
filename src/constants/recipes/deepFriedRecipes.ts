@@ -27,7 +27,8 @@ const deepFriedRecipes: Recipe[] = [
         "Working with one at a time, dip the stick in the flour and shake off any excess flour. Then dip in the beaten egg and let any excess drip off. Finally, dip in panko crumb mixture, making sure the entire cheese stick is coated with panko.",
         "Fill a medium-sized saucepan 3” deep with vegetable oil and heat to 350°F",
         "Put a few sticks in at a time, turning oil as needed. Cook for about 1 minute or until golden brown",
-    ]
+    ],
+    source: "https://sugarspunrun.com/mozzarella-sticks-recipe/#recipe",
   },
 ];
 
