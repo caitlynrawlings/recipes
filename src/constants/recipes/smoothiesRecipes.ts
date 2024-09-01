@@ -21,8 +21,8 @@ const smoothieRecipes: Recipe[] = [
     rating: 4.5,
     ingredients: [ 
       createIngredient("Yogurt", 1/2, new Unit("cup")), 
-      createIngredient("Blueberries", 28, new Unit("blueberry")),
-      createIngredient("Raspberries", 32, new Unit("raspberry")),
+      createIngredient("Blueberries", 28, new Unit("blueberry"), "Frozen"),
+      createIngredient("Raspberries", 32, new Unit("raspberry"), "Frozen"),
     ],
     directions: ["Blend all ingredients until smooth."]
   },
@@ -45,7 +45,7 @@ const smoothieRecipes: Recipe[] = [
     ingredients: [ 
       createIngredient("Yogurt", 1 / 2, new Unit("cup")), 
       createIngredient("Banana", 1, new Unit("banana")),
-      createIngredient("Red Grapes (seedless)", 15, new Unit("grape")),
+      createIngredient("Red Grapes (seedless)", 15, new Unit("grape"), "Frozen"),
     ],
     directions: ["Blend all ingredients until smooth."]
   },

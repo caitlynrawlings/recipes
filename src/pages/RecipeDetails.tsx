@@ -69,11 +69,14 @@ const RecipeDetails: React.FC = () => {
   const RecipeIngredients: React.FC = () => {
     return (
       <>
-        <h2 className="font-semibold text-zinc-600 mt-4 mb-2">Ingredients</h2>
-        <ul className="list-disc list-inside ml-4 mb-4">
+        <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-2">Ingredients</h2>
+        <ul className="list-disc list-inside ml-7">
           {recipe.ingredients.map((ingredient, index) => (
-            <li key={index} className="text-zinc-600">
-              {ingredient.name}: {ingredient.unit.getLabel(parseFloat((ingredient.amount * servingSize).toFixed(2)))}
+            <li key={index} className="text-zinc-600 mb-3">
+              <span className='font-medium'>
+                {ingredient.name}: {ingredient.unit.getLabel(parseFloat((ingredient.amount * servingSize).toFixed(2)))} 
+              </span>
+              {ingredient.note && " " + `*${ingredient.note}`}
             </li>
           ))}
         </ul>
@@ -85,11 +88,18 @@ const RecipeDetails: React.FC = () => {
   const RecipeDirections: React.FC = () => {
     return (
       <>
-        <h2 className="font-semibold text-zinc-600 mt-4 mb-2">Directions</h2>
+        <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-2">Directions</h2>
         <ol className="list-decimal list-inside ml-4 mb-4">
           {recipe.directions?.map((direction, index) => (
-            <li key={index} className="text-zinc-600">
-              {direction}
+            <li key={index} className="list-none text-zinc-600">
+              <span className='flex flex-row gap-2 mb-3 items-start'>
+                <div className='flex items-center justify-center bg-slate-200 font-semibold h-8 min-w-8 rounded-full'>
+                  {index + 1}
+                </div>
+                <span className='mt-1'>
+                  {direction}
+                </span>
+              </span>
             </li>
           ))}
         </ol>

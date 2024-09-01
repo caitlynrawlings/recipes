@@ -14,7 +14,7 @@ const dessertsRecipes: Recipe[] = [
         createIngredient("Butter", 1, new Unit("cup")),
         createIngredient("Egg", 3, new Unit("egg")),
         createIngredient("Vanilla extract", 1, new Unit("tablespoon")),
-        createIngredient("chocolate", 1.5, new Unit("cup")),
+        createIngredient("Chocolate", 1.5, new Unit("cup")),
     ],
     directions: [
         "Line 8x8 baking pan with parchment paper", "Melt butter",
@@ -28,7 +28,7 @@ const dessertsRecipes: Recipe[] = [
     rating: 4,
     ingredients: [ 
         createIngredient("Bread flour", 3, new Unit("cup")),
-        createIngredient("Milk", 0.75, new Unit("cup"), "Warmed to 110F"),
+        createIngredient("Milk", 0.75, new Unit("cup"), "Warmed to 110°F"),
         createIngredient("Yeast", 2.25, new Unit("teaspoon")),
         createIngredient("Sugar", 0.25, new Unit("cup")),
         createIngredient("Egg", 2, new Unit("egg")),

@@ -17,7 +17,7 @@ const deepFriedRecipes: Recipe[] = [
       createIngredient("Eggs", 2, new Unit("egg")),
       createIngredient("All-purpose flour", 0.5, new Unit("cup")),
       createIngredient("String cheese", 1, new Unit("pound")),
-      createIngredient("Vegetable oil", 4, new Unit("cup")),
+      createIngredient("Vegetable oil", 4, new Unit("cup"), "For frying"),
     ],
     directions: [
         "Place panko crumbs in a Ziploc bag and use a rolling pin or mallet to crush until you have fine crumbs.",

@@ -27,14 +27,14 @@ const breakfastRecipes: Recipe[] = [
     rating: 4.5,
     ingredients: [ 
       createIngredient("All-purpose flour", 4, new Unit("cup")),
-      createIngredient("All-purpose flour (for butter layer)", 2, new Unit("cup")),
+      createIngredient("All-purpose flour", 2, new Unit("cup"), "For butter layer"),
       createIngredient("Butter", 0.25, new Unit("cup")),
-      createIngredient("Butter (for butter layer)", 1.5, new Unit("cup")),
+      createIngredient("Butter", 1.5, new Unit("cup"), "For butter layer"),
       createIngredient("Sugar", 0.25, new Unit("cup")),
       createIngredient("Yeast", 1, new Unit("tablespoon")),
       createIngredient("Milk", 1.5, new Unit("cup")),
-      createIngredient("Milk (for egg wash)", 2, new Unit("tablespoon")),
-      createIngredient("Egg (for egg wash)", 1, new Unit("egg")),
+      createIngredient("Milk", 2, new Unit("tablespoon"), "For egg wash"),
+      createIngredient("Egg", 1, new Unit("egg"), "For egg wash"),
     ],
     directions: [
       "Make room in fridge for a baking sheet",
