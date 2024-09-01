@@ -61,7 +61,7 @@ const RecipePreviews: React.FC = () => {
 
   const MobileOrganizationOptions: React.FC = () => {
     return (
-      <div className='items-start flex flex-col justify-start w-full h-full lg:hidden mb-8'>
+      <div className='items-start flex flex-col justify-start w-full h-full lg:hidden mb-8 gap-2'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
         <DropDown onChange={handleSortChange} />
       </div>

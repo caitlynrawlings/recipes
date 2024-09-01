@@ -44,15 +44,15 @@ const RecipeDetails: React.FC = () => {
 
   const RecipePicure: React.FC = () => {
     return (
-      <div className="md:shrink-0">
-        <img className="max-h-72 border-cyan-800 border-2 " src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name} />
+      <div className="pb-2">
+        <img className="max-h-72 border-slate-500 border-2 " src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name} />
       </div>
     )
   }
 
   const ScaleRecipe: React.FC = () => {
     return (
-      <div className="mb-4">
+      <div className="py-3">
         <label htmlFor="serving-size" className="text-zinc-600">Scale:</label>
         <input
           id="serving-size"
@@ -76,7 +76,7 @@ const RecipeDetails: React.FC = () => {
               <span className='font-medium'>
                 {ingredient.name}: {ingredient.unit.getLabel(parseFloat((ingredient.amount * servingSize).toFixed(2)))} 
               </span>
-              {ingredient.note && " " + `*${ingredient.note}`}
+              {ingredient.note && ` *${ingredient.note}`}
             </li>
           ))}
         </ul>
@@ -87,7 +87,7 @@ const RecipeDetails: React.FC = () => {
 
   const RecipeDirections: React.FC = () => {
     return (
-      <>
+      <div className='pb-6'>
         <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-2">Directions</h2>
         <ol className="list-decimal list-inside ml-4 mb-4">
           {recipe.directions?.map((direction, index) => (
@@ -103,7 +103,7 @@ const RecipeDetails: React.FC = () => {
             </li>
           ))}
         </ol>
-      </>
+      </div>
       
     )
   }
@@ -119,14 +119,32 @@ const RecipeDetails: React.FC = () => {
 
           <h1 className="text-h1 font-bold text-cyan-800">{recipe.name.toUpperCase()}</h1>
           {ratingStars(recipe.rating)}
-
-          {recipe.picture && 
-            <RecipePicure/>
+          
+          { 
+            recipe.description &&
+            <p className='text-zinc-600'>{recipe.description}</p> 
           }
-          {recipe.description && <p className="text-zinc-600 mb-4">{recipe.description}</p>}
+
+          <RecipePicure/>
           <ScaleRecipe/>
           <RecipeIngredients/>
           <RecipeDirections/>
+          
+          { 
+            recipe.note &&
+            <div className='outline outline-2 outline-slate-400 text-slate-700 bg-slate-200 p-2 flex flex-col'>
+              <p className='font-semibold'>Notes:</p>
+              <p>{recipe.note}</p>
+            </div>
+          }
+
+          { 
+            recipe.source &&
+            <div className='flex flex-row font-semibold pt-2'>
+              <p className='text-slate-600'>Credits:&nbsp;</p>
+              <a href={recipe.source} className='text-cyan-700 underline pb-4'>Recipe Source</a> 
+            </div>
+          }
         </div>
       </div>
     </div>
