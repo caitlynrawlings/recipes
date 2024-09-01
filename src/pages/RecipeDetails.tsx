@@ -23,8 +23,7 @@ const RecipeDetails: React.FC = () => {
         }
       } catch (error) {
         console.error("Failed to load recipes:", error);
-        // Handle error (e.g., navigate to a 404 page or show an error message)
-        navigate('/not-found'); // or set an error state
+        navigate('/not-found');
       }
     };
 
@@ -34,7 +33,8 @@ const RecipeDetails: React.FC = () => {
   const recipe = recipes.find(r => r.name === name);
 
   if (!recipe) {
-    return <div className="text-center text-2xl text-red-600">Recipe not found</div>;
+    navigate('/not-found');
+    return null;
   }
 
   const handleServingChange = (event: React.ChangeEvent<HTMLInputElement>) => {

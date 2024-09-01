@@ -5,11 +5,12 @@ import RecipeCard from '../components/RecipeCard.tsx';
 import DropDown from '../components/DropDown.tsx';
 import DropdownCheckboxes from '../components/CheckboxDropdown.tsx';
 import getIngredients from '../functions/getIngredients.ts';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton.tsx';
 import categories from '../constants/recipeCategories.ts';
 
 const RecipePreviews: React.FC = () => {
+  const navigate = useNavigate(); 
   const { category: categoryLink } = useParams<{ category: string }>();
   const category = categories.find(c => c.link === categoryLink);
   const recipes = category?.recipes;
@@ -17,7 +18,10 @@ const RecipePreviews: React.FC = () => {
   const [sortBy, setSortBy] = useState<string>("name");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
-  if (!categoryLink || !recipes) return null;
+  if (!categoryLink || !recipes) {
+    navigate('/not-found');
+    return null;
+  }
 
   const handleSortChange = (sortType: string) => {
     setSortBy(sortType);
