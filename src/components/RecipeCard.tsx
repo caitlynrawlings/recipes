@@ -17,17 +17,6 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
     navigate(`/${category}/${recipe.name}`);
   };
 
-  const Ingredients = () => {
-    // return (
-    //   <ul className="mt-4 space-y-2">
-    //     {recipe.ingredients.map((ingredient, index) => (
-    //       <li key={index} className="text-gray-700">{ingredient.name}: {ingredient.unit.getLabel(parseFloat(ingredient.amount.toFixed(2)))}</li>
-    //     ))}
-    //   </ul>
-    // )
-
-  }
-
   return (
     <div className="bg-slate-100 shadow-md cursor-pointer mb-6 w-full flex flex-row h-auto overflow-hidden relative" onClick={handleClick}>
       <div className='md:flex hidden items-center justify-center max-w-56 min-w-56 absolute overflow-hidden h-full'>

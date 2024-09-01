@@ -38,8 +38,9 @@ const RecipeDetails: React.FC = () => {
   }
 
   const handleServingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newServingSize = parseInt(event.target.value);
-    setServingSize(newServingSize > 0 ? newServingSize : 1); // Ensure serving size is at least 1
+    const newServingSize = parseFloat(event.target.value);
+    console.log("num: " + newServingSize)
+    setServingSize(newServingSize);
   };
 
   const RecipePicure: React.FC = () => {
@@ -52,15 +53,16 @@ const RecipeDetails: React.FC = () => {
 
   const ScaleRecipe: React.FC = () => {
     return (
-      <div className="py-3">
+      <div className="py-3 text-zinc-600">
         <label htmlFor="serving-size" className="text-zinc-600">Scale:</label>
         <input
           id="serving-size"
           type="number"
           value={servingSize}
-          onChange={handleServingChange}
-          className="w-12 text-center ml-2 p-1 border border-gray-400 rounded"
-          min="1"
+          onChange={(e) => handleServingChange(e)}
+          className="w-16 text-center ml-2 p-1 border border-gray-400 rounded-md"
+          min={0}
+          step={0.5}
         />
       </div>
     )
