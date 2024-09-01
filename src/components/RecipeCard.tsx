@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Recipe from '../types/Recipe';
 import '../index.css'; // Ensure Tailwind CSS is imported
 import ratingStars from '../functions/ratingStars.tsx';
+import getIngredients from '../functions/getIngredients.ts';
 
 interface RecipeCardProps {
   category: string
@@ -16,6 +17,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
   const handleClick = () => {
     navigate(`/${category}/${recipe.name}`);
   };
+
+  const ingredients = Array.from(getIngredients([recipe]))
 
   return (
     <div className="bg-slate-100 shadow-md cursor-pointer mb-6 w-full flex flex-row h-auto overflow-hidden relative" onClick={handleClick}>
@@ -34,10 +37,10 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
 
         <div className='flex flex-row flex-wrap text-slate-600 whitespace-normal pt-3'>
           <p className='font-semibold'>Ingredient Overview:&nbsp;</p>
-          {recipe.ingredients.map((ingredient, index) => (
+          {ingredients.map((ingredient, index) => (
             <span className="whitespace-nowrap" key={index}>
-              {ingredient.name}
-              {index < recipe.ingredients.length - 1 && ','}&nbsp;
+              {ingredient}
+              {index < ingredients.length - 1 && ','}&nbsp;
             </span>
           ))}
         </div>
