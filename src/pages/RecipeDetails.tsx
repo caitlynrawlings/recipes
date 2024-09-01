@@ -88,7 +88,7 @@ const RecipeDetails: React.FC = () => {
   const RecipeDirections: React.FC = () => {
     return (
       <div className='pb-6'>
-        <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-2">Directions</h2>
+        <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-4">Directions</h2>
         <ol className="list-decimal list-inside ml-4 mb-4">
           {recipe.directions?.map((direction, index) => (
             <li key={index} className="list-none text-zinc-600">
