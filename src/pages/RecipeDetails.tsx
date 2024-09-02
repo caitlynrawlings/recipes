@@ -45,23 +45,24 @@ const RecipeDetails: React.FC = () => {
 
   const RecipePicure: React.FC = () => {
     return (
-      <div className="pb-2">
-        <img className="max-h-72 border-slate-500 border-2 " src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name} />
+      <div className="py-2">
+        <img className="max-h-72 border-slate-400 border-1" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name} />
       </div>
     )
   }
 
   const ScaleRecipe: React.FC = () => {
     return (
-      <div className="py-3 text-zinc-600">
-        <label htmlFor="serving-size" className="text-zinc-600">Scale:</label>
+      <div className="py-3">
+        <label htmlFor="serving-size" className="text-slate-600">Scale:</label>
         <input
           id="serving-size"
           type="number"
           value={servingSize}
           onChange={(e) => handleServingChange(e)}
-          className="w-16 text-center ml-2 p-1 border border-gray-400 rounded-md"
+          className="w-14 text-center ml-2 p-1 outline outline-1 outline-slate-400 text-slate-700 bg-slate-100 rounded-lg"
           min={0}
+          max={10}
           step={0.5}
         />
       </div>
@@ -71,14 +72,14 @@ const RecipeDetails: React.FC = () => {
   const RecipeIngredients: React.FC = () => {
     return (
       <>
-        <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-2">Ingredients</h2>
+        <h2 className="font-semibold text-lg text-slate-600 mt-4 mb-2">Ingredients</h2>
         <ul className="list-disc list-inside ml-7">
           {recipe.ingredients.map((ingredient, index) => (
-            <li key={index} className="text-zinc-600 mb-3">
+            <li key={index} className="text-slate-600 mb-3">
               <span className='font-medium'>
                 {ingredient.name}: {ingredient.unit.getLabel(parseFloat((ingredient.amount * servingSize).toFixed(2)))} 
               </span>
-              {ingredient.note && ` *${ingredient.note}`}
+              {ingredient.note && <span>&nbsp;&nbsp;{`*${ingredient.note}`}</span>}
             </li>
           ))}
         </ul>
@@ -89,11 +90,11 @@ const RecipeDetails: React.FC = () => {
 
   const RecipeDirections: React.FC = () => {
     return (
-      <div className='pb-6'>
-        <h2 className="font-semibold text-lg text-zinc-600 mt-4 mb-4">Directions</h2>
+      <div className='pb-4'>
+        <h2 className="font-semibold text-lg text-slate-600 mt-2 mb-4">Directions</h2>
         <ol className="list-decimal list-inside ml-4 mb-4">
           {recipe.directions?.map((direction, index) => (
-            <li key={index} className="list-none text-zinc-600">
+            <li key={index} className="list-none text-slate-600">
               <span className='flex flex-row gap-2 mb-3 items-start'>
                 <div className='flex items-center justify-center bg-slate-200 font-semibold h-8 min-w-8 rounded-full'>
                   {index + 1}
@@ -124,7 +125,7 @@ const RecipeDetails: React.FC = () => {
           
           { 
             recipe.description &&
-            <p className='text-zinc-600'>{recipe.description}</p> 
+            <p className='text-slate-600 pt-2'>{recipe.description}</p> 
           }
 
           <RecipePicure/>

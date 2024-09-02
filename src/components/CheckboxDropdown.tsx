@@ -68,7 +68,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div 
                 onClick={(event) => toggleDropdown(event)}
-                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-md p-1.5 items-center gap-2"
+                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
             >   
                 {tempSelectedOptions.length === 0
                 ? 
@@ -93,7 +93,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div className='dropdown z-20'>
                 {isOpen && (
-                    <div className="bg-zinc-100 fixed text-md shadow-lg rounded-md p-2 dropdown flex flex-col w-64 gap-1">
+                    <div className="bg-zinc-100 fixed text-md shadow-lg rounded-sm p-2 dropdown flex flex-col w-64 gap-1">
                         {Array.from(options).map(option => (
                             <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
                                 <input

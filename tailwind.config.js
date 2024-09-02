@@ -46,6 +46,9 @@ module.exports = {
         max: 'max-content',
         fr: 'minmax(0, 1fr)',
       },
+      width: {
+        '43': '10.65rem',
+      }
     }
   },
   plugins: [],
