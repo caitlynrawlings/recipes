@@ -15,7 +15,7 @@ const RecipePreviews: React.FC = () => {
   const category = categories.find(c => c.link === categoryLink);
   const recipes = category?.recipes;
 
-  const [sortBy, setSortBy] = useState<string>("name");
+  const [sortBy, setSortBy] = useState<string>("Recipe Name (A-Z)");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   if (!categoryLink || !recipes) {
@@ -35,11 +35,11 @@ const RecipePreviews: React.FC = () => {
 
   // Function to sort recipes based on selected sort criteria
   const sortedRecipes = [...filteredRecipes].sort((a, b) => {
-    if (sortBy === 'name') {
+    if (sortBy === 'Recipe Name (A-Z)') {
       return a.name.localeCompare(b.name);
-    } else if (sortBy === 'rating') {
+    } else if (sortBy === 'Rating') {
       return b.rating - a.rating;
-    } else if (sortBy === "name (z-a)") {
+    } else if (sortBy === "Recipe Name (Z-A)") {
       return b.name.localeCompare(a.name);
     }
     return 0;
@@ -56,9 +56,9 @@ const RecipePreviews: React.FC = () => {
 
   const HeaderOrganizationOptions: React.FC = () => {
     return (
-      <div className='items-center lg:flex flex-row justify-end w-full h-full hidden'>
+      <div className='items-center lg:flex flex-row justify-end w-full h-full hidden gap-2'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
-        <DropDown onChange={handleSortChange} />
+        <DropDown selectedOption={sortBy} setSelectedOption={handleSortChange} />
       </div>
     )
   }
@@ -67,7 +67,7 @@ const RecipePreviews: React.FC = () => {
     return (
       <div className='items-start flex flex-col justify-start w-full h-full lg:hidden mb-8 gap-2'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
-        <DropDown onChange={handleSortChange} />
+        <DropDown selectedOption={sortBy} setSelectedOption={handleSortChange} />
       </div>
     )
   }
@@ -84,7 +84,7 @@ const RecipePreviews: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center p-10 h-full">
+    <div className="flex flex-col justify-center lg:px-8 px-4 py-8 h-full">
       <HeaderBar/>
       <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
         <div className='flex items-start w-full justify-start mb-4'>

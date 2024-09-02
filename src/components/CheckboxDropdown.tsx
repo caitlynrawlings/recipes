@@ -11,11 +11,9 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [tempSelectedOptions, setTempSelectedOptions] = useState<string[]>(selectedOptions);
 
-    const openDropdown = (event: React.MouseEvent) => {
+    const toggleDropdown = (event: React.MouseEvent) => {
         event.preventDefault();
-        if (!isOpen) {
-            setIsOpen(true);
-        }
+        setIsOpen(!isOpen);
     }
 
     const clearOptions = (event: React.MouseEvent) => {
@@ -34,7 +32,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement;
             
-            // Check if the click happened inside the dropdown or dropdown-preview
+            // Check if the click happened inside the dropdown or was being done to open the dropdown
             if (target.closest('.dropdown') || target.closest('.dropdown-preview')) {
                 return;
             }
@@ -69,8 +67,8 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
     const DropdownPreview: React.FC = () => {
         return (
             <div 
-                onClick={(event) => openDropdown(event)}
-                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-md p-1.5 items-center"
+                onClick={(event) => toggleDropdown(event)}
+                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-md p-1.5 items-center gap-2"
             >   
                 {tempSelectedOptions.length === 0
                 ? 
@@ -95,7 +93,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div className='dropdown z-20'>
                 {isOpen && (
-                    <div className="bg-zinc-100 fixed text-md rounded-md shadow-lg p-2 dropdown flex flex-col w-56 gap-1">
+                    <div className="bg-zinc-100 fixed text-md shadow-lg rounded-md p-2 dropdown flex flex-col w-64 gap-1">
                         {Array.from(options).map(option => (
                             <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
                                 <input
@@ -124,7 +122,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
             </label>
             <div 
                 className='flex flex-col gap-2 mx-2'
-                id="sort-options" 
+                id="filter-options" 
             >
                 <DropdownPreview/>
                 <SelectOptionsBox/>
