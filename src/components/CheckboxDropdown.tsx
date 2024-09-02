@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { VscChromeClose } from "react-icons/vsc";
 
 interface DropdownCheckboxesProps {
     options: Set<string>;
@@ -109,7 +110,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                                 {option}
                             </label>
                         ))}
-                        <button className='text-left text-zinc-600 bg-slate-300 rounded-md px-2 py-1 mt-1' onClick={(event) => clearOptions(event)}>X Clear All</button>
+                        <button className='text-left text-zinc-600 bg-slate-300 rounded-md px-2 py-1 mt-1 flex flex-row items-center gap-1' onClick={(event) => clearOptions(event)}><VscChromeClose /> Clear All</button>
                     </div>
                 )}
             </div>

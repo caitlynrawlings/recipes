@@ -5,7 +5,8 @@ Other goals behind this project were to gain experience using Tailwind CSS, make
 ## Credits
 [Create React App](https://github.com/facebook/create-react-app)  
 [Tailwind background colors HEX codes](https://gist.github.com/guvener/d8952570d5a8be430580b93800519439)
-Tailwind css  
-GitHub-pages
-Figma
-https://www.reddit.com/r/csshelp/comments/ly4vxd/how_can_i_prevent_a_child_from_expanding_its/ 
+Tailwind css
+GitHub-pages  
+Figma  
+https://www.reddit.com/r/csshelp/comments/ly4vxd/how_can_i_prevent_a_child_from_expanding_its/  
+Pixel Perfect https://www.flaticon.com/free-icons/close
