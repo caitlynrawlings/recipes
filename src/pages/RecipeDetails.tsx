@@ -71,7 +71,7 @@ const RecipeDetails: React.FC = () => {
 
   const RecipeIngredients: React.FC = () => {
     return (
-      <>
+      <section>
         <h2 className="font-semibold text-lg text-slate-600 mt-4 mb-2">Ingredients</h2>
         <ul className="list-disc list-inside ml-7">
           {recipe.ingredients.map((ingredient, index) => (
@@ -83,30 +83,30 @@ const RecipeDetails: React.FC = () => {
             </li>
           ))}
         </ul>
-      </>
+      </section>
       
     )
   }
 
   const RecipeDirections: React.FC = () => {
     return (
-      <div className='pb-4'>
+      <section className='pb-4'>
         <h2 className="font-semibold text-lg text-slate-600 mt-2 mb-4">Directions</h2>
         <ol className="list-decimal list-inside ml-4 mb-4">
           {recipe.directions?.map((direction, index) => (
             <li key={index} className="list-none text-slate-600">
-              <span className='flex flex-row gap-2 mb-3 items-start'>
+              <div className='flex flex-row gap-2 mb-3 items-start'>
                 <div className='flex items-center justify-center bg-slate-200 font-semibold h-8 min-w-8 rounded-full'>
                   {index + 1}
                 </div>
-                <span className='mt-1'>
+                <p className='mt-1'>
                   {direction}
-                </span>
-              </span>
+                </p>
+              </div>
             </li>
           ))}
         </ol>
-      </div>
+      </section>
       
     )
   }
@@ -118,7 +118,7 @@ const RecipeDetails: React.FC = () => {
       </div>
 
       <div className='px-10 w-full flex justify-center'>
-        <div className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container">
+        <main className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container">
 
           <h1 className="text-h1 font-bold text-cyan-800">{recipe.name.toUpperCase()}</h1>
           {ratingStars(recipe.rating)}
@@ -135,10 +135,10 @@ const RecipeDetails: React.FC = () => {
           
           { 
             recipe.note &&
-            <div className='outline outline-2 outline-slate-400 text-slate-700 bg-slate-200 p-2 flex flex-col'>
+            <section className='outline outline-2 outline-slate-400 text-slate-700 bg-slate-200 p-2 flex flex-col'>
               <p className='font-semibold'>Notes:</p>
               <p>{recipe.note}</p>
-            </div>
+            </section>
           }
 
           { 
@@ -148,7 +148,7 @@ const RecipeDetails: React.FC = () => {
               <a href={recipe.source} className='text-cyan-700 underline pb-4'>Recipe Source</a> 
             </div>
           }
-        </div>
+        </main>
       </div>
     </div>
   );

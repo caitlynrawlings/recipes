@@ -59,7 +59,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
       return (
           <div 
               onClick={(event) => toggleDropdown(event)}
-              className="sort-dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
+              className="sort-dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
           >   
               <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-auto w-52'>
                 {selectedOption}
@@ -74,7 +74,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     return (
         <div className='sort-dropdown z-20 '>
             {isOpen && (
-                <div className="bg-zinc-100 fixed text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60">
+                <div className="bg-slate-100 fixed text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60">
                     {Array.from(options).map(option => (
                         <p 
                             key={option} 

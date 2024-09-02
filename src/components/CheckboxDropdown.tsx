@@ -68,11 +68,11 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div 
                 onClick={(event) => toggleDropdown(event)}
-                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-zinc-100 text-zinc-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
+                className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
             >   
                 {tempSelectedOptions.length === 0
                 ? 
-                <p className='text-zinc-400 w-56'>Select ingredients to filter out</p>
+                <p className='text-slate-400 w-56'>Select ingredients to filter out</p>
                 :
                 <div className='overflow-hidden text-ellipsis whitespace-nowrap w-56'>
                     {tempSelectedOptions.map((option, index) => (
@@ -93,22 +93,32 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
         return (
             <div className='dropdown z-20'>
                 {isOpen && (
-                    <div className="bg-zinc-100 fixed text-md shadow-lg rounded-sm p-2 dropdown flex flex-col w-64 gap-1">
-                        {Array.from(options).map(option => (
-                            <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
-                                <input
-                                    id={option}
-                                    type="checkbox"
-                                    value={option}
-                                    checked={tempSelectedOptions.includes(option)}
-                                    onChange={handleCheckboxChange}
-                                    className="mr-2"
-                                />
-                            
-                                {option}
-                            </label>
-                        ))}
-                        <button className='text-left text-zinc-600 bg-slate-300 rounded-md px-2 py-1 mt-1 flex flex-row items-center gap-1' onClick={(event) => clearOptions(event)}><VscChromeClose /> Clear All</button>
+                    <div className="bg-slate-100 fixed text-md shadow-lg rounded-sm p-2 dropdown flex flex-col w-64 gap-1">
+                        <ul>
+                            {Array.from(options).map(option => (
+                                <li>
+                                    <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
+                                        <input
+                                            id={option}
+                                            type="checkbox"
+                                            value={option}
+                                            checked={tempSelectedOptions.includes(option)}
+                                            onChange={handleCheckboxChange}
+                                            className="mr-2"
+                                        />
+                                    
+                                        {option}
+                                    </label>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <button 
+                            className='text-left text-slate-600 bg-slate-300 rounded-md px-2 py-1 mt-1 flex flex-row items-center gap-1' 
+                            onClick={(event) => clearOptions(event)}
+                        >
+                            <VscChromeClose /> Clear All
+                        </button>
                     </div>
                 )}
             </div>

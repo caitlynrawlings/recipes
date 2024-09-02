@@ -21,7 +21,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
   const ingredients = Array.from(getIngredients([recipe]))
 
   return (
-    <div className="bg-slate-100 shadow-md cursor-pointer mb-6 w-full flex flex-row h-auto overflow-hidden relative" onClick={handleClick}>
+    <article className="bg-slate-100 shadow-md cursor-pointer mb-6 w-full flex flex-row h-auto overflow-hidden relative" onClick={handleClick}>
       <div className='md:flex hidden items-center justify-center max-w-56 min-w-56 absolute overflow-hidden h-full'>
         <img className="w-full h-full object-cover" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name}/>
       </div>
@@ -38,14 +38,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
         <div className='flex flex-row flex-wrap text-slate-600 whitespace-normal pt-3'>
           <p className='font-semibold'>Ingredient Overview:&nbsp;</p>
           {ingredients.map((ingredient, index) => (
-            <span className="whitespace-nowrap" key={index}>
+            <p className="whitespace-nowrap" key={index}>
               {ingredient}
               {index < ingredients.length - 1 && ','}&nbsp;
-            </span>
+            </p>
           ))}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

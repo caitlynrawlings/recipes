@@ -9,8 +9,8 @@ const BackButton: React.FC = () => {
     };
       
     return (
-        <div className='items-start flex flex-row w-full'>
-            <p className="cursor-pointer text-zinc-100" onClick={handleClick}>{"< Back to Browse"}</p>
+        <div className='items-start flex flex-row w-full pb-2'>
+            <button className="cursor-pointer text-zinc-100" onClick={handleClick}>{"< Back to Browse"}</button>
         </div>
     )
 }

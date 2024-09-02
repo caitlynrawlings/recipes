@@ -47,10 +47,10 @@ const RecipePreviews: React.FC = () => {
 
   const HeaderBar: React.FC = () => {
     return (
-      <div className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 flex flex-row items-end">
+      <header className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 flex flex-row items-end">
         <h1 className="text-slate-200 h1 whitespace-nowrap ml-3">{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</h1>
         <HeaderOrganizationOptions />
-      </div>
+      </header>
     )
   }
 
@@ -77,18 +77,18 @@ const RecipePreviews: React.FC = () => {
   const RecipePreviews: React.FC = () => {
 
     return (
-      <div className='flex flex-col justify-center items-center container'>
+      <nav className='flex flex-col justify-center items-center container'>
         {sortedRecipes.map((recipe, index) => (
           <RecipeCard key={index} category={categoryLink} recipe={recipe}/>
         ))}
-      </div>
+      </nav>
     )
   }
 
   return (
     <div className="flex flex-col justify-center lg:px-8 px-4 py-8 h-full">
       <HeaderBar/>
-      <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
+      <main className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
         <div className='flex items-start w-full justify-start mb-4'>
           <BackButton />
         </div>
@@ -96,7 +96,7 @@ const RecipePreviews: React.FC = () => {
         <Suspense fallback={<div>Loading recipes...</div>}>
           <RecipePreviews />
         </Suspense>
-      </div>
+      </main>
     </div>
   );
 };

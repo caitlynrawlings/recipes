@@ -13,7 +13,7 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
   };
 
   return (
-    <div className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer w-full flex flex-col" onClick={handleClick}>
+    <article className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer w-full flex flex-col" onClick={handleClick}>
       <div className='h-48 w-full'>
         <img className="h-full w-full object-cover" src={process.env.PUBLIC_URL + category.picture} alt={category.name}/>
       </div>
@@ -26,7 +26,7 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
             {category.description}
         </p>
       </div>
-    </div>
+    </article>
   );
 };
 
