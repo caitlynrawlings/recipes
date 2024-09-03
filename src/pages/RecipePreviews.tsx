@@ -77,7 +77,7 @@ const RecipePreviews: React.FC = () => {
   const RecipePreviews: React.FC = () => {
 
     return (
-      <nav className='flex flex-col justify-center items-center container'>
+      <nav role="navigation" aria-label="Recipe previews" className='flex flex-col justify-center items-center container'>
         {sortedRecipes.map((recipe, index) => (
           <RecipeCard key={index} category={categoryLink} recipe={recipe}/>
         ))}

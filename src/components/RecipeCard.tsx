@@ -29,7 +29,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
       <div className="md:ml-60 md:pl-2 ml-6 mr-6 py-8 flex flex-col justify-center h-auto overflow-hidden">
         <div className='flex flex-row items-center gap-2 mb-4'>
           <img className="md:hidden w-20 h-20 rounded-full object-cover" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name}/>
-          <h2 className="uppercase tracking-wide text-xl text-cyan-800 font-bold">{recipe.name}</h2>
+          <h2 role="link" tabIndex={0} className="uppercase tracking-wide text-xl text-cyan-800 font-bold">{recipe.name}</h2>
         </div>
         {ratingStars(recipe.rating)}
         

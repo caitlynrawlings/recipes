@@ -17,7 +17,7 @@ const RecipeCategories: React.FC = () => {
             <p className='md:hidden text-cyan-100 mt-2 font-light'>Just a place for me to track recipes I've tried.</p>
         </header>
 
-        <nav className="lg:px-8 md:px-4 px-2 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+        <nav role="navigation" aria-label="Recipe categories" className="lg:px-8 md:px-4 px-2 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
             {categories.map((category, index) => (
             <CategoryCard key={index} category={category}/>
             ))}

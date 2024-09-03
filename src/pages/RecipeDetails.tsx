@@ -54,7 +54,7 @@ const RecipeDetails: React.FC = () => {
   const ScaleRecipe: React.FC = () => {
     return (
       <div className="py-3">
-        <label htmlFor="serving-size" className="text-slate-600">Scale:</label>
+        <label htmlFor="serving-size" className="text-slate-600">Scale by factor of:</label>
         <input
           id="serving-size"
           type="number"
@@ -118,7 +118,7 @@ const RecipeDetails: React.FC = () => {
       </div>
 
       <div className='px-10 w-full flex justify-center'>
-        <main className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container">
+        <main className="bg-slate-100 rounded-none shadow-md p-8 mb-8 space-y-4 flex flex-col container" tabIndex={0}>
 
           <h1 className="text-h1 font-bold text-cyan-800">{recipe.name.toUpperCase()}</h1>
           {ratingStars(recipe.rating)}
