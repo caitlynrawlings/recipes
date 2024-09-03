@@ -59,9 +59,9 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
       return (
           <div 
               onClick={(event) => toggleDropdown(event)}
-              className="sort-dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
+              className="sort-dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
           >   
-              <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-auto w-52'>
+              <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-36 w-52'>
                 {selectedOption}
               </div>
               
