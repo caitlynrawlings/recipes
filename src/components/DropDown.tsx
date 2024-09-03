@@ -25,8 +25,8 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement;
             
-            // Check if the click happened inside the dropdown or dropdown-preview
-            if (target.closest('.sort-dropdown') || target.closest('.sort-dropdown-preview')) {
+            // Check if the click happened inside the dropdown or dropdown-button. checks by classname
+            if (target.closest('.sort-options') || target.closest('.sort-dropdown-button')) {
                 return;
             }
     
@@ -55,36 +55,51 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     }, [isOpen, setSelectedOption]); // Include all necessary dependencies
   
 
-  const DropdownPreview: React.FC = () => {
-      return (
-          <div 
-              onClick={(event) => toggleDropdown(event)}
-              className="sort-dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
-          >   
-              <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-36 w-52'>
-                {selectedOption}
-              </div>
-              
-              &#9662; {/* dropdown arrow */}
-          </div>
-      )
-  }
+    const DropdownButton: React.FC = () => {
+        return (
+            <div 
+                role="combobox"
+                aria-haspopup="listbox"
+                aria-controls='sort_options'
+                aria-labelledby='sort_label'
+                aria-expanded={isOpen}
+                aria-activedescendant={`sort_option_${selectedOption}`}
+                onClick={(event) => toggleDropdown(event)}
+                className="sort-dropdown-button flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
+            >   
+                <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-36 w-52'>
+                    {selectedOption}
+                </div>
+                
+                &#9662; {/* dropdown arrow */}
+            </div>
+        )
+    }
 
   const SelectOptionsBox: React.FC = () => {
     return (
-        <div className='sort-dropdown z-20 '>
+        <div className='sort-options z-20 '>
             {isOpen && (
-                <div className="bg-slate-100 fixed text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60">
+                <ul 
+                    role="listbox"
+                    id="sort_options"
+                    tabIndex={-1}
+                    aria-multiselectable={false}
+                    className="bg-slate-100 fixed text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60"
+                >
                     {Array.from(options).map(option => (
-                        <p 
+                        <li 
                             key={option} 
+                            id={`sort_option_${option}`}
+                            role="option"
+                            aria-selected={selectedOption === option}
                             className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer ${option === selectedOption && 'bg-slate-300'}`}
                             onClick={() => handleSelectChange(option)}
                         >
                             {option}
-                        </p>
+                        </li>
                     ))}
-                </div>
+                </ul>
             )}
         </div>
     )
@@ -92,14 +107,14 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
 
     return (
         <div className='flex flex-row items-center'>
-        <label htmlFor="filter-options"  className='text-slate-100 text-md'>
+        <label htmlFor="sort_dropdown" id="sort_label" className='text-slate-100 text-md'>
             Sort by: 
         </label>
         <div 
             className='flex flex-col gap-2 mx-2'
-            id="sort-options" 
+            id="sort_dropdown" 
         >
-            <DropdownPreview/>
+            <DropdownButton/>
             <SelectOptionsBox/>
         </div>
     </div>
