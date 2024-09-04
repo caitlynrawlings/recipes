@@ -96,8 +96,8 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                     <div className="bg-slate-100 fixed text-md shadow-lg rounded-sm p-2 dropdown flex flex-col w-64 gap-1">
                         <ul>
                             {Array.from(options).map(option => (
-                                <li>
-                                    <label htmlFor={option} key={option} className='flex flex-row w-full text-slate-600'>
+                                <li key={option}>
+                                    <label htmlFor={option} className='flex flex-row w-full text-slate-600'>
                                         <input
                                             id={option}
                                             type="checkbox"
