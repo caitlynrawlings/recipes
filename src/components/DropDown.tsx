@@ -20,7 +20,7 @@ interface DropDownProps {
 
 const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [currentIndex, setCurrentIndex] = useState<number>(0);
+    const [activeIndex, setActiveIndex] = useState<number>(0);
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const optionsRef = useRef<RefObject<HTMLLIElement>[]>([
@@ -33,6 +33,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
 
     const toggleDropdown = (event: React.MouseEvent) => {
         event.preventDefault();
+        setActiveIndex(0);
         setIsOpen(!isOpen);
     }
 
@@ -82,7 +83,8 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                         break;
                     case 'Enter':
                     case ' ':
-                        //selectCurrentOption();
+                        event.preventDefault();
+                        setSelectedOption(options[activeIndex]);
                         break;
                     default:
                         break;
@@ -91,6 +93,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             } else if (!isOpen && openKeys.includes(key)) {
                 if (document.activeElement?.id === 'sort_button') {
                     event.preventDefault();
+                    setActiveIndex(0);
                     setIsOpen(true);
                 }
             }
@@ -98,18 +101,18 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
         };
 
         const moveFocusDown = () => {
-            if (currentIndex < options.length - 1) {
-                setCurrentIndex(currentIndex + 1)
+            if (activeIndex < options.length - 1) {
+                setActiveIndex(activeIndex + 1)
             } else {
-                setCurrentIndex(0)
+                setActiveIndex(0)
             }
         };
 
         const moveFocusUp = () => {
-            if (currentIndex > 0) {
-                setCurrentIndex(currentIndex - 1)
+            if (activeIndex > 0) {
+                setActiveIndex(activeIndex - 1)
             } else {
-                setCurrentIndex(options.length - 1)
+                setActiveIndex(options.length - 1)
             }
         };
     
@@ -128,11 +131,11 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
 
     useEffect(() => {
         if (isOpen) {
-            optionsRef.current[currentIndex].current?.focus();
+            optionsRef.current[activeIndex].current?.focus();
         } else if (wasOpen && !isOpen) {
             (buttonRef.current)?.focus();
         }
-    }, [isOpen, wasOpen, currentIndex])
+    }, [isOpen, wasOpen, activeIndex])
   
 
     const DropdownButton: React.FC = () => {
@@ -144,7 +147,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                 aria-controls='sort_options'
                 aria-labelledby='sort_label'
                 aria-expanded={isOpen}
-                aria-activedescendant={`sort_option_${currentIndex}`}
+                aria-activedescendant={`sort_option_${activeIndex}`}
                 ref={buttonRef}
                 onClick={(event) => toggleDropdown(event)}
                 className="text-left sort-dropdown-button flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
@@ -178,8 +181,9 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                             role="option"
                             aria-selected={selectedOption === option}
                             className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer 
-                                ${option === selectedOption && 'bg-slate-300'}
-                                ${index === currentIndex && 'underline'}`}
+                                ${option === selectedOption && 'bg-slate-300' /** element is selected  */}
+                                ${index === activeIndex && 'underline'}` /** element is active  */}
+                            onMouseOver={() => setActiveIndex(index)}
                             onClick={() => handleSelectChange(option)}
                         >
                             {option}
