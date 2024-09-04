@@ -64,6 +64,9 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             }
         };
 
+        let lastTypedChar = '';
+        let lastMatchingIndex = 0;
+
         const keyDownCallback = (event: KeyboardEvent) => {
             const key = event.key;
             const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' '];
@@ -85,8 +88,15 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                     case ' ':
                         event.preventDefault();
                         setSelectedOption(options[activeIndex]);
+                        setIsOpen(false);
                         break;
                     default:
+                        // Handle numeric key presses 
+                        const num = parseInt(key)
+          
+                        if (num > 0 && num <= options.length) {
+                            setActiveIndex(num - 1);
+                        }
                         break;
                   }
 
@@ -132,6 +142,11 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     useEffect(() => {
         if (isOpen) {
             optionsRef.current[activeIndex].current?.focus();
+            // Scroll the current option into view
+            // optionsRef.current[activeIndex].current?.scrollIntoView({
+            //     block: 'nearest',
+            // });
+            // optionsRef.current[activeIndex].current?.focus();
         } else if (wasOpen && !isOpen) {
             (buttonRef.current)?.focus();
         }
