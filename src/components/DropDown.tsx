@@ -1,6 +1,6 @@
 // src/components/DropDown.tsx
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, createRef, RefObject } from 'react';
 
 const options: string[] = ["Recipe Name (A-Z)", "Recipe Name (Z-A)", "Rating"]
 
@@ -22,7 +22,12 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-    const buttonRef = useRef(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const optionsRef = useRef<RefObject<HTMLLIElement>[]>([
+        createRef<HTMLLIElement>(),
+        createRef<HTMLLIElement>(),
+        createRef<HTMLLIElement>(),
+      ]);
 
     const wasOpen = usePrevious(isOpen);
 
@@ -37,14 +42,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     };
 
     useEffect(() => {
-        if (isOpen) {
-            document.getElementById(`sort_option_${options[currentIndex]}`)?.focus();
-        } else if (wasOpen && !isOpen) {
-            (buttonRef.current as unknown as HTMLButtonElement).focus();
-        }
-    }, [wasOpen, isOpen, currentIndex]);
-
-    useEffect(() => {
+        
         const clickCallback = (event: MouseEvent) => {
             const target = event.target as HTMLElement;
             
@@ -126,7 +124,15 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             document.removeEventListener('scroll', scrollCallback);
             document.removeEventListener('keydown', keyDownCallback);
         };
-    }, [isOpen, currentIndex]); // Include all necessary dependencies
+    }, ); // Include all necessary dependencies
+
+    useEffect(() => {
+        if (isOpen) {
+            optionsRef.current[currentIndex].current?.focus();
+        } else if (wasOpen && !isOpen) {
+            (buttonRef.current)?.focus();
+        }
+    }, [isOpen, wasOpen, currentIndex])
   
 
     const DropdownButton: React.FC = () => {
@@ -138,7 +144,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                 aria-controls='sort_options'
                 aria-labelledby='sort_label'
                 aria-expanded={isOpen}
-                aria-activedescendant={`sort_option_${selectedOption}`}
+                aria-activedescendant={`sort_option_${currentIndex}`}
                 ref={buttonRef}
                 onClick={(event) => toggleDropdown(event)}
                 className="text-left sort-dropdown-button flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
@@ -165,9 +171,10 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
 
                     {Array.from(options).map((option, index) => (
                         <li 
+                            ref={optionsRef.current[index]}
                             tabIndex={0}
                             key={option} 
-                            id={`sort_option_${option}`}
+                            id={`sort_option_${index}`}
                             role="option"
                             aria-selected={selectedOption === option}
                             className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer 
