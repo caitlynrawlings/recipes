@@ -77,26 +77,30 @@ const RecipePreviews: React.FC = () => {
   const RecipePreviews: React.FC = () => {
 
     return (
-      <nav role="navigation" aria-label="Recipe previews" className='flex flex-col justify-center items-center container'>
-        {sortedRecipes.map((recipe, index) => (
-          <RecipeCard key={index} category={categoryLink} recipe={recipe}/>
-        ))}
-      </nav>
+      <main aria-label="Recipe previews">
+        <ul className='flex flex-col justify-center items-center container'>
+          {sortedRecipes.map((recipe, index) => (
+            <li className="flex w-full" aria-label={`${recipe.name} card`} key={index}>
+              <RecipeCard category={categoryLink} recipe={recipe}/>
+            </li>
+          ))}
+        </ul>
+      </main>
     )
   }
 
   return (
     <div className="flex flex-col justify-center lg:px-8 px-4 py-8 h-full">
       <HeaderBar/>
-      <main className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
+      <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
         <div className='flex items-start w-full justify-start mb-4'>
           <BackButton />
         </div>
-        <MobileOrganizationOptions />
+        <MobileOrganizationOptions /> 
         <Suspense fallback={<div>Loading recipes...</div>}>
           <RecipePreviews />
         </Suspense>
-      </main>
+      </div>
     </div>
   );
 };
