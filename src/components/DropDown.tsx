@@ -64,9 +64,6 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             }
         };
 
-        let lastTypedChar = '';
-        let lastMatchingIndex = 0;
-
         const keyDownCallback = (event: KeyboardEvent) => {
             const key = event.key;
             const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' '];
@@ -87,10 +84,10 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                     case 'Enter':
                     case ' ':
                         event.preventDefault();
-                        setSelectedOption(options[activeIndex]);
-                        setIsOpen(false);
+                        handleSelectChange(options[activeIndex]);
                         break;
                     default:
+                        event.preventDefault();
                         // Handle numeric key presses 
                         const num = parseInt(key)
           
@@ -114,6 +111,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             if (activeIndex < options.length - 1) {
                 setActiveIndex(activeIndex + 1)
             } else {
+                console.log("setting active index to 0")
                 setActiveIndex(0)
             }
         };
@@ -142,11 +140,6 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     useEffect(() => {
         if (isOpen) {
             optionsRef.current[activeIndex].current?.focus();
-            // Scroll the current option into view
-            // optionsRef.current[activeIndex].current?.scrollIntoView({
-            //     block: 'nearest',
-            // });
-            // optionsRef.current[activeIndex].current?.focus();
         } else if (wasOpen && !isOpen) {
             (buttonRef.current)?.focus();
         }
@@ -184,6 +177,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                         role="listbox"
                         id="sort_options"
                         aria-multiselectable={false}
+                        tabIndex={-1}
                         className="bg-slate-100 absolute text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60"
                     >
 
