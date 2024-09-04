@@ -26,7 +26,6 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
 
     const wasOpen = usePrevious(isOpen);
 
-
     const toggleDropdown = (event: React.MouseEvent) => {
         event.preventDefault();
         setIsOpen(!isOpen);
@@ -80,7 +79,8 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                         moveFocusDown();
                         break;
                     case 'ArrowUp':
-                        //moveFocusUp();
+                        event.preventDefault();
+                        moveFocusUp();
                         break;
                     case 'Enter':
                     case ' ':
@@ -101,10 +101,17 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
 
         const moveFocusDown = () => {
             if (currentIndex < options.length - 1) {
-                console.log("increadse")
                 setCurrentIndex(currentIndex + 1)
             } else {
                 setCurrentIndex(0)
+            }
+        };
+
+        const moveFocusUp = () => {
+            if (currentIndex > 0) {
+                setCurrentIndex(currentIndex - 1)
+            } else {
+                setCurrentIndex(options.length - 1)
             }
         };
     
@@ -152,7 +159,6 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                     <ul 
                         role="listbox"
                         id="sort_options"
-                        tabIndex={-1}
                         aria-multiselectable={false}
                         className="bg-slate-100 fixed text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60"
                     >
@@ -164,7 +170,9 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                             id={`sort_option_${option}`}
                             role="option"
                             aria-selected={selectedOption === option}
-                            className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer ${option === selectedOption && 'bg-slate-300'}`}
+                            className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer 
+                                ${option === selectedOption && 'bg-slate-300'}
+                                ${index === currentIndex && 'underline'}`}
                             onClick={() => handleSelectChange(option)}
                         >
                             {option}
