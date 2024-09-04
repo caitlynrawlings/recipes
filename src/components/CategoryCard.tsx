@@ -19,7 +19,7 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
       </div>
 
       <div className='m-4'>
-        <h2 role="link" tabIndex={0} style={{ wordBreak: 'break-word' }} className="text-4xl  font-bold text-cyan-700 mb-2">
+        <h2 role="link" tabIndex={0} className="text-4xl break-words font-bold text-cyan-700 mb-2">
            {category.name}
         </h2>
         <p className="text-slate-700">

@@ -19,6 +19,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
   };
 
   const ingredients = Array.from(getIngredients([recipe]))
+  function getIngredientsString() : string {
+    let str = ""
+    ingredients.map((ingredient, index) => (
+      index < ingredients.length - 1 ? str += ingredient + ', ' : str += ingredient
+    ))
+    return str
+  }
+  const ingredientsString: string = getIngredientsString()
 
   useEffect(() => {
     const keyDownCallback = (event: KeyboardEvent) => {
@@ -43,7 +51,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
         <img className="w-full h-full object-cover" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name}/>
       </div>
 
-      <div className="md:ml-60 md:pl-2 ml-6 mr-6 py-8 flex flex-col justify-center h-auto overflow-hidden">
+      <div className="md:ml-60 md:pl-2 ml-6 mr-6 py-8 flex flex-col justify-center w-full h-auto overflow-hidden">
         <div className='flex flex-row items-center gap-2 mb-4'>
           <img className="md:hidden w-20 h-20 rounded-full object-cover" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name}/>
           <h2 role="link" tabIndex={0} className="uppercase tracking-wide text-xl text-cyan-800 font-bold">{recipe.name}</h2>
@@ -52,15 +60,10 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
         
         {recipe.description && <p className='text-slate-600 pt-4 pb-3 border border-b-2 border-t-transparent border-x-transparent'>{recipe.description}</p>}
 
-        <div className='flex flex-row flex-wrap text-slate-600 whitespace-normal pt-3'>
-          <p className='font-semibold'>Ingredient Overview:&nbsp;</p>
-          {ingredients.map((ingredient, index) => (
-            <p className="whitespace-nowrap" key={index}>
-              {ingredient}
-              {index < ingredients.length - 1 && ','}&nbsp;
-            </p>
-          ))}
-        </div>
+        <p className='break-normal text-slate-600 text-wrap pt-3'>
+          <span className='font-semibold'>Ingredient Overview:&nbsp;</span>
+          {ingredientsString}
+        </p>
       </div>
     </article>
   );
