@@ -160,7 +160,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                         role="listbox"
                         id="sort_options"
                         aria-multiselectable={false}
-                        className="bg-slate-100 fixed text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60"
+                        className="bg-slate-100 absolute text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60"
                     >
 
                     {Array.from(options).map((option, index) => (
