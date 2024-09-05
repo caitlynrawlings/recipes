@@ -137,7 +137,13 @@ const RecipeDetails: React.FC = () => {
             recipe.notes &&
             <section className='outline outline-2 outline-slate-400 text-slate-700 bg-slate-200 p-2 flex flex-col'>
               <p className='font-semibold'>Notes:</p>
-              <p>{recipe.notes}</p>
+              <ul>
+                {recipe.notes.map((note, index) => (
+                  <li key={index}>
+                    {note}
+                  </li>
+                ))}
+              </ul>
             </section>
           }
 
