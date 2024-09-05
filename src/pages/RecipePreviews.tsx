@@ -1,6 +1,6 @@
 // src/pages/RecipePreviews.tsx
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import RecipeCard from '../components/RecipeCard.tsx';
 import DropDown from '../components/DropDown.tsx';
 import DropdownCheckboxes from '../components/CheckboxDropdown.tsx';
@@ -15,35 +15,63 @@ const RecipePreviews: React.FC = () => {
   const category = categories.find(c => c.link === categoryLink);
   const recipes = category?.recipes;
 
-  const [sortBy, setSortBy] = useState<string>("Recipe Name (A-Z)");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState(category?.recipes || []);
+  const [sortedRecipes, setSortedRecipes] = useState(filteredRecipes);
+  const [sortData, setSortData] = useState({isOpen: false, wasOpen: false, activeIndex: 0, selectedOption: "Recipe Name (A-Z)"})
+
+  // const filteredRecipes = recipes.filter(recipe => 
+  //   !selectedOptions.some(selectedIngredient => recipe.ingredients.some(ingredient => 
+  //     selectedIngredient === ingredient.name
+  //   ))
+  // );
+
+  // // Function to sort recipes based on selected sort criteria
+  // const sortedRecipes = [...filteredRecipes].sort((a, b) => {
+  //   if (sortData.selectedOption === 'Recipe Name (A-Z)') {
+  //     return a.name.localeCompare(b.name);
+  //   } else if (sortData.selectedOption === 'Rating') {
+  //     return b.rating - a.rating;
+  //   } else if (sortData.selectedOption === "Recipe Name (Z-A)") {
+  //     return b.name.localeCompare(a.name);
+  //   }
+  //   return 0;
+  // });
+
+  useEffect(() => {
+    if (!categoryLink || !recipes) {
+      navigate('/not-found');
+      return;
+    }
+
+    // Update filtered recipes based on selected options
+    const newFilteredRecipes = recipes.filter(recipe => 
+      !selectedOptions.some(selectedIngredient => recipe.ingredients.some(ingredient => 
+        selectedIngredient === ingredient.name
+      ))
+    );
+    setFilteredRecipes(newFilteredRecipes);
+  }, [selectedOptions, recipes, categoryLink, navigate]);
+
+  useEffect(() => {
+    // Sort filtered recipes based on sort criteria
+    const newSortedRecipes = [...filteredRecipes].sort((a, b) => {
+      if (sortData.selectedOption === 'Recipe Name (A-Z)') {
+        return a.name.localeCompare(b.name);
+      } else if (sortData.selectedOption === 'Rating') {
+        return b.rating - a.rating;
+      } else if (sortData.selectedOption === "Recipe Name (Z-A)") {
+        return b.name.localeCompare(a.name);
+      }
+      return 0;
+    });
+    setSortedRecipes(newSortedRecipes);
+  }, [sortData.selectedOption, filteredRecipes]);
 
   if (!categoryLink || !recipes) {
     navigate('/not-found');
-    return null;
+    return;
   }
-
-  const handleSortChange = (sortType: string) => {
-    setSortBy(sortType);
-  };
-
-  const filteredRecipes = recipes.filter(recipe => 
-    !selectedOptions.some(selectedIngredient => recipe.ingredients.some(ingredient => 
-      selectedIngredient === ingredient.name
-    ))
-  );
-
-  // Function to sort recipes based on selected sort criteria
-  const sortedRecipes = [...filteredRecipes].sort((a, b) => {
-    if (sortBy === 'Recipe Name (A-Z)') {
-      return a.name.localeCompare(b.name);
-    } else if (sortBy === 'Rating') {
-      return b.rating - a.rating;
-    } else if (sortBy === "Recipe Name (Z-A)") {
-      return b.name.localeCompare(a.name);
-    }
-    return 0;
-  });
 
   const HeaderBar: React.FC = () => {
     return (
@@ -53,12 +81,13 @@ const RecipePreviews: React.FC = () => {
       </header>
     )
   }
+  
 
   const HeaderOrganizationOptions: React.FC = () => {
     return (
       <div className='items-center lg:flex flex-row justify-end w-full h-full hidden gap-2'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
-        <DropDown selectedOption={sortBy} setSelectedOption={handleSortChange} />
+        <DropDown data={sortData} setData={setSortData} />
       </div>
     )
   }
@@ -69,7 +98,7 @@ const RecipePreviews: React.FC = () => {
         className='items-start flex flex-col justify-start w-full h-full lg:hidden mb-8 gap-2'
       >
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
-        <DropDown selectedOption={sortBy} setSelectedOption={handleSortChange} />
+        <DropDown data={sortData} setData={setSortData} />
       </div>
     )
   }
@@ -95,9 +124,7 @@ const RecipePreviews: React.FC = () => {
           <BackButton />
         </div>
         <MobileOrganizationOptions /> 
-        <Suspense fallback={<div>Loading recipes...</div>}>
-          <RecipePreviews />
-        </Suspense>
+        <RecipePreviews />
       </div>
     </div>
   );

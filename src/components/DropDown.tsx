@@ -2,65 +2,80 @@
 
 import React, { useEffect, useState, useRef, createRef, RefObject } from 'react';
 
-const options: string[] = ["Recipe Name (A-Z)", "Recipe Name (Z-A)", "Rating"]
-
-function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-        ref.current = value;
-    });
-    return ref.current;
-}
-  
+const options: string[] = ["Recipe Name (A-Z)", "Recipe Name (Z-A)", "Rating"]  
 
 interface DropDownProps {
-    selectedOption: string;
-    setSelectedOption: (options: string) => void;
+    data: {
+        isOpen: boolean,
+        wasOpen: boolean,
+        activeIndex: number,
+        selectedOption: string,
+    };
+    setData: (data: {
+        isOpen: boolean,
+        wasOpen: boolean,
+        activeIndex: number,
+        selectedOption: string,
+    }) => void;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-
+const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const optionsRef = useRef<RefObject<HTMLLIElement>[]>([
         createRef<HTMLLIElement>(),
         createRef<HTMLLIElement>(),
         createRef<HTMLLIElement>(),
-      ]);
-
-    const wasOpen = usePrevious(isOpen);
-
-    const toggleDropdown = (event: React.MouseEvent) => {
-        event.preventDefault();
-        setActiveIndex(0);
-        setIsOpen(!isOpen);
-    }
-
-    const handleSelectChange = (option: string) => {
-        setIsOpen(false);
-        setSelectedOption(option);
-    };
+    ]);
 
     useEffect(() => {
+        const handleSelectChange = (option: string) => {
+            setData(
+                {
+                activeIndex: 0,
+                wasOpen: true,
+                isOpen: !data.isOpen,
+                selectedOption: option,
+                
+            })
+        };
         
         const clickCallback = (event: MouseEvent) => {
+            event.preventDefault();
+            event.stopPropagation();
             const target = event.target as HTMLElement;
             
             // Check if the click happened inside the dropdown or dropdown-button. checks by classname
-            if (target.closest('.sort-options') || target.closest('.sort-dropdown-button')) {
-                return;
-            }
-    
-            // Close the dropdown if it is open and the click happened outside
-            if (isOpen) {
-                setIsOpen(false);
+            if (target === buttonRef.current || buttonRef.current?.contains(target)) {
+                
+                setData({
+                    selectedOption: data.selectedOption,
+                    isOpen: !data.isOpen,
+                    wasOpen: data.isOpen,
+                    activeIndex: 0,
+                    
+                })
+            } else if (target === optionsRef.current[data.activeIndex].current || optionsRef.current[data.activeIndex].current?.contains(target)) {
+                handleSelectChange(options[data.activeIndex])
+            }else if (data.isOpen) {
+                setData({
+                    activeIndex: data.activeIndex,
+                    selectedOption: data.selectedOption,
+                    wasOpen: data.isOpen,
+                    isOpen: !data.isOpen,
+                    
+                })
             }
         };
 
         const scrollCallback = () => {
-            if (isOpen) {
-                setIsOpen(false);
+            if (data.isOpen) {
+                setData({
+                    activeIndex: data.activeIndex,
+                    selectedOption: data.selectedOption,
+                    wasOpen: data.isOpen,
+                    isOpen: !data.isOpen,
+                    
+                })
             }
         };
 
@@ -68,10 +83,16 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             const key = event.key;
             const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' '];
 
-            if (isOpen) {
+            if (data.isOpen) {
                 switch (key) {
                     case 'Escape':
-                        setIsOpen(false);
+                        setData({
+                            selectedOption: data.selectedOption,
+                            isOpen: !data.isOpen,
+                            wasOpen: data.isOpen,
+                            activeIndex: 0,
+                            
+                        })
                         break;
                     case 'ArrowDown':
                         event.preventDefault();
@@ -84,7 +105,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                     case 'Enter':
                     case ' ':
                         event.preventDefault();
-                        handleSelectChange(options[activeIndex]);
+                        handleSelectChange(options[data.activeIndex]);
                         break;
                     default:
                         event.preventDefault();
@@ -92,37 +113,77 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                         const num = parseInt(key)
           
                         if (num > 0 && num <= options.length) {
-                            setActiveIndex(num - 1);
+                            setData({
+                                isOpen: data.isOpen,
+                                selectedOption: data.selectedOption,
+                                wasOpen: data.isOpen,
+                                activeIndex: (num - 1),
+                                
+                            })
                         }
                         break;
                   }
 
-            } else if (!isOpen && openKeys.includes(key)) {
+            } else if (!data.isOpen && openKeys.includes(key)) {
                 if (document.activeElement?.id === 'sort_button') {
                     event.preventDefault();
-                    setActiveIndex(0);
-                    setIsOpen(true);
+                    setData({
+                        selectedOption: data.selectedOption,
+                        isOpen: true,
+                        wasOpen: data.isOpen,
+                        activeIndex: 0,
+                        
+                    })
                 }
             }
             
         };
 
         const moveFocusDown = () => {
-            if (activeIndex < options.length - 1) {
-                setActiveIndex(activeIndex + 1)
+            if (data.activeIndex < options.length - 1) {
+                setData({
+                    isOpen: data.isOpen,
+                    selectedOption: data.selectedOption,
+                    wasOpen: data.isOpen,
+                    activeIndex: data.activeIndex + 1,
+                    
+                })
             } else {
-                console.log("setting active index to 0")
-                setActiveIndex(0)
+                setData({
+                    isOpen: data.isOpen,
+                    selectedOption: data.selectedOption,
+                    wasOpen: data.isOpen,
+                    activeIndex: 0,
+                    
+                })
             }
         };
 
         const moveFocusUp = () => {
-            if (activeIndex > 0) {
-                setActiveIndex(activeIndex - 1)
+            if (data.activeIndex > 0) {
+                setData({
+                    isOpen: data.isOpen,
+                    selectedOption: data.selectedOption,
+                    wasOpen: data.isOpen,
+                    activeIndex: data.activeIndex - 1,
+                    
+                })
             } else {
-                setActiveIndex(options.length - 1)
+                setData({
+                    isOpen: data.isOpen,
+                    selectedOption: data.selectedOption,
+                    wasOpen: data.isOpen,
+                    activeIndex: options.length - 1,
+                    
+                })
             }
         };
+
+        if (data.isOpen) {
+            optionsRef.current[data.activeIndex].current?.focus();
+        } else if (data.wasOpen && !data.isOpen) {
+            (buttonRef.current)?.focus();
+        }
     
         // Attach the event listener on component mount
         document.addEventListener('click', clickCallback);
@@ -135,15 +196,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
             document.removeEventListener('scroll', scrollCallback);
             document.removeEventListener('keydown', keyDownCallback);
         };
-    }, ); // Include all necessary dependencies
-
-    useEffect(() => {
-        if (isOpen) {
-            optionsRef.current[activeIndex].current?.focus();
-        } else if (wasOpen && !isOpen) {
-            (buttonRef.current)?.focus();
-        }
-    }, [isOpen, wasOpen, activeIndex])
+    }, [data]); // Include all necessary dependencies
   
 
     const DropdownButton: React.FC = () => {
@@ -154,14 +207,13 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                 aria-haspopup="listbox"
                 aria-controls='sort_options'
                 aria-labelledby='sort_label'
-                aria-expanded={isOpen}
-                aria-activedescendant={`sort_option_${activeIndex}`}
+                aria-expanded={data.isOpen}
+                aria-activedescendant={`sort_option_${data.activeIndex}`}
                 ref={buttonRef}
-                onClick={(event) => toggleDropdown(event)}
                 className="text-left sort-dropdown-button flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
             >   
                 <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-36 w-52'>
-                    {selectedOption}
+                    {data.selectedOption}
                 </div>
                 
                 &#9662; {/* dropdown arrow */}
@@ -172,7 +224,7 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
     const SelectOptionsBox: React.FC = () => {
         return (
             <div className='sort-options z-20 '>
-                {isOpen && (
+                {data.isOpen && (
                     <ul 
                         role="listbox"
                         id="sort_options"
@@ -188,12 +240,20 @@ const DropDown: React.FC<DropDownProps> = ({ selectedOption, setSelectedOption }
                             key={option} 
                             id={`sort_option_${index}`}
                             role="option"
-                            aria-selected={selectedOption === option}
+                            aria-selected={data.selectedOption === option}
                             className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer 
-                                ${option === selectedOption && 'bg-slate-300' /** element is selected  */}
-                                ${index === activeIndex && 'underline'}` /** element is active  */}
-                            onMouseOver={() => setActiveIndex(index)}
-                            onClick={() => handleSelectChange(option)}
+                                ${option === data.selectedOption && 'bg-slate-300' /** element is selected  */}
+                                ${index === data.activeIndex && 'underline'}` /** element is active  */}
+                            onMouseOver={() => {
+                                if (data.activeIndex !== index) {
+                                    setData({
+                                        isOpen: data.isOpen,
+                                        selectedOption: data.selectedOption,
+                                        wasOpen: data.isOpen,
+                                        activeIndex: index,
+                                    })
+                                }
+                            }}
                         >
                             {option}
                         </li>
