@@ -80,7 +80,7 @@ const RecipePreviews: React.FC = () => {
       <main aria-label="Recipe previews" className='w-full flex flex-col items-center'>
         <ul className='flex flex-col items-center container w-full'>
           {sortedRecipes.map((recipe, index) => (
-            <RecipeCard category={categoryLink} recipe={recipe}/>
+            <RecipeCard key={index} category={categoryLink} recipe={recipe}/>
           ))}
         </ul>
       </main>

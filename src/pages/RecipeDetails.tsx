@@ -46,7 +46,7 @@ const RecipeDetails: React.FC = () => {
   const RecipePicure: React.FC = () => {
     return (
       <div className="py-2">
-        <img className="max-h-72 border-slate-400 border-1" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.name} />
+        <img className="max-h-72 border-slate-400 border-1" src={process.env.PUBLIC_URL + recipe.picture} alt={recipe.alt_text} />
       </div>
     )
   }

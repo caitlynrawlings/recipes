@@ -58,12 +58,16 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
         </div>
         {ratingStars(recipe.rating)}
         
-        {recipe.description && <p className='text-slate-600 pt-4 pb-3 border border-b-2 border-t-transparent border-x-transparent'>{recipe.description}</p>}
+        <div>
+          <p className='text-slate-600 pt-4 pb-3 border border-b-2 border-t-transparent border-x-transparent'>{recipe.description}</p>
 
-        <p className='break-normal text-slate-600 text-wrap pt-3'>
-          <span className='font-semibold'>Ingredient Overview:&nbsp;</span>
-          {ingredientsString}
-        </p>
+          <p className='break-normal text-slate-600 text-wrap pt-3 '>
+            <span className='font-semibold'>Ingredient Overview:&nbsp;</span>
+            {ingredientsString}
+          </p>
+
+        </div>
+        
       </div>
     </article>
   );
