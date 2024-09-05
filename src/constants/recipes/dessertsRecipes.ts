@@ -6,6 +6,7 @@ const dessertsRecipes: Recipe[] = [
   {
     name: "Brownies",
     picture: "/brownie.jpg",
+    alt_text: "A stack of 3 fudgy brownies with a few more scattered around them.",
     description: `Fudgy, moist, chocolatey brownies, that in my grandma's words, are "to die for"`,
     rating: 4.5,
     ingredients: [ 
@@ -22,12 +23,17 @@ const dessertsRecipes: Recipe[] = [
         "Whisk sugar and cocoa into the butter.", "Whisk in eggs and vanilla.", "Chop chocolate if using a bar.",
         "Add chocolate and flour and stir until just combined.", "Spread batter into pan and bake for 40-45 minutes at 350°F."
     ],
-    note: "I reduced the sugar from the original recipe. I used a caramel-filled chocolate bar for 2/3 of the chocolate and semi-sweet chocolate chips for the rest. Cooked for 5 minutes longer than the max on the original recipe.",
+    notes: [
+      "I reduced the sugar from the original recipe.",
+      "I used a caramel-filled chocolate bar for 2/3 of the chocolate and semi-sweet chocolate chips for the rest.", 
+      "Cooked for 5 minutes longer than the max on the original recipe."
+    ],
     source: "https://preppykitchen.com/brownie-recipe/",
   },
   {
     name: "Cinnamon rolls",
     picture: "/cinnamon-roll.jpg",
+    alt_text: "An overhead shot of frosted cinnamon rolls still stuck together from baking.",
     rating: 4,
     description: "A soft bread filled with cinnamon sugar and covered with sweet cream cheese frosting",
     ingredients: [ 

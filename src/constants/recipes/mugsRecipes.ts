@@ -6,6 +6,7 @@ const mugsRecipes: Recipe[] = [
   {
     name: "Cake Mix Mug Cake",
     picture: "/mug-cake-mix.jpg",
+    alt_text: "An overhead shot of a white mug filled with confetti cake, white frosting, rainbow sprinkles, and with a spoonful of cake above the mug.",
     rating: 2,
     description: "The quickest way to bake a cake for one!",
     ingredients: [ 

@@ -6,6 +6,7 @@ const fromScratchRecipes: Recipe[] = [
   {
     name: "Artisan Bread",
     picture: "/bread.jpg",
+    alt_text: "Four loaves of artisan bread with a bit of flour on their tops.",
     rating: 4,
     description: "Fill your kitchen with the smell of freshly baked bread!",
     ingredients: [ 
@@ -24,6 +25,7 @@ const fromScratchRecipes: Recipe[] = [
   {
     name: "Noodles",
     picture: "/noodle.jpg",
+    alt_text: "An overhead shot of noodles splayed out on a marble background.",
     rating: 4,
     description: "A batch of tender, silky noodles perfect for your favorite pasta dishes",
     ingredients: [ 
@@ -46,8 +48,9 @@ const fromScratchRecipes: Recipe[] = [
   {
     name: "Croissants",
     picture: "/croissants.jpg",
+    alt_text: "Several croissants stacked in a pile on a wooden board on a table.",
     rating: 4.5,
-    description: "A day to two day process that will deliver the freshest croissants you could have",
+    description: "A day to two day process that will deliver the freshest croissants you could ask for",
     ingredients: [ 
       createIngredient("All-purpose flour", 4, new Unit("cup")),
       createIngredient("All-purpose flour", 2, new Unit("cup"), "For butter layer"),

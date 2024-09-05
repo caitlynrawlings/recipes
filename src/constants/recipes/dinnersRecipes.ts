@@ -6,6 +6,7 @@ const dinnerRecipes: Recipe[] = [
   {
     name: "Mac and Cheese",
     picture: "/macAndCheese.jpg",
+    alt_text: "A bowl of mac and cheese made from elbow noodles.",
     rating: 3,
     description: "Your classic comfort food!",
     ingredients: [ 
