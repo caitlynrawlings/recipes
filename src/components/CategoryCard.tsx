@@ -13,7 +13,7 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) => {
   };
 
   return (
-    <article aria-label={`${category.name} card`} className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer w-full flex flex-col" onClick={handleClick}>
+    <article role="listitem" aria-label={`${category.name} card`} className="bg-slate-100 shadow-md overflow-hidden min-h-48 cursor-pointer w-full flex flex-col" onClick={handleClick}>
       <div className='h-48 w-full'>
         <img className="h-full w-full object-cover" src={process.env.PUBLIC_URL + category.picture} alt={category.alt_text}/>
       </div>

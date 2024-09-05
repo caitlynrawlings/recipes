@@ -20,9 +20,7 @@ const RecipeCategories: React.FC = () => {
         <main aria-label="Recipe categories">
           <ul className="lg:px-8 md:px-4 px-2 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
             {categories.map((category, index) => (
-              <li key={index} className='flex'>
-                <CategoryCard category={category}/>
-              </li>
+              <CategoryCard key={index} category={category}/>
             ))}
           </ul>
         </main>
