@@ -20,24 +20,6 @@ const RecipePreviews: React.FC = () => {
   const [sortedRecipes, setSortedRecipes] = useState(filteredRecipes);
   const [sortData, setSortData] = useState({isOpen: false, wasOpen: false, activeIndex: 0, selectedOption: "Recipe Name (A-Z)"})
 
-  // const filteredRecipes = recipes.filter(recipe => 
-  //   !selectedOptions.some(selectedIngredient => recipe.ingredients.some(ingredient => 
-  //     selectedIngredient === ingredient.name
-  //   ))
-  // );
-
-  // // Function to sort recipes based on selected sort criteria
-  // const sortedRecipes = [...filteredRecipes].sort((a, b) => {
-  //   if (sortData.selectedOption === 'Recipe Name (A-Z)') {
-  //     return a.name.localeCompare(b.name);
-  //   } else if (sortData.selectedOption === 'Rating') {
-  //     return b.rating - a.rating;
-  //   } else if (sortData.selectedOption === "Recipe Name (Z-A)") {
-  //     return b.name.localeCompare(a.name);
-  //   }
-  //   return 0;
-  // });
-
   useEffect(() => {
     if (!categoryLink || !recipes) {
       navigate('/not-found');
