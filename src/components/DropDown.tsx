@@ -1,6 +1,6 @@
 // src/components/DropDown.tsx
 
-import React, { useEffect, useState, useRef, createRef, RefObject } from 'react';
+import React, { useEffect, useRef, createRef, RefObject } from 'react';
 
 const options: string[] = ["Recipe Name (A-Z)", "Recipe Name (Z-A)", "Rating"]  
 
@@ -33,14 +33,13 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
                 {
                 activeIndex: 0,
                 wasOpen: true,
-                isOpen: !data.isOpen,
+                isOpen: false,
                 selectedOption: option,
                 
             })
         };
         
         const clickCallback = (event: MouseEvent) => {
-            event.preventDefault();
             event.stopPropagation();
             const target = event.target as HTMLElement;
             
@@ -108,8 +107,6 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
                         handleSelectChange(options[data.activeIndex]);
                         break;
                     default:
-                        event.preventDefault();
-                        // Handle numeric key presses 
                         const num = parseInt(key)
           
                         if (num > 0 && num <= options.length) {
@@ -196,7 +193,7 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
             document.removeEventListener('scroll', scrollCallback);
             document.removeEventListener('keydown', keyDownCallback);
         };
-    }, [data]); // Include all necessary dependencies
+    }, [data, setData]); // Include all necessary dependencies
   
 
     const DropdownButton: React.FC = () => {

@@ -7,7 +7,7 @@ const dessertsRecipes: Recipe[] = [
     name: "Brownies",
     picture: "/brownie.jpg",
     alt_text: "A stack of 3 fudgy brownies with a few more scattered around them.",
-    description: `Fudgy, moist, chocolatey brownies, that in my grandma's words, are "to die for"`,
+    description: `Fudgy, moist, chocolatey brownies, that in my grandma's words, are "to die for."`,
     rating: 4.5,
     ingredients: [ 
         createIngredient("All-purpose flour", 1, new Unit("cup")),
@@ -35,7 +35,7 @@ const dessertsRecipes: Recipe[] = [
     picture: "/cinnamon-roll.jpg",
     alt_text: "An overhead shot of frosted cinnamon rolls still stuck together from baking.",
     rating: 4,
-    description: "A soft bread filled with cinnamon sugar and covered with sweet cream cheese frosting",
+    description: "A soft bread filled with cinnamon sugar and covered with sweet cream cheese frosting.",
     ingredients: [ 
         createIngredient("Bread flour", 3, new Unit("cup")),
         createIngredient("Milk", 0.75, new Unit("cup"), "Warmed to 110°F"),

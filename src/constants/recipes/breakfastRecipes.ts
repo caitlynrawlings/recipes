@@ -29,7 +29,7 @@ const breakfastRecipes: Recipe[] = [
     picture: "/croissants.jpg",
     alt_text: "Several croissants stacked in a pile on a wooden board on a table.",
     rating: 4.5,
-    description: "A day to two day process that will deliver the freshest croissants you ask for",
+    description: "A day to two day process that will deliver the freshest croissants you ask for.",
     ingredients: [ 
       createIngredient("All-purpose flour", 4, new Unit("cup")),
       createIngredient("All-purpose flour", 2, new Unit("tablespoon"), "For butter layer"),

@@ -8,7 +8,7 @@ const deepFriedRecipes: Recipe[] = [
     picture: "/mozzySticks.jpeg",
     alt_text: "Mozzerella sticks in a pile, with one on top broken open and mozzerella stretched between the two halfs. A dish of marinara sauce is next to them.",
     rating: 5,
-    description: "Soft, stringy mozzerella covered by a crispy, crunchy shell of bread crumbs",
+    description: "Soft, stringy mozzerella covered by a crispy, crunchy shell of bread crumbs.",
     ingredients: [ 
       createIngredient("Panko", 1.5, new Unit("cup")), 
       createIngredient("Italian seasoning", 0.5, new Unit("teaspoon")),

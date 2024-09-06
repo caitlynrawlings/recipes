@@ -1,6 +1,6 @@
 // src/pages/RecipePreviews.tsx
 
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeCard from '../components/RecipeCard.tsx';
 import DropDown from '../components/DropDown.tsx';
 import DropdownCheckboxes from '../components/CheckboxDropdown.tsx';
