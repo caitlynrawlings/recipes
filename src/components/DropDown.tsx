@@ -209,9 +209,9 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
                 ref={buttonRef}
                 className="text-left sort-dropdown-button flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2 lg:gap-0.5"
             >   
-                <div className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-36 w-52'>
+                <p className='overflow-hidden text-ellipsis whitespace-nowrap lg:w-36 w-52'>
                     {data.selectedOption}
-                </div>
+                </p>
                 
                 &#9662; {/* dropdown arrow */}
             </button>
