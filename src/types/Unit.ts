@@ -12,43 +12,43 @@ export class Unit {
         let label: string;
         switch (this.type) {
             case 'cup':
-                label = amount <= 1 ? 'cup' : 'cups';
+                label = amount <= 1 && amount !== 0 ? 'cup' : 'cups';
                 break;
             case 'teaspoon':
-                label = amount <= 1 ? 'teaspoon' : 'teaspoons';
+                label = amount <= 1 && amount !== 0 ? 'teaspoon' : 'teaspoons';
                 break;
             case 'tablespoon':
-                label = amount <= 1 ? 'tablespoon' : 'tablespoons';
+                label = amount <= 1 && amount !== 0 ? 'tablespoon' : 'tablespoons';
                 break;
             case 'banana':
-                label = amount <= 1 ? 'banana' : 'bananas';
+                label = amount <= 1 && amount !== 0 ? 'banana' : 'bananas';
                 break;
             case 'orange':
-                label = amount <= 1 ? 'orange' : 'oranges';
+                label = amount <= 1 && amount !== 0 ? 'orange' : 'oranges';
                 break;
             case 'blueberry':
-                label = amount <= 1 ? 'blueberry' : 'blueberries';
+                label = amount <= 1 && amount !== 0 ? 'blueberry' : 'blueberries';
                 break;
             case 'strawberry':
-                label = amount <= 1 ? 'strawberry' : 'strawberries';
+                label = amount <= 1 && amount !== 0 ? 'strawberry' : 'strawberries';
                 break;
             case 'raspberry':
-                label = amount <= 1 ? 'raspberry' : 'raspberries';
+                label = amount <= 1 && amount !== 0 ? 'raspberry' : 'raspberries';
                 break;
             case 'grape':
-                label = amount <= 1 ? 'grape' : 'grapes';
+                label = amount <= 1 && amount !== 0 ? 'grape' : 'grapes';
                 break;
             case 'blackberry':
-                label = amount <= 1 ? 'blackberry' : 'blackberries';
+                label = amount <= 1 && amount !== 0 ? 'blackberry' : 'blackberries';
                 break;
             case 'pound':
-                label = amount <= 1 ? 'pound' : 'pounds';
+                label = amount <= 1 && amount !== 0 ? 'pound' : 'pounds';
                 break;
             case 'egg':
-                label = amount <= 1 ? 'egg' : 'eggs';
+                label = amount <= 1 && amount !== 0 ? 'egg' : 'eggs';
                 break;
             case 'ounce':
-                label = amount <= 1 ? 'ounce' : 'ounces';
+                label = amount <= 1 && amount !== 0 ? 'ounce' : 'ounces';
                 break;
             default:
                 throw new Error('Invalid unit type');
