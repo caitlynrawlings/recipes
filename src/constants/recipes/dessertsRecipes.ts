@@ -67,6 +67,41 @@ const dessertsRecipes: Recipe[] = [
     ],
     source: "https://www.ambitiouskitchen.com/best-cinnamon-rolls/",
   },
+  {
+    name: "Monkey Bread",
+    picture: "/monkey-bread.jpg",
+    alt_text: "Monkey bread in bundt cake shape dripping with glaze",
+    rating: 3.5,
+    description: "Cinnamon-sugary finger food.",
+    ingredients: [ 
+        createIngredient("All-purpose flour", 4, new Unit("cup")),
+        createIngredient("Sugar", 0.25, new Unit("cup")),
+        createIngredient("Cornstarch", 2, new Unit("tablespoon")),
+        createIngredient("Baking powder", 4, new Unit("teaspoon")),
+        createIngredient("Butter", 12, new Unit("tablespoon"), "cold"),
+        createIngredient("Milk", 5/4, new Unit("cup")),
+        createIngredient("Sugar", 1/2, new Unit("cup"), "For rolling"),
+        createIngredient("Cinnamon", 2.5, new Unit("teaspoon"), "For rolling"),
+        createIngredient("Butter", 6, new Unit("tablespoon"), "For glaze"),
+        createIngredient("Brown sugar", 1/3, new Unit("cup"), "For glaze"),
+    ],
+    directions: [
+      "In a large bowl, whisk together flour, sugar, cornstarch, baking powder, and salt.",
+      "Chop butter into small peices and stir into flour mixture.",
+      "Add milk and stir until coheesive. May need to use hands.",
+      "On a floured surface, flatten dough to 1/2 inch.",
+      "Cut dough into peices smaller than 1 inch squared.",
+      "Mix the cinnamon and sugar for rolling, then roll the peices in mixture and layer into pan.",
+      "In a small saucepan, combine glaze ingredients over medium heat until butter is melted. Bring to boil then remove from heat.",
+      "Drizzle glaze over dough.",
+      "Bake for 35 minutes at 350°F."
+    ],
+    notes: [
+      "I used a third of the glaze the original recipe used and it was plenty.",
+      "I baked the monkey bread in an 8x8 pan and for 8 minutes longer suggested and the middle was still a little undercooked, so bake it in something with smaller width like a bundt pan or cupcake tin."
+    ],
+    source: "https://sugarspunrun.com/drunken-monkey-bread/#recipe",
+  },
 ];
 
 export default dessertsRecipes;
