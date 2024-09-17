@@ -48,7 +48,7 @@ const RecipePreviews: React.FC = () => {
       return 0;
     });
     setSortedRecipes(newSortedRecipes);
-  }, [sortData.selectedOption, filteredRecipes]);
+  }, [sortData, filteredRecipes]);
 
   if (!categoryLink || !recipes) {
     navigate('/not-found');
@@ -69,7 +69,7 @@ const RecipePreviews: React.FC = () => {
     return (
       <div className='items-center lg:flex flex-row justify-end w-full h-full hidden gap-2'>
         <DropdownCheckboxes options={getIngredients(recipes)} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions}/>
-        <DropDown data={sortData} setData={setSortData} />
+        <DropDown data={sortData} setData={(data) => {setSortData(data)}} />
       </div>
     )
   }

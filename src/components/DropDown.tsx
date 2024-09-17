@@ -42,10 +42,9 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
         const clickCallback = (event: MouseEvent) => {
             event.stopPropagation();
             const target = event.target as HTMLElement;
-            
-            // Check if the click happened inside the dropdown or dropdown-button. checks by classname
+                        
             if (target === buttonRef.current || buttonRef.current?.contains(target)) {
-                
+                // menu button clicked
                 setData({
                     selectedOption: data.selectedOption,
                     isOpen: !data.isOpen,
@@ -54,6 +53,7 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
                     
                 })
             } else if (target === optionsRef.current[data.activeIndex].current || optionsRef.current[data.activeIndex].current?.contains(target)) {
+                // click a sort option                
                 handleSelectChange(options[data.activeIndex])
             }else if (data.isOpen) {
                 setData({
@@ -61,7 +61,6 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
                     selectedOption: data.selectedOption,
                     wasOpen: data.isOpen,
                     isOpen: !data.isOpen,
-                    
                 })
             }
         };
@@ -220,43 +219,41 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
 
     const SelectOptionsBox: React.FC = () => {
         return (
-            <div className='sort-options z-20 '>
-                {data.isOpen && (
-                    <ul 
-                        role="listbox"
-                        id="sort_options"
-                        aria-multiselectable={false}
-                        tabIndex={-1}
-                        className="bg-slate-100 absolute text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60"
-                    >
+            <div className={`sort-options z-20`}>
+                <ul 
+                    role="listbox"
+                    id="sort_options"
+                    aria-multiselectable={false}
+                    tabIndex={-1}
+                    className={`bg-slate-100 absolute text-md shadow-lg py-2 rounded-sm dropdown flex flex-col lg:w-43 w-60 ${!data.isOpen && 'hidden'}`}
+                >
 
-                    {Array.from(options).map((option, index) => (
-                        <li 
-                            ref={optionsRef.current[index]}
-                            tabIndex={0}
-                            key={option} 
-                            id={`sort_option_${index}`}
-                            role="option"
-                            aria-selected={data.selectedOption === option}
-                            className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer 
-                                ${option === data.selectedOption && 'bg-slate-300' /** element is selected  */}
-                                ${index === data.activeIndex && 'underline'}` /** element is active  */}
-                            onMouseOver={() => {
-                                if (data.activeIndex !== index) {
-                                    setData({
-                                        isOpen: data.isOpen,
-                                        selectedOption: data.selectedOption,
-                                        wasOpen: data.isOpen,
-                                        activeIndex: index,
-                                    })
-                                }
-                            }}
-                        >
-                            {option}
-                        </li>
-                    ))}
-                </ul>
-            )}
+                {Array.from(options).map((option, index) => (
+                    <li 
+                        ref={optionsRef.current[index]}
+                        tabIndex={0}
+                        key={option} 
+                        id={`sort_option_${index}`}
+                        role="option"
+                        aria-selected={data.selectedOption === option}
+                        className={`flex flex-row w-full text-slate-600 px-2 py-1 cursor-pointer 
+                            ${option === data.selectedOption && 'bg-slate-300' /** element is selected  */}
+                            ${index === data.activeIndex && 'underline'}` /** element is active  */}
+                        onMouseOver={() => {
+                            if (data.activeIndex !== index) {
+                                setData({
+                                    isOpen: data.isOpen,
+                                    selectedOption: data.selectedOption,
+                                    wasOpen: data.isOpen,
+                                    activeIndex: index,
+                                })
+                            }
+                        }}
+                    >
+                        {option}
+                    </li>
+                ))}
+            </ul>
         </div>
         )
     }
