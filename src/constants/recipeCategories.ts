@@ -3,7 +3,7 @@ import smoothieRecipes from "./recipes/smoothiesRecipes.ts";
 import fromScratchRecipes from "./recipes/fromScratchRecipes.ts";
 import dinnerRecipes from "./recipes/dinnersRecipes.ts";
 import breakfastRecipes from "./recipes/breakfastRecipes.ts";
-import deepFriedRecipes from "./recipes/deepFriedRecipes.ts";
+import snacksAndSidesRecipes from "./recipes/sidesAndSnacksRecipes.ts";
 import dessertsRecipes from "./recipes/dessertsRecipes.ts";
 import mugsRecipes from "./recipes/mugsRecipes.ts";
 
@@ -33,12 +33,12 @@ const categories: Category[] = [
     recipes: breakfastRecipes,
   },
   {
-    name: "Deep Fried",
-    link: "deepFried",
-    picture: "/cat-deepFried.jpg",
-    alt_text: "6 clear bottles of yellow-orange oil. All of different heights and shapes.",
-    description: "You'll need a pot and a LOT of oil.",
-    recipes: deepFriedRecipes,
+    name: "Sides and Snacks",
+    link: "sidesAndSnacks",
+    picture: "/cat-snacks.jpg",
+    alt_text: "Charcuterie board with a cheeses, crackers, fruits, olives, meats, and nuts.",
+    description: "Smaller servings to eat along side or between meals.",
+    recipes: snacksAndSidesRecipes,
   },
   {
     name: "Desserts",

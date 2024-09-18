@@ -2,7 +2,7 @@ import { createIngredient } from '../../types/Ingredient.ts';
 import Recipe from '../../types/Recipe.ts';
 import { Unit } from '../../types/Unit.ts';
 
-const deepFriedRecipes: Recipe[] = [
+const snacksAndSidesRecipes: Recipe[] = [
   {
     name: "Mozzerella Sticks",
     picture: "/mozzySticks.jpeg",
@@ -34,4 +34,4 @@ const deepFriedRecipes: Recipe[] = [
   },
 ];
 
-export default deepFriedRecipes;
+export default snacksAndSidesRecipes;

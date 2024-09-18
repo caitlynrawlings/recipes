@@ -4,7 +4,7 @@ import smoothieRecipes from "../../src/constants/recipes/smoothiesRecipes.ts"
 import fromScratchRecipes from "../../src/constants/recipes/fromScratchRecipes.ts";
 import dinnerRecipes from "../../src/constants/recipes/dinnersRecipes.ts";
 import breakfastRecipes from "../../src/constants//recipes/breakfastRecipes.ts";
-import deepFriedRecipes from "../../src/constants/recipes/deepFriedRecipes.ts";
+import snacksAndSidesRecipes from "../../src/constants/recipes/sidesAndSnacksRecipes.ts";
 import dessertsRecipes from "../../src/constants/recipes/dessertsRecipes.ts";
 import mugsRecipes from "../../src/constants/recipes/mugsRecipes.ts";
 
@@ -230,22 +230,22 @@ describe('breakfast previews page', () => {
 })
 
 
-describe('deep fried previews page', () => {
+describe('sides and snacks previews page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/#/deepFried')
+    cy.visit('http://localhost:3000/#/sidesAndSnacks')
   })
 
   it('page heading', () => {
-    cy.get('h1').should('have.text', "Deep Fried")
+    cy.get('h1').should('have.text', "Sides and Snacks")
   })
 
   it('check recipe cards length', () => {
     cy.get('article')
-      .should('have.length', deepFriedRecipes.length)
+      .should('have.length', snacksAndSidesRecipes.length)
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...deepFriedRecipes].sort((a, b) => {
+    const sortedRecipes = [...snacksAndSidesRecipes].sort((a, b) => {
       return a.name.localeCompare(b.name);
     });
 
@@ -257,8 +257,8 @@ describe('deep fried previews page', () => {
       cy.wrap(el).should('have.text', sortedRecipes[index].description);
     });
 
-    const altTextRegex = new RegExp(deepFriedRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(deepFriedRecipes.map(recipe => `${recipe.picture}$`).join('|'));
+    const altTextRegex = new RegExp(snacksAndSidesRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
+    const srcRegex = new RegExp(snacksAndSidesRecipes.map(recipe => `${recipe.picture}$`).join('|'));
     cy.get('article img').each((el) => {
       // check alt text
       cy.wrap(el)
