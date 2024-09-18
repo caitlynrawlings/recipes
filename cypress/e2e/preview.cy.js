@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import smoothieRecipes from "../../src/constants/recipes/smoothiesRecipes.ts"
-import fromScratchRecipes from "../../src/constants/recipes/fromScratchRecipes.ts";
+import basesAndBasicsRecipes from "../../src/constants/recipes/basesAndBasicsRecipes.ts";
 import dinnerRecipes from "../../src/constants/recipes/dinnersRecipes.ts";
 import breakfastRecipes from "../../src/constants//recipes/breakfastRecipes.ts";
 import snacksAndSidesRecipes from "../../src/constants/recipes/sidesAndSnacksRecipes.ts";
@@ -326,22 +326,22 @@ describe('desserts previews page', () => {
 })
 
 
-describe('from scratch previews page', () => {
+describe('bases and basics previews page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/#/fromScratch')
+    cy.visit('http://localhost:3000/#/basesAndBasics')
   })
 
   it('page heading', () => {
-    cy.get('h1').should('have.text', "Fun from Scratch")
+    cy.get('h1').should('have.text', "Bases and Basics")
   })
 
   it('check recipe cards length', () => {
     cy.get('article')
-      .should('have.length', fromScratchRecipes.length)
+      .should('have.length', basesAndBasicsRecipes.length)
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...fromScratchRecipes].sort((a, b) => {
+    const sortedRecipes = [...basesAndBasicsRecipes].sort((a, b) => {
       return a.name.localeCompare(b.name);
     });
 
@@ -353,8 +353,8 @@ describe('from scratch previews page', () => {
       cy.wrap(el).should('have.text', sortedRecipes[index].description);
     });
 
-    const altTextRegex = new RegExp(fromScratchRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(fromScratchRecipes.map(recipe => `${recipe.picture}$`).join('|'));
+    const altTextRegex = new RegExp(basesAndBasicsRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
+    const srcRegex = new RegExp(basesAndBasicsRecipes.map(recipe => `${recipe.picture}$`).join('|'));
     cy.get('article img').each((el) => {
       // check alt text
       cy.wrap(el)

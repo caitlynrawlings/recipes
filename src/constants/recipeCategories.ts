@@ -1,6 +1,6 @@
 import Category from "../types/Category";
 import smoothieRecipes from "./recipes/smoothiesRecipes.ts";
-import fromScratchRecipes from "./recipes/fromScratchRecipes.ts";
+import basesAndBasicsRecipes from "./recipes/basesAndBasicsRecipes.ts";
 import dinnerRecipes from "./recipes/dinnersRecipes.ts";
 import breakfastRecipes from "./recipes/breakfastRecipes.ts";
 import snacksAndSidesRecipes from "./recipes/sidesAndSnacksRecipes.ts";
@@ -49,12 +49,12 @@ const categories: Category[] = [
     recipes: dessertsRecipes,
   },
   {
-    name: "Fun from Scratch",
-    link: "fromScratch",
+    name: "Bases and Basics",
+    link: "basesAndBasics",
     picture: "/cat-fromScratch.jpg",
     alt_text: "Bread dough on a table dusted in flour with a person's hands on either wide of the dough.",
     description: "Spend hours making something you could get from the store.",
-    recipes: fromScratchRecipes,
+    recipes: basesAndBasicsRecipes,
   },
   {
     name: "In a Mug",
