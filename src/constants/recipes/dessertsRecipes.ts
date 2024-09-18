@@ -102,6 +102,41 @@ const dessertsRecipes: Recipe[] = [
     ],
     source: "https://sugarspunrun.com/drunken-monkey-bread/#recipe",
   },
+  {
+    name: "Baked Donut",
+    picture: "/baked-donut.jpg",
+    alt_text: "A pile of cinnamon sugar donuts.",
+    rating: 2.5,
+    description: "A baked cake donut.",
+    ingredients: [ 
+        createIngredient("All-purpose flour", 2.33, new Unit("cup")),
+        createIngredient("Sugar", .5, new Unit("cup")),
+        createIngredient("Baking powder", 2.5, new Unit("teaspoon")),
+        createIngredient("Cinnamon", .5, new Unit("teaspoon")),
+        createIngredient("Nutmeg", .25, new Unit("teaspoon")),
+        createIngredient("Milk", 1.5, new Unit("cup")),
+        createIngredient("Egg", 1, new Unit("egg"), "Room tempurature"),
+        createIngredient("Butter", 2, new Unit("tablespoon")),
+        createIngredient("Vegetable oil", 2, new Unit("tablespoon")),
+        createIngredient("Vanilla", 2, new Unit("teaspoon")),
+
+        createIngredient("Sugar", .5, new Unit("cup"), "For toppings"),
+        createIngredient("Cinnamon", 1, new Unit("tablespoon"), "For toppings"),
+    ],
+    directions: [
+      "In a large mixing bowl, whisk together the flour sugar, baking powder, cinnamon, salt, and nutmeg.",
+      "Add the buttermilk, egg, butter, vegetable oil, and vanilla.",
+      "Pour or spoon batter into pan.",
+      "Bake at 400°F for 10 minutes.",
+      "Let cool then lightly brush with melted butter and toss in cinnamon sugar."
+    ],
+    notes: [
+      "I had hoped that this recipe would be think enough to pipe onto a baking sheet, but it was not. It was liquid and required a sheet with forms for the batter.",
+      "They were decent when fresh, but did not hold well even after just one day.",
+      "I did not make the glaze from the original recipe, only used cinnamon sugar as a topping."
+    ],
+    source: "https://preppykitchen.com/baked-donut-recipe/#recipe",
+  },
 ];
 
 export default dessertsRecipes;
