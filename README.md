@@ -6,9 +6,11 @@ A website to track recipes I've tried, hosted at https://caitlynrawlings.github.
 
 ## Project Goals
 
-Design a website that was useful to me using Figma for prototyping. 
-Gain experience using Tailwind CSS.  
-Make up fun names for the smoothies I made.
+* Design a website that was useful to me using Figma for prototyping. 
+* Gain experience using Tailwind CSS.  
+* Make up fun names for the smoothies I made.
+
+
 ## Run Locally
 
 Clone the project
