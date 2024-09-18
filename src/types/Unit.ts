@@ -1,4 +1,4 @@
-export type UnitType = 'cup' | 'teaspoon' | 'tablespoon' | 'strawberry' | 'raspberry' | 'banana' | 
+type UnitType = 'cup' | 'teaspoon' | 'tablespoon' | 'strawberry' | 'raspberry' | 'banana' | 
     'orange' | 'blueberry' | 'grape' | 'blackberry' | 'pound' | 'egg' | 'ounce' | 'clove';
 
 export class Unit {
@@ -8,6 +8,7 @@ export class Unit {
         this.type = type;
     }
 
+    // returns the singular or plural version of the unit based on given amount
     getLabel(amount: number): string {
         let label: string;
         switch (this.type) {
