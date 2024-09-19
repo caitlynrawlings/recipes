@@ -8,7 +8,7 @@ const dessertsRecipes: Recipe[] = [
     picture: "/brownie.jpg",
     alt_text: "A stack of 3 fudgy brownies with a few more scattered around them.",
     description: `Fudgy, moist, chocolatey brownies, that in my grandma's words, are "to die for."`,
-    rating: 4.5,
+    rating: 5,
     ingredients: [ 
         createIngredient("All-purpose flour", 1, new Unit("cup")),
         createIngredient("Cocoa powder", .75, new Unit("cup")), 
@@ -70,7 +70,7 @@ const dessertsRecipes: Recipe[] = [
   {
     name: "Monkey Bread",
     picture: "/monkey-bread.jpg",
-    alt_text: "Monkey bread in bundt cake shape dripping with glaze",
+    alt_text: "Monkey bread in bundt cake shape dripping with glaze.",
     rating: 3.5,
     description: "Cinnamon-sugary finger food.",
     ingredients: [ 
@@ -136,6 +136,57 @@ const dessertsRecipes: Recipe[] = [
       "I did not make the glaze from the original recipe, only used cinnamon sugar as a topping."
     ],
     source: "https://preppykitchen.com/baked-donut-recipe/#recipe",
+  },
+  {
+    name: "Caramel Molasses Cookies",
+    picture: "/caramel-molasses.jpg",
+    alt_text: "Molasses cookies with caramel drizzle on a cooling rack.",
+    rating: 4,
+    description: "Molasses cookies with a homemade caramel sauce!",
+    ingredients: [ 
+      createIngredient("All-purpose flour", 3, new Unit("cup")),
+      createIngredient("Baking soda", 1, new Unit("teaspoon")),
+      createIngredient("Ground ginger", 2, new Unit("teaspoon")),
+      createIngredient("Ground cinnamon", 1.25, new Unit("teaspoon")),
+      createIngredient("Ground cloves", .25, new Unit("teaspoon")),
+      createIngredient("Nutmeg", .25, new Unit("teaspoon")),
+      createIngredient("Butter", .75, new Unit("cup"), "softened to room tempurature"),
+      createIngredient("Brown sugar", 3/4, new Unit("cup")),
+      createIngredient("Molasses", 1/3, new Unit("cup")),
+      createIngredient("Egg", 1, new Unit("egg")),
+      createIngredient("Vanilla", 2, new Unit("teaspoon")),
+
+      createIngredient("Sugar", 1/3, new Unit("cup"), "For rolling"),
+
+      createIngredient("Sugar", 1, new Unit("cup"), "For caramel sauce"),
+      createIngredient("Butter", 6, new Unit("tablespoon"), "For caramel sauce"),
+      createIngredient("Whipping cream", .5, new Unit("cup"), "For caramel sauce"),
+    ],
+    directions: [
+      "Mix together the flour, baking soda, ginger, cinnamon, cloves, and nutmeg.",
+      "Cream the softened butter for about 1 minute on medium speed. Add the brown sugar and beat until light and fluffy, about 2 full minutes.",
+      "Add the molasses, egg, and vanilla.",
+      "Mix all ingredients together.",
+      "Cover dough tightly and let rest in the fridge, while making caramel sauce.",
+      "Heat the sugar for the caramel sauce in a medium saucepan over medium heat, stirring constantly with a rubber spatula. Sugar will form clumps and eventually melt into a thick brown, amber-colored liquid as you continue to stir. Be careful not to burn. ",
+      "Once sugar is completely melted, immediately add the butter. Be careful in this step because the caramel will bubble rapidly when the butter is added. Stir the butter into the caramel until it is completely melted, about 2-3 minutes.",
+      "Very slowly, drizzle in ½ cup of heavy cream. Since the heavy cream is colder than the caramel, the mixture will rapidly bubble and/or splatter when added.",
+      "Allow the mixture to boil for 1 minute then remove from heat and let cool.",
+      "Preheat over to 350°F.",
+      "Divide the dough into 20 peices and roll them into spheres.",
+      "Roll the spheres in sugar and place on a parchment lined baking sheet.",
+      "Bake for 9 minutes then pull out of over and gently pat cookies down with a fork. Then bake for 2-3 more minutes.",
+      "Let cool on the baking sheet for 5 minutes before transferring to cooling rack.",
+      "Once fully cooled, warm up caramel sauce for about 8-10 seconds in the microwave and drizzle over the cookies.",
+      "Optionally, sprinkle the cookies with salt."
+    ],
+    notes: [
+      "The caramel sauce is fantastic and makes the cookies themsleves so much better.",
+      "The caramel sauce recipe makes way more than needed. Could cut the recipe in half or probably thirds.",
+      "If making the full caramel sauce recipe, definetly use a medium sauce pan. The sauce almost boiled over a few times when I made it with a small one.",
+      "I sprinkled salt over the caramel drizzle, which I think was a nice addition."
+    ],
+    source: "https://thetoughcookie.com/2013/12/06/caramel-molasses-cookies-with-a-salted-caramel-drizzle/",
   },
 ];
 
