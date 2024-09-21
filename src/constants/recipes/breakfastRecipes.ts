@@ -61,6 +61,31 @@ const breakfastRecipes: Recipe[] = [
     ],
     source: "https://sallysbakingaddiction.com/homemade-croissants/#tasty-recipes-66930",
   },
+  {
+    name: "Pancakes",
+    picture: "/pancakes.jpg",
+    alt_text: "A stack of four pancakes topped with syrup and butter.",
+    rating: 4.5,
+    description: "Light and fluffly pancakes!",
+    ingredients: [ 
+        createIngredient("All-purpose flour", 2, new Unit("cup")),
+        createIngredient("Sugar", 1/4, new Unit("cup")),
+        createIngredient("Baking powder", 4, new Unit("teaspoon")),
+        createIngredient("Baking soda", 1/4, new Unit("teaspoon")),
+        createIngredient("Salt", 1/2, new Unit("teaspoon")),
+        createIngredient("Milk", 1.75, new Unit("cup")),
+        createIngredient("Butter", 1/4, new Unit("cup")),
+        createIngredient("Vanilla", 2, new Unit("teaspoon")),
+        createIngredient("Egg", 1, new Unit("egg")),
+    ],
+    directions: [
+      "Partially melt the butter and let cool.",
+      "Mix all ingredients together. Should be thick and creamy in consistency.",
+      "Heat oil or butter in pan over medium-low heat.",
+      "Cook for about 4 minutes on each side."
+    ],
+    source: "https://cafedelites.com/best-fluffy-pancakes/#recipe",
+  },
 ];
 
 export default breakfastRecipes;
