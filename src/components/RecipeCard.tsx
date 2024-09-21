@@ -5,6 +5,7 @@ import Recipe from '../types/Recipe';
 import '../index.css'; // Ensure Tailwind CSS is imported
 import ratingStars from '../functions/ratingStars.tsx';
 import getIngredients from '../functions/getIngredients.ts';
+import getIngredientsString from '../functions/getIngredientsString.ts';
 
 interface RecipeCardProps {
   category: string
@@ -19,14 +20,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ category, recipe }) => {
   };
 
   const ingredients = Array.from(getIngredients([recipe]))
-  function getIngredientsString() : string {
-    let str = ""
-    ingredients.map((ingredient, index) => (
-      index < ingredients.length - 1 ? str += ingredient + ', ' : str += ingredient
-    ))
-    return str
-  }
-  const ingredientsString: string = getIngredientsString()
+  
+  const ingredientsString: string = getIngredientsString(ingredients)
 
   useEffect(() => {
     const keyDownCallback = (event: KeyboardEvent) => {
