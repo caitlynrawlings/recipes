@@ -14,7 +14,8 @@ describe('check page content', () => {
         const recipe = smoothieRecipes.find(recipe => recipe.name.toLowerCase() === "berry grape");
 
         checkDetailsPageRequiredContent(recipe)
-        // todo: change this to check for no notes and no source on the page. prob chnage the helper function!
+        checkSourceSection(recipe, false);
+        checkNotesSection(recipe, false);
     })
 
     it('berryful recipe', () => {
@@ -23,6 +24,8 @@ describe('check page content', () => {
         const recipe = smoothieRecipes.find(recipe => recipe.name.toLowerCase() === "berryful");
 
         checkDetailsPageRequiredContent(recipe)
+        checkSourceSection(recipe, false);
+        checkNotesSection(recipe, false);
     })
 
     // check recipes with the source field, but no notes
@@ -32,7 +35,8 @@ describe('check page content', () => {
         const recipe = basesAndBasicsRecipes.find(recipe => recipe.name.toLowerCase() === "noodles");
 
         checkDetailsPageRequiredContent(recipe);
-        checkSourceSection(recipe);
+        checkSourceSection(recipe, true);
+        checkNotesSection(recipe, false);
     })
 
     it('artisan bread recipe', () => {
@@ -41,7 +45,8 @@ describe('check page content', () => {
         const recipe = basesAndBasicsRecipes.find(recipe => recipe.name.toLowerCase() === "artisan bread");
 
         checkDetailsPageRequiredContent(recipe);
-        checkSourceSection(recipe);
+        checkSourceSection(recipe, true);
+        checkNotesSection(recipe, false);
     })
 
     // check recipes with the source field and notes
@@ -51,8 +56,8 @@ describe('check page content', () => {
         const recipe = dessertsRecipes.find(recipe => recipe.name.toLowerCase() === "caramel molasses cookies");
 
         checkDetailsPageRequiredContent(recipe);
-        checkSourceSection(recipe);
-        checkNotesSection(recipe);
+        checkSourceSection(recipe, true);
+        checkNotesSection(recipe, true);
     })
 
     it('baked donut recipe', () => {
@@ -61,26 +66,85 @@ describe('check page content', () => {
         const recipe = dessertsRecipes.find(recipe => recipe.name.toLowerCase() === "baked donut");
 
         checkDetailsPageRequiredContent(recipe);
-        checkSourceSection(recipe);
-        checkNotesSection(recipe);
+        checkSourceSection(recipe, true);
+        checkNotesSection(recipe, true);
+    })
+
+    // check recipes with the notes but no source
+    it('caramel molasses cookies recipe', () => {
+        cy.visit('http://localhost:3000/recipes#/basesAndBasics/Pizza%20Crust')
+
+        const recipe = basesAndBasicsRecipes.find(recipe => recipe.name.toLowerCase() === "pizza crust");
+
+        checkDetailsPageRequiredContent(recipe);
+        checkSourceSection(recipe, false);
+        checkNotesSection(recipe, true);
     })
 })
 
-// todo : make these tests
 describe('check recipe scaling functionality', () => {
+    const recipe = dessertsRecipes.find(recipe => recipe.name.toLowerCase() === "caramel molasses cookies");
+
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/recipes#/desserts/Caramel%20Molasses%20Cookies')
+    })
 
     it('check initial state', () => {
-        // check initial value
-        // check min, max, adn step size
+        // check initial value and attributes
+        cy.get('#serving-size')
+        .should('exist')
+        .and('have.value', '1')
+        .and('have.attr', 'type', 'number')
+        .and('have.attr', 'min', '0')
+        .and('have.attr', 'max', '10')
+        .and('have.attr', 'step', '0.5')
+        .and('have.class', 'w-14 text-center ml-2 p-1 outline outline-1 outline-slate-400 text-slate-700 bg-slate-100 rounded-lg');
     })
 
     it('check scales ingredients x2', () => {
+        cy.get('#serving-size').and('have.value', '1')
+        
+        cy.get('#serving-size').type('{backspace}')
+        cy.get('#serving-size').type('2')
+
+        cy.get('#serving-size').and('have.value', '2')
+
+        checkIngredients(recipe, 2)
     })
 
     it('check scales ingredients x3', () => {
+        cy.get('#serving-size').and('have.value', '1')
+        
+        cy.get('#serving-size').type('{backspace}')
+        cy.get('#serving-size').type('3')
+
+        cy.get('#serving-size').and('have.value', '3')
+
+        checkIngredients(recipe, 3)
     })
 
     it('check scales ingredients x0.5', () => {
+        cy.get('#serving-size').and('have.value', '1')
+        
+        cy.get('#serving-size').type('{backspace}')
+        cy.get('#serving-size').type('0')
+        cy.get('#serving-size').type('.5')
+
+        cy.get('#serving-size').and('have.value', '0.5')
+
+        checkIngredients(recipe, 0.5)
+    })
+
+    it('check scales ingredients x0.5', () => {
+        cy.get('#serving-size').and('have.value', '1')
+        
+        cy.get('#serving-size').type('{backspace}')
+        cy.get('#serving-size').type('0')
+        cy.get('#serving-size').type('.5')
+
+        cy.get('#serving-size').and('have.value', '0.5')
+
+        checkIngredients(recipe, 0.5)
     })
 })
 
@@ -91,7 +155,8 @@ describe('check recipe scaling functionality', () => {
 // check for recipe information like name, description,
 // rating, photo, scaling input, ingredients, and directions
 function checkDetailsPageRequiredContent(recipe) {
-    // todo : check for back button
+    // Check for back button
+    cy.get('#back').should('have.text', '< Back to Browse')
 
     // check recipe name
     cy.get('h1').should('have.text', recipe.name.toUpperCase());
@@ -134,20 +199,7 @@ function checkDetailsPageRequiredContent(recipe) {
     cy.get('ul.list-disc > li')
     .should('have.length', recipe.ingredients.length);  // Ensure the number of <li> matches the number of ingredients
 
-    // Check each <li> element for correct content
-    recipe.ingredients.forEach((ingredient, index) => {
-        const scaledAmount = parseFloat((ingredient.amount).toFixed(2));
-  
-        // Check that the ingredient name and scaled amount are correctly displayed
-        cy.get('ul.list-disc > li').eq(index)
-          .should('contain.text', `${ingredient.name}: ${ingredient.unit.getLabel(scaledAmount)}`);
-  
-        // If the ingredient has a note, check for its existence
-        if (ingredient.note) {
-          cy.get('ul.list-disc > li').eq(index)
-            .should('contain.text', `*${ingredient.note}`);
-        }
-    });
+    checkIngredients(recipe, 1);
 
     // check recipe directions
     cy.get('h2').eq(1).should('have.text', 'Directions')
@@ -173,7 +225,35 @@ function checkDetailsPageRequiredContent(recipe) {
     });
 }
 
-function checkSourceSection(recipe) {
+// rceipe: Recipe - the recipe being checked
+// scaleFactor: number - amount the recipe is supposed to be scaled by
+function checkIngredients(recipe, scaleFactor) {
+    // Check each <li> element for correct content
+    recipe.ingredients.forEach((ingredient, index) => {
+        const scaledAmount = parseFloat((ingredient.amount * scaleFactor).toFixed(2));
+  
+        // Check that the ingredient name and scaled amount are correctly displayed
+        cy.get('ul.list-disc > li').eq(index)
+          .should('contain.text', `${ingredient.name}: ${ingredient.unit.getLabel(scaledAmount)}`);
+  
+        // If the ingredient has a note, check for its existence
+        if (ingredient.note) {
+          cy.get('ul.list-disc > li').eq(index)
+            .should('contain.text', `*${ingredient.note}`);
+        }
+    });
+}
+
+// rceipe: Recipe - the recipe being checked
+// shouldHave: boolean - if the recipe should have this section
+function checkSourceSection(recipe, shouldHave) {
+    if (!shouldHave) {
+        // Check that the <div> with the flex-row class exists
+        cy.get('div.flex.flex-row.font-semibold.pt-2')
+        .should('not.exist');
+        return;
+    }
+
     // Check that the <div> with the flex-row class exists
     cy.get('div.flex.flex-row.font-semibold.pt-2')
     .should('exist');
@@ -190,7 +270,15 @@ function checkSourceSection(recipe) {
         .and('have.class', 'text-cyan-700 underline pb-4');
 }
 
-function checkNotesSection(recipe) {
+// rceipe: Recipe - the recipe being checked
+// shouldHave: boolean - if the recipe should have this section
+function checkNotesSection(recipe, shouldHave) {
+    if (!shouldHave) {
+        cy.get('section.outline')
+        .should('not.exist')
+        return;
+    }
+
     // Check that the <section> with the outline class exists
     cy.get('section.outline')
       .should('exist')
