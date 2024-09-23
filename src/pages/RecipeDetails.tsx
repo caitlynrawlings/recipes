@@ -114,7 +114,7 @@ const RecipeDetails: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center ">
       <div className='flex w-full items-start p-4'>
-        <BackButton/>
+        <BackButton link={`/${category}`}/>
       </div>
 
       <div className='px-10 w-full flex justify-center'>

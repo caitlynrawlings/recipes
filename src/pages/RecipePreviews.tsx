@@ -103,7 +103,7 @@ const RecipePreviews: React.FC = () => {
       <HeaderBar/>
       <div className="mt-16 h-full w-full overflow-y-auto flex flex-col justify-center items-center">
         <div className='flex items-start w-full justify-start mb-4'>
-          <BackButton />
+          <BackButton link={`/`}/>
         </div>
         <MobileOrganizationOptions /> 
         <RecipePreviews />

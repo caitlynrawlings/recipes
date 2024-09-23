@@ -1,11 +1,11 @@
 import React from "react"
 import { useNavigate } from 'react-router-dom';
 
-const BackButton: React.FC = () => {
+const BackButton: React.FC<{link:string}> = ({link}) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(-1);
+        navigate(link);
     };
       
     return (
