@@ -120,6 +120,7 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                         </ul>
 
                         <button 
+                            id="clear_btn"
                             className='text-left text-slate-600 bg-slate-300 rounded-md px-2 py-1 mt-1 flex flex-row items-center gap-1' 
                             onClick={(event) => clearOptions(event)}
                         >

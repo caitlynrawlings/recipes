@@ -15,59 +15,59 @@ describe('filter options', () => {
   it('check filter initial state', () => {
     cy.visit('http://localhost:3000/#/smoothies')
 
-    cy.get('label[for="filter_dropdown"]').should('include.text', 'Filter:')
+    cy.get('#header_dropdowns_container label[for="filter_dropdown"]').should('have.text', 'Filter:')
 
-    cy.get('#filter_button p:first').should('have.text', "Select ingredients to filter out");
+    cy.get('#header_dropdowns_container #filter_button p:first').should('have.text', "Select ingredients to filter out");
 
-    cy.get('#filter_options').should('not.be.exist');
+    cy.get('#header_dropdowns_container #filter_options').should('not.be.exist');
 
-    cy.get('#filter_button').click();
+    cy.get('#header_dropdowns_container #filter_button').click();
 
-    cy.get('#filter_options').should('exist').and('be.visible');
+    cy.get('#header_dropdowns_container #filter_options').should('exist').and('be.visible');
   })
 
   it('check filter opens', () => {
     cy.visit('http://localhost:3000/#/smoothies')
 
-    cy.get('#filter_options').should('not.be.exist');
+    cy.get('#header_dropdowns_container #filter_options').should('not.be.exist');
 
-    cy.get('#filter_button').click();
+    cy.get('#header_dropdowns_container #filter_button').click();
 
-    cy.get('#filter_options').should('exist').and('be.visible');
+    cy.get('#header_dropdowns_container #filter_options').should('exist').and('be.visible');
   })
 
   it('check filtering ingredients update the button value 1', () => {
     cy.visit('http://localhost:3000/#/desserts')
-    cy.get('#filter_button p:first').should('have.text', "Select ingredients to filter out");
+    cy.get('#header_dropdowns_container #filter_button p:first').should('have.text', "Select ingredients to filter out");
 
     const ingredients = Array.from(getIngredients(dessertsRecipes));
     const filteredOut = ingredients.splice(0, 2)
 
-    cy.get('#filter_button').click();
+    cy.get('#header_dropdowns_container #filter_button').click();
     for (let i = 0; i < 2; i++) {
       cy.get('li').eq(i).click();
     }
     cy.get('h1').click();
 
     const buttonValueStr = `${filteredOut[0]}, ${filteredOut[1]}`
-    cy.get('#filter_button p:first').should('have.text', buttonValueStr);
+    cy.get('#header_dropdowns_container #filter_button p:first').should('have.text', buttonValueStr);
   })
 
   it('check filtering ingredients update the button value 2', () => {
     cy.visit('http://localhost:3000/#/breakfast')
-    cy.get('#filter_button p:first').should('have.text', "Select ingredients to filter out");
+    cy.get('#header_dropdowns_container #filter_button p:first').should('have.text', "Select ingredients to filter out");
 
     const ingredients = Array.from(getIngredients(breakfastRecipes));
     const filteredOut = ingredients.splice(0, 2)
 
-    cy.get('#filter_button').click();
+    cy.get('#header_dropdowns_container #filter_button').click();
     for (let i = 0; i < 2; i++) {
-      cy.get('li').eq(i).click();
+      cy.get('#header_dropdowns_container li').eq(i).click();
     }
     cy.get('h1').click();
 
     const buttonValueStr = `${filteredOut[0]}, ${filteredOut[1]}`
-    cy.get('#filter_button p:first').should('have.text', buttonValueStr);
+    cy.get('#header_dropdowns_container #filter_button p:first').should('have.text', buttonValueStr);
   })
 
   it('filter out one ingredient 1', () => {
@@ -119,9 +119,9 @@ describe('filter options', () => {
     checkFilterNumIngredients(breakfastRecipes, ingredients.length)
 
     // uncheck the ingredients
-    cy.get('#filter_button').click();
+    cy.get('#header_dropdowns_container #filter_button').click();
     for (let i = 0; i < ingredients.length; i++) {
-      cy.get('li').eq(i).click();
+      cy.get('#header_dropdowns_container li').eq(i).click();
     }
     cy.get('h1').click();
 
@@ -139,9 +139,9 @@ describe('filter options', () => {
     checkFilterNumIngredients(snacksAndSidesRecipes, ingredients.length)
 
     // uncheck the ingredients
-    cy.get('#filter_button').click();
+    cy.get('#header_dropdowns_container #filter_button').click();
     for (let i = 0; i < ingredients.length; i++) {
-      cy.get('li').eq(i).click();
+      cy.get('#header_dropdowns_container li').eq(i).click();
     }
     cy.get('h1').click();
 
@@ -150,59 +150,93 @@ describe('filter options', () => {
       .should('have.length', snacksAndSidesRecipes.length)
   })
 
+  it('uncheck filtered ingredients using the clear all button 1', () => {
+    cy.visit('http://localhost:3000/#/sidesAndSnacks')
+
+    //  filter 2 ingredients and verify it worked
+    checkFilterNumIngredients(snacksAndSidesRecipes, 2)
+
+    // uncheck the ingredients
+    cy.get('#header_dropdowns_container #filter_button').click();
+    cy.get('#header_dropdowns_container #clear_btn').click();
+    cy.get('h1').click();
+
+    // check all the recipes have returned after unchecking
+    cy.get('article')
+      .should('have.length', snacksAndSidesRecipes.length)
+  })
+
+  it('uncheck filtered ingredients using the clear all button 2', () => {
+    cy.visit('http://localhost:3000/#/breakfast')
+
+    const ingredients = Array.from(getIngredients(breakfastRecipes));
+
+    // filter ingredients and verify it worked
+    checkFilterNumIngredients(breakfastRecipes, ingredients.length)
+
+    // uncheck the ingredients
+    cy.get('#header_dropdowns_container #filter_button').click();
+    cy.get('#header_dropdowns_container #clear_btn').click();
+    cy.get('h1').click();
+
+    // check all the recipes have returned after unchecking
+    cy.get('article')
+      .should('have.length', breakfastRecipes.length)
+  })
+
 })
 
 describe('sort options', () => {
   it('check sort dropdown initial state', () => {
     cy.visit('http://localhost:3000/#/smoothies')
 
-    cy.get('label[for="sort_dropdown"]').should('include.text', 'Sort by:')
+    cy.get('#header_dropdowns_container label[for="sort_dropdown"]').should('have.text', 'Sort by:')
 
-    cy.get('#sort_button p:first').should('have.text', "Recipe Name (A-Z)");
+    cy.get('#header_dropdowns_container #sort_button p:first').should('have.text', "Recipe Name (A-Z)");
 
-    cy.get('#sort_option_0').should('not.be.visible');
-    cy.get('#sort_option_1').should('not.be.visible');
-    cy.get('#sort_option_2').should('not.be.visible');
+    cy.get('#header_dropdowns_container #sort_option_0').should('not.be.visible');
+    cy.get('#header_dropdowns_container #sort_option_1').should('not.be.visible');
+    cy.get('#header_dropdowns_container #sort_option_2').should('not.be.visible');
 
-    cy.get('#sort_button').click();
+    cy.get('#header_dropdowns_container #sort_button').click();
 
-    cy.get('#sort_option_0').should('be.visible');
-    cy.get('#sort_option_1').should('be.visible');
-    cy.get('#sort_option_2').should('be.visible');
+    cy.get('#header_dropdowns_container #sort_option_0').should('be.visible');
+    cy.get('#header_dropdowns_container #sort_option_1').should('be.visible');
+    cy.get('#header_dropdowns_container #sort_option_2').should('be.visible');
 
-    cy.get('#sort_option_0').should('have.text', "Recipe Name (A-Z)")
-    cy.get('#sort_option_1').should('have.text', "Recipe Name (Z-A)")
-    cy.get('#sort_option_2').should('have.text', "Rating")
+    cy.get('#header_dropdowns_container #sort_option_0').should('have.text', "Recipe Name (A-Z)")
+    cy.get('#header_dropdowns_container #sort_option_1').should('have.text', "Recipe Name (Z-A)")
+    cy.get('#header_dropdowns_container #sort_option_2').should('have.text', "Rating")
   })
 
   it('check sort menu closes on button click', () => {
     cy.visit('http://localhost:3000/#/desserts')
 
-    cy.get('#sort_button').click();
-    cy.get('#sort_options').should('be.visible');
+    cy.get('#header_dropdowns_container #sort_button').click();
+    cy.get('#header_dropdowns_container #sort_options').should('be.visible');
 
-    cy.get('#sort_button').click();
-    cy.get('#sort_options').should('not.be.visible');
+    cy.get('#header_dropdowns_container #sort_button').click();
+    cy.get('#header_dropdowns_container #sort_options').should('not.be.visible');
   })
 
   it('check sort menu closes on option click', () => {
     cy.visit('http://localhost:3000/#/desserts')
 
-    cy.get('#sort_button').click();
-    cy.get('#sort_options').should('be.visible');
+    cy.get('#header_dropdowns_container #sort_button').click();
+    cy.get('#header_dropdowns_container #sort_options').should('be.visible');
 
-    cy.get('#sort_option_0').click();
-    cy.get('#sort_options').should('not.be.visible');
+    cy.get('#header_dropdowns_container #sort_option_0').click();
+    cy.get('#header_dropdowns_container #sort_options').should('not.be.visible');
   })
 
   it('check sort menu closes on outside sort menu click', () => {
     cy.visit('http://localhost:3000/#/desserts')
 
-    cy.get('#sort_button').click();
-    cy.get('#sort_options').should('be.visible');
+    cy.get('#header_dropdowns_container #sort_button').click();
+    cy.get('#header_dropdowns_container #sort_options').should('be.visible');
 
     cy.get('h1').click();
-    cy.get('#sort_options').should('not.be.visible');
+    cy.get('#header_dropdowns_container #sort_options').should('not.be.visible');
   })
 
   it('a-z sort 1', () => {
@@ -445,9 +479,9 @@ function checkFilterNumIngredients(recipe, num) {
   );
 
 
-  cy.get('#filter_button').click();
+  cy.get('#header_dropdowns_container #filter_button').click();
   for (let i = 0; i < num; i++) {
-    cy.get('li').eq(i).click();
+    cy.get('#header_dropdowns_container li').eq(i).click();
   }
 
   cy.get('h1').click();
