@@ -11,8 +11,8 @@ export default function ratingStars(rating: Rating) : any {
     return (
         <div className="flex flex-row gap-2" role="img" aria-label={`${rating} out of 5 stars`}>
             {Array.from(Array(filledStars)).map((_, index) => <span key={index} className="material-symbols-sharp">star</span>)}
-            {halfStar && <span className="material-symbols-outlined">star_half</span>}
-            {Array.from(Array(emptyStars)).map((_, index) => <span key={index} className="material-symbols-outlined">star</span>)}
+            {halfStar && <span className="material-symbols-outlined half">star_half</span>}
+            {Array.from(Array(emptyStars)).map((_, index) => <span key={index} className="material-symbols-outlined empty">star</span>)}
         </div>
     )
 }
