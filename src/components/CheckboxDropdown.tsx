@@ -66,7 +66,8 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
 
     const DropdownPreview: React.FC = () => {
         return (
-            <div 
+            <button 
+                id="filter_button"
                 onClick={(event) => toggleDropdown(event)}
                 className="dropdown-preview flex flex-row h-10 cursor-pointer mt-1.5 bg-slate-100 text-slate-600 text-ellipsis text-md rounded-sm p-1.5 items-center gap-2"
             >   
@@ -74,18 +75,18 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
                 ? 
                 <p className='text-slate-400 w-56'>Select ingredients to filter out</p>
                 :
-                <div className='overflow-hidden text-ellipsis whitespace-nowrap w-56'>
+                <p className='overflow-hidden text-ellipsis whitespace-nowrap w-56'>
                     {tempSelectedOptions.map((option, index) => (
                         <span key={option}>
                             {option}
-                            {index < tempSelectedOptions.length - 1 && ','}&nbsp;
+                            {index < tempSelectedOptions.length - 1 && ', '}
                         </span>
                     ))}
-                </div>
+                </p>
                 }
                 
                 &#9662; {/* dropdown arrow */}
-            </div>
+            </button>
         )
     }
 
@@ -94,7 +95,12 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
             <div className='dropdown z-20'>
                 {isOpen && (
                     <div className="bg-slate-100 absolute text-md shadow-lg rounded-sm p-2 dropdown flex flex-col w-64 gap-1">
-                        <ul>
+                        <ul 
+                            role="listbox"
+                            id="filter_options"
+                            aria-multiselectable={false}
+                            tabIndex={-1}
+                        >
                             {Array.from(options).map(option => (
                                 <li key={option}>
                                     <label htmlFor={option} className='flex flex-row w-full text-slate-600'>
@@ -127,12 +133,12 @@ const DropdownCheckboxes: React.FC<DropdownCheckboxesProps> = ({ options, select
 
     return (
         <div className='flex flex-row items-center'>
-            <label htmlFor="filter-options"  className='text-slate-100 text-md'>
+            <label htmlFor="filter_dropdown"  className='text-slate-100 text-md'>
                 Filter: 
             </label>
             <div 
                 className='flex flex-col gap-2 mx-2'
-                id="filter-options" 
+                id="filter_dropdown" 
             >
                 <DropdownPreview/>
                 <SelectOptionsBox/>

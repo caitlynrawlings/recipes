@@ -11,10 +11,152 @@ import mugsRecipes from "../../src/constants/recipes/mugsRecipes.ts";
 import getIngredients from "../../src/functions/getIngredients.ts";
 import getIngredientsString from "../../src/functions/getIngredientsString.ts";
 
+describe('filter options', () => {
+  it('check filter initial state', () => {
+    cy.visit('http://localhost:3000/#/smoothies')
+
+    cy.get('label[for="filter_dropdown"]').should('include.text', 'Filter:')
+
+    cy.get('#filter_button p:first').should('have.text', "Select ingredients to filter out");
+
+    cy.get('#filter_options').should('not.be.exist');
+
+    cy.get('#filter_button').click();
+
+    cy.get('#filter_options').should('exist').and('be.visible');
+  })
+
+  it('check filter opens', () => {
+    cy.visit('http://localhost:3000/#/smoothies')
+
+    cy.get('#filter_options').should('not.be.exist');
+
+    cy.get('#filter_button').click();
+
+    cy.get('#filter_options').should('exist').and('be.visible');
+  })
+
+  it('check filtering ingredients update the button value 1', () => {
+    cy.visit('http://localhost:3000/#/desserts')
+    cy.get('#filter_button p:first').should('have.text', "Select ingredients to filter out");
+
+    const ingredients = Array.from(getIngredients(dessertsRecipes));
+    const filteredOut = ingredients.splice(0, 2)
+
+    cy.get('#filter_button').click();
+    for (let i = 0; i < 2; i++) {
+      cy.get('li').eq(i).click();
+    }
+    cy.get('h1').click();
+
+    const buttonValueStr = `${filteredOut[0]}, ${filteredOut[1]}`
+    cy.get('#filter_button p:first').should('have.text', buttonValueStr);
+  })
+
+  it('check filtering ingredients update the button value 2', () => {
+    cy.visit('http://localhost:3000/#/breakfast')
+    cy.get('#filter_button p:first').should('have.text', "Select ingredients to filter out");
+
+    const ingredients = Array.from(getIngredients(breakfastRecipes));
+    const filteredOut = ingredients.splice(0, 2)
+
+    cy.get('#filter_button').click();
+    for (let i = 0; i < 2; i++) {
+      cy.get('li').eq(i).click();
+    }
+    cy.get('h1').click();
+
+    const buttonValueStr = `${filteredOut[0]}, ${filteredOut[1]}`
+    cy.get('#filter_button p:first').should('have.text', buttonValueStr);
+  })
+
+  it('filter out one ingredient 1', () => {
+    cy.visit('http://localhost:3000/#/smoothies')
+
+    checkFilterNumIngredients(smoothieRecipes, 1)
+  })
+
+  it('filter out one ingredient 2', () => {
+    cy.visit('http://localhost:3000/#/desserts')
+
+    checkFilterNumIngredients(dessertsRecipes, 1)
+  })
+
+  it('filter out two ingredients 1', () => {
+    cy.visit('http://localhost:3000/#/desserts')
+
+    checkFilterNumIngredients(dessertsRecipes, 2)
+  })
+
+  it('filter out two ingredients 2', () => {
+    cy.visit('http://localhost:3000/#/breakfast')
+
+    checkFilterNumIngredients(breakfastRecipes, 2)
+  })
+
+  it('filter out all ingredients 1', () => {
+    cy.visit('http://localhost:3000/#/breakfast')
+
+    const ingredients = Array.from(getIngredients(breakfastRecipes));
+
+    checkFilterNumIngredients(breakfastRecipes, ingredients.length)
+  })
+
+  it('filter out all ingredients 2', () => {
+    cy.visit('http://localhost:3000/#/sidesAndSnacks')
+
+    const ingredients = Array.from(getIngredients(snacksAndSidesRecipes));
+
+    checkFilterNumIngredients(snacksAndSidesRecipes, ingredients.length)
+  })
+
+  it('uncheck filtered ingredients 1', () => {
+    cy.visit('http://localhost:3000/#/breakfast')
+
+    const ingredients = Array.from(getIngredients(breakfastRecipes));
+
+    // check ingredients and verify it worked
+    checkFilterNumIngredients(breakfastRecipes, ingredients.length)
+
+    // uncheck the ingredients
+    cy.get('#filter_button').click();
+    for (let i = 0; i < ingredients.length; i++) {
+      cy.get('li').eq(i).click();
+    }
+    cy.get('h1').click();
+
+    // check all the recipes have returned after unchecking
+    cy.get('article')
+      .should('have.length', breakfastRecipes.length)
+  })
+
+  it('uncheck filtered ingredients 2', () => {
+    cy.visit('http://localhost:3000/#/sidesAndSnacks')
+
+    const ingredients = Array.from(getIngredients(snacksAndSidesRecipes));
+
+    // check ingredients and verify it worked
+    checkFilterNumIngredients(snacksAndSidesRecipes, ingredients.length)
+
+    // uncheck the ingredients
+    cy.get('#filter_button').click();
+    for (let i = 0; i < ingredients.length; i++) {
+      cy.get('li').eq(i).click();
+    }
+    cy.get('h1').click();
+
+    // check all the recipes have returned after unchecking
+    cy.get('article')
+      .should('have.length', snacksAndSidesRecipes.length)
+  })
+
+})
 
 describe('sort options', () => {
-  it('check sort options', () => {
+  it('check sort dropdown initial state', () => {
     cy.visit('http://localhost:3000/#/smoothies')
+
+    cy.get('label[for="sort_dropdown"]').should('include.text', 'Sort by:')
 
     cy.get('#sort_button p:first').should('have.text', "Recipe Name (A-Z)");
 
@@ -104,62 +246,7 @@ describe('smoothies previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...smoothieRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(smoothieRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(smoothieRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // src text
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(smoothieRecipes);
   })
 })
 
@@ -179,62 +266,7 @@ describe('dinners previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...dinnerRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(dinnerRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(dinnerRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // check src
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(dinnerRecipes);
   })
 })
 
@@ -254,62 +286,7 @@ describe('breakfast previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...breakfastRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(breakfastRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(breakfastRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // check src
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(breakfastRecipes);
   })
 })
 
@@ -329,62 +306,7 @@ describe('sides and snacks previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...snacksAndSidesRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(snacksAndSidesRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(snacksAndSidesRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // check src
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(snacksAndSidesRecipes);
   })
 })
 
@@ -404,62 +326,7 @@ describe('desserts previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...dessertsRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(dessertsRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(dessertsRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // check src
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(dessertsRecipes);
   })
 })
 
@@ -479,62 +346,7 @@ describe('bases and basics previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...basesAndBasicsRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(basesAndBasicsRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(basesAndBasicsRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // check src
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(basesAndBasicsRecipes);
   })
 })
 
@@ -554,61 +366,104 @@ describe('mugs previews page', () => {
   })
 
   it('check recipe card content', () => {
-    const sortedRecipes = [...mugsRecipes].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-
-    // check recipe name
-    cy.get('article h2').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].name);
-    });
-
-    // check recipe rating
-    cy.get('div[role="img"]').each((el, index) => {
-      cy.wrap(el)
-        .should('have.attr', 'aria-label')
-        .then(ariaLabel => {
-          expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
-        })
-    });
-
-    // check recipe description
-    cy.get('article p:first').each((el, index) => {
-      cy.wrap(el).should('have.text', sortedRecipes[index].description);
-    });
-
-    // check recipe ingredients
-    cy.get('article').each((article, index) => {
-      cy.wrap(article).find('p').eq(1).then((el) => {
-        const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
-        const ingredientsStr = getIngredientsString(ingredients).trim()
-        cy.wrap(el).as('ingredientOverview');  // Alias the element
-        
-        // Check that the span contains "Ingredient Overview:"
-        cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
-
-        // Check that the parent <p> element contains the ingredients string
-        cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
-      });
-    });
-
-    // check recipe image
-    const altTextRegex = new RegExp(mugsRecipes.map(recipe => `${recipe.alt_text}$`).join('|'));
-    const srcRegex = new RegExp(mugsRecipes.map(recipe => `${recipe.picture}$`).join('|'));
-    cy.get('article img').each((el) => {
-      // check alt text
-      cy.wrap(el)
-        .should('have.attr', 'alt')
-        .then(alttext => {
-          expect(alttext).to.match(altTextRegex)
-        })
-
-      // check src
-      cy.wrap(el)
-        .should('have.attr', 'src')
-        .then(src => {
-          expect(src).to.match(srcRegex)
-        })
-    });
+    checkRecipeCardContent(mugsRecipes);
   })
 })
+
+
+function checkRecipeCardContent(recipe) {
+  const sortedRecipes = [...recipe].sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  // check recipe name
+  cy.get('article h2').each((el, index) => {
+    cy.wrap(el).should('have.text', sortedRecipes[index].name);
+  });
+
+  // check recipe rating
+  cy.get('div[role="img"]').each((el, index) => {
+    cy.wrap(el)
+      .should('have.attr', 'aria-label')
+      .then(ariaLabel => {
+        expect(ariaLabel).to.equal(`${sortedRecipes[index].rating} out of 5 stars`)
+      })
+  });
+
+  // check recipe description
+  cy.get('article p:first').each((el, index) => {
+    cy.wrap(el).should('have.text', sortedRecipes[index].description);
+  });
+
+  // check recipe ingredients
+  cy.get('article').each((article, index) => {
+    cy.wrap(article).find('p').eq(1).then((el) => {
+      const ingredients = Array.from(getIngredients([sortedRecipes[index]]));
+      const ingredientsStr = getIngredientsString(ingredients).trim()
+      cy.wrap(el).as('ingredientOverview');  // Alias the element
+      
+      // Check that the span contains "Ingredient Overview:"
+      cy.get('@ingredientOverview').find('span').should('contain.text', 'Ingredient Overview:');
+
+      // Check that the parent <p> element contains the ingredients string
+      cy.get('@ingredientOverview').should('contain.text', ingredientsStr);
+    });
+  });
+
+  // check recipe image
+  const altTextRegex = new RegExp(recipe.map(recipe => `${recipe.alt_text}$`).join('|'));
+  const srcRegex = new RegExp(recipe.map(recipe => `${recipe.picture}$`).join('|'));
+  cy.get('article img').each((el) => {
+    // check alt text
+    cy.wrap(el)
+      .should('have.attr', 'alt')
+      .then(alttext => {
+        expect(alttext).to.match(altTextRegex)
+      })
+
+    // check src
+    cy.wrap(el)
+      .should('have.attr', 'src')
+      .then(src => {
+        expect(src).to.match(srcRegex)
+      })
+  });
+}
+
+function checkFilterNumIngredients(recipe, num) {
+  const ingredients = Array.from(getIngredients(recipe));
+  const filteredOut = ingredients.splice(0, num)
+
+  let recipesOnPage = [...recipe].sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  recipesOnPage = recipesOnPage.filter(recipe => 
+    !filteredOut.some(selectedIngredient => recipe.ingredients.some(ingredient => 
+      selectedIngredient === ingredient.name
+    ))
+  );
+
+
+  cy.get('#filter_button').click();
+  for (let i = 0; i < num; i++) {
+    cy.get('li').eq(i).click();
+  }
+
+  cy.get('h1').click();
+    
+  if (recipesOnPage.length !== 0) {
+    cy.get('article h2').each((el, index) => {
+      cy.wrap(el).should('have.text', recipesOnPage[index].name);
+    });
+  }
+
+  // filtered out all ingredients so would expect there to be no recipes
+  if (ingredients.length === num) {
+    cy.get('article')
+      .should('have.length', 0)
+  } else {
+    cy.get('article')
+      .should('have.length', recipesOnPage.length)
+  }
+}
