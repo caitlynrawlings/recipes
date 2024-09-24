@@ -8,12 +8,15 @@ import getIngredients from '../functions/getIngredients.ts';
 import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton.tsx';
 import categories from '../constants/recipeCategories.ts';
+import { useMediaQuery } from 'react-responsive';
 
 const RecipePreviews: React.FC = () => {
   const navigate = useNavigate(); 
   const { category: categoryLink } = useParams<{ category: string }>();
   const category = categories.find(c => c.link === categoryLink);
   const recipes = category?.recipes;
+
+  const isDesktop = useMediaQuery({ query: '(min-width: 976px)' });
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState(category?.recipes || []);
@@ -59,7 +62,7 @@ const RecipePreviews: React.FC = () => {
     return (
       <header className="fixed top-0 left-0 w-full bg-gray-800 p-3 text-left z-50 flex flex-row items-end">
         <h1 className="text-slate-200 h1 whitespace-nowrap ml-3">{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</h1>
-        <HeaderOrganizationOptions />
+        {isDesktop && <HeaderOrganizationOptions />}
       </header>
     )
   }
@@ -109,7 +112,7 @@ const RecipePreviews: React.FC = () => {
         <div className='flex items-start w-full justify-start mb-4'>
           <BackButton link={`/`}/>
         </div>
-        <MobileOrganizationOptions /> 
+        {!isDesktop && <MobileOrganizationOptions />}
         <RecipePreviews />
       </div>
     </div>

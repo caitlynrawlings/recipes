@@ -53,9 +53,9 @@ const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
                     
                 })
             } else if (target === optionsRef.current[data.activeIndex].current || optionsRef.current[data.activeIndex].current?.contains(target)) {
-                // click a sort option                
+                // click a sort option    
                 handleSelectChange(options[data.activeIndex])
-            }else if (data.isOpen) {
+            } else if (data.isOpen) {
                 setData({
                     activeIndex: data.activeIndex,
                     selectedOption: data.selectedOption,
