@@ -188,6 +188,23 @@ const dessertsRecipes: Recipe[] = [
     ],
     source: "https://thetoughcookie.com/2013/12/06/caramel-molasses-cookies-with-a-salted-caramel-drizzle/",
   },
+  {
+    name: "S'betters",
+    picture: "/sbetters.jpg",
+    alt_text: "A hand holding a sbetter. Can see the cross-section of graham cracker, frosting, and chocolate.",
+    rating: 3.5,
+    description: "They're not S'mores, they're S'better.",
+    ingredients: [ 
+      createIngredient("Graham cracker", 2, new Unit("piece")),
+      createIngredient("Chocolate", 2, new Unit("piece")),
+      createIngredient("Vanilla frosting", 1, new Unit("tablespoon")),
+    ],
+    directions: [
+      "Spread the frosting on one cracker.",
+      "Place the chocolate on the frosted cracker",
+      "Place the other cracker on the chocolate."
+    ],
+  },
 ];
 
 export default dessertsRecipes;
