@@ -65,6 +65,9 @@ const dessertsRecipes: Recipe[] = [
         "Bake for 25-30 minutes at 350°F.",
         "Beat frosting ingredients together on frost rolls after letting them cool for 5-10 minutes."
     ],
+    notes: [
+      "To make lemon cinnamon rolls, just add 2 Tb lemon juice to dough, 1 Tb to filling, and 3-4 Tb to frosting.",
+    ],
     source: "https://www.ambitiouskitchen.com/best-cinnamon-rolls/",
   },
   {
