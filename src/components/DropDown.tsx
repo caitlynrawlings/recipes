@@ -21,7 +21,7 @@ interface DropDownProps {
 
 const DropDown: React.FC<DropDownProps> = ({ data, setData }) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const optionsRef = useRef<RefObject<HTMLLIElement>[]>([
+    const optionsRef = useRef<RefObject<HTMLLIElement | null>[]>([
         createRef<HTMLLIElement>(),
         createRef<HTMLLIElement>(),
         createRef<HTMLLIElement>(),
