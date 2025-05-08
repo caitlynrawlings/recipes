@@ -55,8 +55,8 @@ const basesAndBasicsRecipes: Recipe[] = [
     name: "Pizza Crust",
     picture: "/crust.jpg",
     alt_text: "Raw pizza dough in a circle with flour sprinkled on the table around it.",
-    rating: 2.5,
-    description: "A basic and bland pizza crust.",
+    rating: 5,
+    description: "A pretty good pizza dough if made ahead of time.",
     ingredients: [ 
       createIngredient("Bread flour", 2.5, new Unit("cup")), 
       createIngredient("Yeast", 2.25, new Unit("teaspoon")),
@@ -69,15 +69,36 @@ const basesAndBasicsRecipes: Recipe[] = [
     directions: [
       "Put the yeast in warm water.",
       "Add and mix other ingredients.",
-      "Let dough rise for 1-2 hours.",
+      "Let dough rest overnight for 3 or more days for best taste.",
       "Stretch out dough and put toppings of your choice on.",
       "Bake at 450F for 15-20 minutes."
     ],
     notes: [
-      "Try adding more seasoning to the dough.",
       "Try adding sugar on the egde of the pizza crust.",
-      "Try subbing oil for butter."
     ]
+  },
+  {
+    name: "Pita Bread",
+    picture: "/pita.png",
+    alt_text: "Pita breads in a splayed stack on a kitchen towel.",
+    rating: 3.5,
+    description: "A simple pita pread.",
+    ingredients: [ 
+      createIngredient("All purpose flour", 3, new Unit("cup")), 
+      createIngredient("Yeast", 2.25, new Unit("teaspoon")),
+      createIngredient("Water", 1, new Unit("cup")),
+      createIngredient("Salt", 2, new Unit("teaspoon")),
+    ],
+    directions: [
+      "In a large bowl, dissolve yeast in warm water. Stir in salt and enough flour to form a soft dough. Turn onto a floured surface; knead until smooth and elastic, 6-8 minutes. Do not let rise.",
+      "Divide dough into 6 pieces; knead each for 1 minute, then roll into a 5-in. circle. Cover and let rise in a warm place until doubled, about 45 minutes. Preheat oven to 500°.",
+      "Place upside down on greased baking sheets. Bake until puffed and lightly browned, 5-10 minutes. Remove from pans to wire racks to cool."
+    ],
+    notes: [
+      "I did not get the pocket to form, but they still tasted pretty good.",
+      "Worked ok for making a quick flatbread pizza."
+    ],
+    source: "https://www.tasteofhome.com/recipes/traditional-pita-bread/#RecipeCard"
   },
 ];
 
