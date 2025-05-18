@@ -208,6 +208,35 @@ const dessertsRecipes: Recipe[] = [
       "Place the other cracker on the chocolate."
     ],
   },
+  {
+    name: "Peanut Butter Cookies",
+    picture: "/peanut-butter-cookie.png",
+    alt_text: "Heart-shaped peanut butter cookies on cooling rack.",
+    rating: 4.5,
+    description: "Soft or crispy...? You decide.",
+    ingredients: [ 
+        createIngredient("Butter", .5, new Unit("cup"), "Softened"),
+        createIngredient("Sugar", .5, new Unit("cup")),
+        createIngredient("Brown sugar", .5, new Unit("cup")),
+        createIngredient("Egg", 1, new Unit("egg"), "Room tempurature"),
+        createIngredient("Vanilla", 1, new Unit("teaspoon")),
+        createIngredient("Peanut butter", 0.5, new Unit("cup")),
+        createIngredient("All-purpose flour", 1.5, new Unit("cup")),
+        createIngredient("Baking soda", .5, new Unit("teaspoon")),
+        createIngredient("Baking powder", .5, new Unit("teaspoon")),
+        createIngredient("Sugar", 2, new Unit("tablespoon"), "For rolling"),
+    ],
+    directions: [
+      "Cream the softened butter and sugars together.",
+      "Add and mix eggs. Then add and mix vanilla and peanut butter.",
+      "Add and mix the flour, baking soda, and baking powder.",
+      "Preheat oven tp 350 degrees.",
+      "Roll cookies in sugar and press with fork for pattern.",
+      "Bake for 12 minutes for soft cookies. Bake for 17 minutes for crisp cookies."
+    ],
+    notes: ["Idea: dip half the cookie in chocolate."],
+    source: "https://sallysbakingaddiction.com/classic-peanut-butter-cookies/#tasty-recipes-74968",
+  },
 ];
 
 export default dessertsRecipes;
