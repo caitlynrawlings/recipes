@@ -237,6 +237,35 @@ const dessertsRecipes: Recipe[] = [
     notes: ["Idea: dip half the cookie in chocolate."],
     source: "https://sallysbakingaddiction.com/classic-peanut-butter-cookies/#tasty-recipes-74968",
   },
+  {
+    name: "Chocolate Cake",
+    picture: "/choc-cake.png",
+    alt_text: "Side view of a slice of cake.",
+    rating: 2.5,
+    description: "A very chocolatey cake that's a little dry, but I might have over baked it.",
+    ingredients: [ 
+        createIngredient("All-purpose flour", 1.75, new Unit("cup")),
+        createIngredient("Cocoa powder", .75, new Unit("cup")),
+        createIngredient("Sugar", 1.75, new Unit("cup")),
+        createIngredient("Baking soda", 2, new Unit("teaspoon")),
+        createIngredient("Baking powder", 1, new Unit("teaspoon")),
+        createIngredient("Vegetable oil", .5, new Unit("cup")),
+        createIngredient("Egg", 2, new Unit("egg"), "Room tempurature"),
+        createIngredient("Vanilla", 2, new Unit("teaspoon")),
+        createIngredient("Milk", 1, new Unit("cup"), "Room temperature"),
+        createIngredient("Coffee", 1, new Unit("cup"), "Fresh and hot")
+    ],
+    directions: [
+      "Cream the softened butter and sugars together.",
+      "Add and mix eggs. Then add and mix vanilla and peanut butter.",
+      "Add and mix the flour, baking soda, and baking powder.",
+      "Preheat oven tp 350 degrees.",
+      "Roll cookies in sugar and press with fork for pattern.",
+      "Bake for 12 minutes for soft cookies. Bake for 17 minutes for crisp cookies."
+    ],
+    notes: ["I didn't use the provided chocolate buttercream recipe, and I added coffee to the one I made."],
+    source: "https://sallysbakingaddiction.com/triple-chocolate-layer-cake/#tasty-recipes-68103"
+  },
 ];
 
 export default dessertsRecipes;
