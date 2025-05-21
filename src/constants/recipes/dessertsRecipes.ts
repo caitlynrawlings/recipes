@@ -249,6 +249,7 @@ const dessertsRecipes: Recipe[] = [
         createIngredient("Sugar", 1.75, new Unit("cup")),
         createIngredient("Baking soda", 2, new Unit("teaspoon")),
         createIngredient("Baking powder", 1, new Unit("teaspoon")),
+        createIngredient("Salt", 1, new Unit("teaspoon")),
         createIngredient("Vegetable oil", .5, new Unit("cup")),
         createIngredient("Egg", 2, new Unit("egg"), "Room tempurature"),
         createIngredient("Vanilla", 2, new Unit("teaspoon")),
@@ -256,15 +257,47 @@ const dessertsRecipes: Recipe[] = [
         createIngredient("Coffee", 1, new Unit("cup"), "Fresh and hot")
     ],
     directions: [
-      "Cream the softened butter and sugars together.",
-      "Add and mix eggs. Then add and mix vanilla and peanut butter.",
-      "Add and mix the flour, baking soda, and baking powder.",
-      "Preheat oven tp 350 degrees.",
-      "Roll cookies in sugar and press with fork for pattern.",
-      "Bake for 12 minutes for soft cookies. Bake for 17 minutes for crisp cookies."
+      "Make coffee",
+      "Preheat oven to 350°F (177°C). Grease two 9-inch cake pans. I used a 9x14 rectangular cake pan and didn't stack.",
+      "Whisk the flour, cocoa powder, sugar, baking soda, baking powder, and salt.",
+      "Add and mix the oil, eggs, and vanilla together.",
+      "Add and mix the milk",
+      "Add and mix the coffee",
+      "Put in pans and bake for 23-26 minutes or until a toothpick inserted in the center comes out clean"
     ],
     notes: ["I didn't use the provided chocolate buttercream recipe, and I added coffee to the one I made."],
     source: "https://sallysbakingaddiction.com/triple-chocolate-layer-cake/#tasty-recipes-68103"
+  },
+  {
+    name: "Lemon Cookies",
+    picture: "/lemon-cookie.png",
+    alt_text: "Side view of stack of cookies. Whole on the botton and a crosssection on top showing airy, soft texture.",
+    rating: 5,
+    description: "Super soft and perfectly lemony!",
+    ingredients: [ 
+        createIngredient("Butter", .5, new Unit("cup"), "Softened"),
+        createIngredient("Cream cheese", 8, new Unit("ounce"), "Softened"),
+        createIngredient("Sugar", 1.5, new Unit("cup")),
+        createIngredient("Egg", 1, new Unit("egg")),
+        createIngredient("Vanilla", 1 ,new Unit("teaspoon")),
+        createIngredient("Lemon extract", 1 ,new Unit("teaspoon")),
+        createIngredient("All-purpose flour", 2.25, new Unit("cup")),
+        createIngredient("Powered sugar", .5, new Unit("cup")),
+        createIngredient("Baking powder", 3, new Unit("teaspoon")),
+        createIngredient("Powered sugar", .5, new Unit("cup"), "For rolling"),
+
+      ],
+    directions: [
+      "Preheat oven to 350°F.",
+      "Beat beat butter, cream cheese, and granulated sugar.",
+      "Add in egg, vanilla, and lemon extract.",
+      "Add in flour, baking powder, and ½ cup confectioners sugar. Beat into creamed mixture.",
+      "Using a 2-tablespoon cookie scoop, scoop dough and then roll in the remaining ½ cup of confectioners’ sugar.",
+      "Place on cookie sheet lined with parchment paper.",
+      "Bake until they no longer appear wet on top, 8-11 minutes. After about 5 minutes cooling on the pan (they will be soft!), place on cooling racks to cool completely."
+    ],
+    notes: ["I didn't make these, but my I tried them and they were delicious"],
+    source: "https://iambaker.net/ooey-gooey-lemon-cookies/#wprm-recipe-container-76858"
   },
 ];
 
