@@ -299,6 +299,39 @@ const dessertsRecipes: Recipe[] = [
     notes: ["I didn't make these, but my I tried them and they were delicious"],
     source: "https://iambaker.net/ooey-gooey-lemon-cookies/#wprm-recipe-container-76858"
   },
+  {
+    name: "Pumpkin Bread",
+    picture: "/pumpkin-bread.png",
+    alt_text: "Sliced pumpkin bread on a cutting board surrounded by pumpkins.",
+    rating: 5,
+    description: "Moist, spiced, sweet, delicious.",
+    ingredients: [ 
+        createIngredient("Flour", 3.5, new Unit("cup")),
+        createIngredient("Sugar", 3, new Unit("cup")),
+        createIngredient("Baking soda", 2, new Unit("teaspoon")),
+        createIngredient("Salt", 2, new Unit("teaspoon")),
+        createIngredient("Ground allspice", 2, new Unit("teaspoon")),
+        createIngredient("Baking powder", 1, new Unit("teaspoon")),
+        createIngredient("Groud nutmeg", 1, new Unit("teaspoon")),
+        createIngredient("Ground cinnamon", 1, new Unit("teaspoon")),
+        createIngredient("Ground cloves", .5, new Unit("teaspoon")),
+        createIngredient("Eggs", 4, new Unit("egg")),
+        createIngredient("Canned solid pack pumkin", 15, new Unit("ounce")),
+        createIngredient("Vegatable oil", 3/4, new Unit("cup")),
+        createIngredient("Water", 2/3, new Unit("cup")),
+      ],
+    directions: [
+      "In a large bowl combine the dry ingredients.",
+      "In another bowl combine the pumpkin, eggs, oil, and water. Mix well.",
+      "Stir wet into dry ingredients until just combined.",
+      "Pour into 3 greased 8x4x2 inch loaf pans.",
+      "Bake at 350 deg for 50-60 minutes or until a toothpick inserted near the center comes back clean.",
+      "Cool for 10 minutes before removeing from pans to cooling rack."
+    ],
+    notes: ["Grammy's recipe",
+      "Yeilds 3 loaves"
+    ],
+  },
 ];
 
 export default dessertsRecipes;
