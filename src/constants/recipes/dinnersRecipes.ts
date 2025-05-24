@@ -70,6 +70,39 @@ const dinnerRecipes: Recipe[] = [
       "I used this chicken in a broccoli chicken pasta."
     ]
   },
+  {
+    name: "Lemon Chicken Broccoli Pasta",
+    picture: "/lemon-chicken-broccoli-pasta.png",
+    alt_text: "Bird's eye view of broccoli chicken pasta in a pot.",
+    rating: 4,
+    description: "A light, refreshing pasta",
+    ingredients: [ 
+      createIngredient("Pasta", 8, new Unit("ounce")),
+      createIngredient("Broccoli chopped", 3, new Unit("cup")),
+      createIngredient("Seared chicken breasts", 2, new Unit("breast")),
+      createIngredient("Pepper", 2, new Unit("tablespoon")),
+      createIngredient("Salt", 2, new Unit("tablespoon")),
+      createIngredient("Garlic and herb seasoning", 1, new Unit("tablespoon")),
+      createIngredient("Lemon juice", 3, new Unit("tablespoon")),
+      createIngredient("Olive oil", 4, new Unit("tablespoon")),
+      createIngredient("Parsley", 1, new Unit("tablespoon"))
+    ],
+    directions: [
+        "Fill a large pot with water and put on heat until boiling. You will want at least twice as much water as would be nessecary for the pasta to cook the broccoli.",
+        "While waiting for water to boil chop the broccoli into chunks about as big as the pasta noodles.",
+        "While waiting for water to boil, chop the chicken into chunks about as big as the pasta noodles.",
+        "When water is boiling, dump in the pasta noodles. The broccoli with go into the boiling water 5 minutes before the pasta is done (so if using fresh pasta, the broccoli with go in first).",
+        "While the pasta is cooking, put lemon juice, olive oil, and seasonings into a pan and heat on low heat.",
+        "When the pasta and broccoli are done cooking, add in the chopped chicken and stir until chicken has been warmed up.",
+        "Stir in the lemon sauce.",
+        "Add extra seasonings to taste."
+    ],
+    notes: [
+      "I didn't actually measure out the seasonings I used when making this so these are estimates expect for the lemon juice and olive oil, which I did measure.",
+      "I used Lemon Herb Chicken recipe as the chicken in this.",
+      "Pairs lovely with Roasted Garlic Carrots as a side."
+    ]
+  },
 ];
 
 export default dinnerRecipes;
