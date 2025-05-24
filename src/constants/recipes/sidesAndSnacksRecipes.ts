@@ -67,6 +67,33 @@ const snacksAndSidesRecipes: Recipe[] = [
       "I don't have good olive oil, so I used 1/4 cup of the oil and 1/4 cup butter instead of the 1/2 cup olive oil the original recipe called for."
     ]
   },
+  {
+    name: "Garlic Roasted Carrots",
+    picture: "/roasted-carrots.png",
+    alt_text: "Roasted carrots with herb seasoning in a bowl.",
+    rating: 4.5,
+    description: "Savory and sweet without added sugar!",
+    ingredients: [ 
+      createIngredient("Oil olive", 3, new Unit("tablespoon")),
+      createIngredient("Carrots", 2.5, new Unit("pound")),
+      createIngredient("Granulated garlic", 1, new Unit("tablespoon")),
+      createIngredient("Garlic and herb seasoning", 1, new Unit("tablespoon")),
+      createIngredient("Salt", 1, new Unit("tablespoon")),
+      createIngredient("Pepper", 1, new Unit("tablespoon")),
+      createIngredient("Parsley", 1, new Unit("teaspoon"))
+    ],
+    directions: [
+        "Preheat oven to 400 deg.",
+        "Chop carrots diagonally.",
+        "Put olive oil and seasonings into bowl and toss the carrots in the mixture.",
+        "Spread out carrots on baking sheet lined with parchment paper.",
+        "Bake for 22 minutes."
+    ],
+    notes: [
+      "I didn't actually measure out the seasonings so those are just estimates. Season to taste.",
+      "Mine didn't get soft enough after 25+ minutes. I think it may have been because I had so many carrots, but I think it might be helpful to cover the baking sheet in aluminum foil."
+    ]
+  },
 ];
 
 export default snacksAndSidesRecipes;
